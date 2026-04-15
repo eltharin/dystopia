@@ -26,7 +26,8 @@ export class BaseActorSheet extends BaseSheet (
   static DEFAULT_OPTIONS = {
     classes: [],
     actions: {
-      
+      verouillage: this.verouillage,
+      deverouillage: this.deverouillage,
     },
     position: {
       width: 1030,
