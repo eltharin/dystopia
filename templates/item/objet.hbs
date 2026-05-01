@@ -1,21 +1,21 @@
 <section>
 
     <div>
-        <label>{{localize "beryllium.itemsheet.common.prix"}}</label>
+        <label>{{localize (concat (SYSTEMID) ".itemsheet.common.prix")}}</label>
         <div class="multicol">
-            <label>{{localize "beryllium.bourse.couronne.label"}}</label>
+            <label>{{localize (concat (SYSTEMID) ".bourse.couronne.label")}}</label>
             <div>{{ fieldOrInput "system.prix.couronne" type="number" class="pj-sheet-input" }}</div>
 
-            <label>{{localize "beryllium.bourse.eclat.label"}}</label>
+            <label>{{localize (concat (SYSTEMID) ".bourse.eclat.label")}}</label>
             <div>{{ fieldOrInput "system.prix.eclat" type="number" class="pj-sheet-input" }}</div>
 
-            <label>{{localize "beryllium.bourse.fragment.label"}}</label>
+            <label>{{localize (concat (SYSTEMID) ".bourse.fragment.label")}}</label>
             <div>{{ fieldOrInput "system.prix.fragment" type="number" class="pj-sheet-input" }}</div>
         </div>
     </div>
 
     <div class="notes">
-        <label>{{localize "beryllium.pjsheet.notes.titre"}}</label>
+        <label>{{localize (concat (SYSTEMID) ".pjsheet.notes.titre")}}</label>
         <textarea name="system.notes" rows="5" class="pj-sheet-input" placeholder="">{{system.notes}}</textarea>
     </div>
 </section>

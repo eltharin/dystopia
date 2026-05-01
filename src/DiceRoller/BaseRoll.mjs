@@ -28,7 +28,7 @@ export class BaseRoll extends Roll {
     
     async getFletrineTooltip() {
         
-        return foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/affect_fletrine.hbs", {
+        return foundry.applications.handlebars.renderTemplate(system.Consts.TEMPLATES_PATH + "/dice/affect_fletrine.hbs", {
             isMagie: this.isCompetenceMagie(),
             nb: this.options.coutFletrine, 
             ok: this.options.coutFletrineOk
@@ -47,7 +47,7 @@ export class BaseRoll extends Roll {
 
     getResultText()
     {
-        return game.i18n.format("beryllium.rolldice.result." + this.getResult());
+        return game.i18n.format(system.Consts.SYSTEMID + ".rolldice.result." + this.getResult());
     }
 
     static fromData(data) {

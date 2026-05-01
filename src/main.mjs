@@ -25,17 +25,17 @@ Hooks.once("init", () => {
     objet: ObjetDataModel,
   };
   
-  foundry.documents.collections.Actors.registerSheet("beryllium", PjSheet, {
+  foundry.documents.collections.Actors.registerSheet(system.Consts.SYSTEMID, PjSheet, {
     types: ["pj"],
     makeDefault: true,
     label: "Feuille de Personnage Joueur"
   });
-  foundry.documents.collections.Actors.registerSheet("beryllium", PnjSheet, {
+  foundry.documents.collections.Actors.registerSheet(system.Consts.SYSTEMID, PnjSheet, {
     types: ["pnj"],
     makeDefault: true,
     label: "Feuille de Personnage Non Joueur"
   });
-  foundry.documents.collections.Items.registerSheet("beryllium", ObjetSheet, {
+  foundry.documents.collections.Items.registerSheet(system.Consts.SYSTEMID, ObjetSheet, {
     types: ["objet"],
     makeDefault: true,
     label: "Feuille d'objet"

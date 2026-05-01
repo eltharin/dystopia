@@ -57,6 +57,7 @@ jobs:
                       fonts/                               \
                       images/                              \
                       lang/                                \
+                      src/                                 \
                       modules/                             \
                       styles/                              \
                       packs/                               \

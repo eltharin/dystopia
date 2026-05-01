@@ -23,6 +23,12 @@ export class BaseActorSheet extends BaseSheet (
     }
   };
 
+  static PARTIALS = {
+    //sidebar: system.Consts.TEMPLATES_PATH + "/actor/parts/sidebar.hbs",
+    topbar: system.Consts.TEMPLATES_PATH + "/actor/pj/parts/topbar.hbs",
+    //actionHeroique_liste: system.Consts.TEMPLATES_PATH + "/shared/actionHeroique/liste.hbs",
+  };
+
   static DEFAULT_OPTIONS = {
     classes: [],
     actions: {
@@ -39,14 +45,14 @@ export class BaseActorSheet extends BaseSheet (
         {
           action: "verouillage",
           icon: "fa-solid fa-lock",
-          label: "beryllium.pjsheet.action.lock",
+          label: system.Consts.SYSTEMID + ".pjsheet.action.lock",
           ownership: "OWNER",
           visible: this.#canVerouillage
         },
         {
           action: "deverouillage",
           icon: "fa-solid fa-unlock",
-          label: "beryllium.pjsheet.action.unlock",
+          label: system.Consts.SYSTEMID + ".pjsheet.action.unlock",
           ownership: "OWNER",
           visible: this.#canDeverouillage
         }

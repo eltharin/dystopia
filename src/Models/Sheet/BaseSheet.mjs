@@ -10,12 +10,15 @@ export function BaseSheet(BaseApplication) {
             super(options);
             for ( const [groupId, groupData] of Object.entries(this.constructor.TABS) ) {
                 groupData.tabs.forEach(tab => {
-                    if(!(tab.id in this.constructor.PARTS))
+                    if((tab.id in this.constructor.PARTS))
                     {
-                        console.error(tab.id , 'not in',  this.constructor.PARTS)
+                        this.constructor.PARTS[tab.id].tabs = {
+                            group: groupId,
+                        }   
                     }
-                    this.constructor.PARTS[tab.id].tabs = {
-                    group: groupId,
+                    else
+                    {
+                        console.error(tab.id , 'not in',  this.constructor.PARTS);
                     }
                 });
             }

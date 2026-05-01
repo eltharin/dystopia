@@ -1,47 +1,47 @@
-<div class="sheet beryllium pj-sheet">
+<div class="sheet {{ SYSTEMID }} pj-sheet">
     <div class="sidebar">
-        {{> "systems/beryllium/templates/actor/pj/parts/sidebar.hbs" }}
+        {{> concat (SYSTEMTEMPLATE) "/actor/pj/parts/sidebar.hbs" }}
     </div>
     <div class="content">
         <div class="top">
-            {{> "systems/beryllium/templates/actor/pj/parts/topbar.hbs" }}
+            {{> concat (SYSTEMTEMPLATE) "/actor/pj/parts/topbar.hbs" }}
         </div>
         <div class="main">
             <nav class="sheet-tabs tabs" data-application-part="tabs">
                 <a data-action="tab" data-group="primary" data-tab="aspects">
-                    <span>{{localize "beryllium.pjsheet.tabs.aspects"}}</span>
+                    <span>{{localize SYSTEMID + ".pjsheet.tabs.aspects"}}</span>
                 </a>
                 <a data-action="tab" data-group="primary" data-tab="prouesses">
-                    <span>{{localize "beryllium.pjsheet.tabs.prouesses"}}</span>
+                    <span>{{localize SYSTEMID + ".pjsheet.tabs.prouesses"}}</span>
                 </a>
                 <a data-action="tab" data-group="primary" data-tab="magie">
-                    <span>{{localize "beryllium.pjsheet.tabs.magie"}}</span>
+                    <span>{{localize SYSTEMID + ".pjsheet.tabs.magie"}}</span>
                 </a>
                 <a data-action="tab" data-group="primary" data-tab="equipements">
-                    <span>{{localize "beryllium.pjsheet.tabs.equipements"}}</span>
+                    <span>{{localize SYSTEMID + ".pjsheet.tabs.equipements"}}</span>
                 </a>
                 <a data-action="tab" data-group="primary" data-tab="consequences">
-                    <span>{{localize "beryllium.pjsheet.tabs.consequences"}}</span>
+                    <span>{{localize SYSTEMID + ".pjsheet.tabs.consequences"}}</span>
                 </a>
                 <a data-action="tab" data-group="primary" data-tab="combat">
-                    <span>{{localize "beryllium.pjsheet.tabs.combat"}}</span>
+                    <span>{{localize SYSTEMID + ".pjsheet.tabs.combat"}}</span>
                 </a>
                 <a data-action="tab" data-group="primary" data-tab="notes">
-                    <span>{{localize "beryllium.pjsheet.tabs.notes"}}</span>
+                    <span>{{localize SYSTEMID + ".pjsheet.tabs.notes"}}</span>
                 </a>
                 <a data-action="tab" data-group="primary" data-tab="max">
-                    <span>{{localize "beryllium.pjsheet.tabs.max"}}</span>
+                    <span>{{localize SYSTEMID + ".pjsheet.tabs.max"}}</span>
                 </a>
             </nav>
             <div class="pages">
-            {{> "systems/beryllium/templates/actor/pj/parts/aspects.hbs" }}
-            {{> "systems/beryllium/templates/actor/pj/parts/prouesses.hbs" }}
-            {{> "systems/beryllium/templates/actor/pj/parts/magie.hbs" }}
-            {{> "systems/beryllium/templates/actor/pj/parts/consequences.hbs" }}
-            {{> "systems/beryllium/templates/actor/pj/parts/combat.hbs" }}
-            {{> "systems/beryllium/templates/actor/pj/parts/equipements.hbs" }}
-            {{> "systems/beryllium/templates/actor/pj/parts/notes.hbs" }}
-            {{> "systems/beryllium/templates/actor/pj/parts/max.hbs" }}
+            {{> concat (SYSTEMTEMPLATE) "/actor/pj/parts/aspects.hbs" }}
+            {{> concat (SYSTEMTEMPLATE) "/actor/pj/parts/prouesses.hbs" }}
+            {{> concat (SYSTEMTEMPLATE) "/actor/pj/parts/magie.hbs" }}
+            {{> concat (SYSTEMTEMPLATE) "/actor/pj/parts/consequences.hbs" }}
+            {{> concat (SYSTEMTEMPLATE) "/actor/pj/parts/combat.hbs" }}
+            {{> concat (SYSTEMTEMPLATE) "/actor/pj/parts/equipements.hbs" }}
+            {{> concat (SYSTEMTEMPLATE) "/actor/pj/parts/notes.hbs" }}
+            {{> concat (SYSTEMTEMPLATE) "/actor/pj/parts/max.hbs" }}
             </div>
         </div>
     </div>

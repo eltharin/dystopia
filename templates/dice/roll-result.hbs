@@ -2,10 +2,10 @@
     <div class="dice-result">
         <div class="dice-formula">{{title}}</div>
         {{{tooltip}}}
-        <div class="dice-formula">{{localize "beryllium.roll.common.total"}} : {{total}}</div>
-        <h4 class="dice-total">{{localize "beryllium.roll.common.total"}} : {{totalText}} = {{totalValue}}</h4>
+        <div class="dice-formula">{{localize (concat (SYSTEMID) ".roll.common.total")}} : {{total}}</div>
+        <h4 class="dice-total">{{localize (concat (SYSTEMID) ".roll.common.total")}} : {{totalText}} = {{totalValue}}</h4>
      
-        <div class="dice-formula">{{localize "beryllium.RollDifficulte.label"}} : {{seuil}}</div>
+        <div class="dice-formula">{{localize (concat (SYSTEMID) ".RollDifficulte.label")}} : {{seuil}}</div>
         <h4 class="dice-total">{{result}}</h4>
 
         {{{ fletrineTooltip }}}

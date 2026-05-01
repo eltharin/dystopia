@@ -2,27 +2,27 @@
 
     <div class="">
 
-        <div class="flexrow-beryllium roll-difficulty-selector">
-            <label>{{localize 'beryllium.RollDifficulte.select'}}</label>
+        <div class="flexrow roll-difficulty-selector">
+            <label>{{localize (concat (SYSTEMID) ".RollDifficulte.select")}}</label>
             <select name="difficulte">
-                <option class="difficulte-mediocre" value="{{options.difficulte.mediocre.value}}" {{#if options.difficulte.mediocre.isDefault}}selected{{/if}}>{{localize 'beryllium.RollDifficulte.mediocre'}}</option>
-                <option class="difficulte-correct" value="{{options.difficulte.correct.value}}" {{#if options.difficulte.correct.isDefault}}selected{{/if}}>{{localize 'beryllium.RollDifficulte.correct'}}</option>
-                <option class="difficulte-moyen" value="{{options.difficulte.moyen.value}}" {{#if options.difficulte.moyen.isDefault}}selected{{/if}}>{{localize 'beryllium.RollDifficulte.moyen'}}</option>
-                <option class="difficulte-bon" value="{{options.difficulte.bon.value}}" {{#if options.difficulte.bon.isDefault}}selected{{/if}}>{{localize 'beryllium.RollDifficulte.bon'}}</option>
-                <option class="difficulte-excellent" value="{{options.difficulte.excellent.value}}" {{#if options.difficulte.excellent.isDefault}}selected{{/if}}>{{localize 'beryllium.RollDifficulte.excellent'}}</option>
-                <option class="difficulte-legendaire" value="{{options.difficulte.legendaire.value}}" {{#if options.difficulte.legendaire.isDefault}}selected{{/if}}>{{localize 'beryllium.RollDifficulte.legendaire'}}</option></select>
+                <option class="difficulte-mediocre" value="{{options.difficulte.mediocre.value}}" {{#if options.difficulte.mediocre.isDefault}}selected{{/if}}>{{localize (concat (SYSTEMID) ".RollDifficulte.mediocre")}}</option>
+                <option class="difficulte-correct" value="{{options.difficulte.correct.value}}" {{#if options.difficulte.correct.isDefault}}selected{{/if}}>{{localize (concat (SYSTEMID) ".RollDifficulte.correct")}}</option>
+                <option class="difficulte-moyen" value="{{options.difficulte.moyen.value}}" {{#if options.difficulte.moyen.isDefault}}selected{{/if}}>{{localize (concat (SYSTEMID) ".RollDifficulte.moyen")}}</option>
+                <option class="difficulte-bon" value="{{options.difficulte.bon.value}}" {{#if options.difficulte.bon.isDefault}}selected{{/if}}>{{localize (concat (SYSTEMID) ".RollDifficulte.bon")}}</option>
+                <option class="difficulte-excellent" value="{{options.difficulte.excellent.value}}" {{#if options.difficulte.excellent.isDefault}}selected{{/if}}>{{localize (concat (SYSTEMID) ".RollDifficulte.excellent")}}</option>
+                <option class="difficulte-legendaire" value="{{options.difficulte.legendaire.value}}" {{#if options.difficulte.legendaire.isDefault}}selected{{/if}}>{{localize (concat (SYSTEMID) ".RollDifficulte.legendaire")}}</option></select>
             </select>
         </div>
 
         {{#if isMagie}}
-            <div class="flexrow-beryllium roll-threshold coutFletrine">
-                <label>{{localize 'beryllium.roll.common.coutFletrine'}}</label>
+            <div class="flexrow roll-threshold coutFletrine">
+                <label>{{localize (concat (SYSTEMID) ".roll.common.coutFletrine")}}</label>
                 <input type="number" name="coutFletrine" value="1"/>
             </div>
         {{/if}}
 
-        <div class="flexrow-beryllium roll-threshold">
-            <label>{{localize 'beryllium.RollModificateur'}}</label>
+        <div class="flexrow roll-threshold">
+            <label>{{localize (concat (SYSTEMID) ".RollModificateur")}}</label>
             <input type="number" name="modificateur" value="0" step="1" />
         </div>
     </div>

@@ -38,10 +38,10 @@ export class CompetenceRollDialog {
         };
 
         return await system.Common.Dialog.input({
-            content: await foundry.applications.handlebars.renderTemplate("systems/beryllium/templates/dice/competence/roll-dialog.hbs", data),
+            content: await foundry.applications.handlebars.renderTemplate(system.Consts.TEMPLATES_PATH + "/dice/competence/roll-dialog.hbs", data),
             window: {title: "lancer de dé"},
             ok: {
-                label: game.i18n.format("beryllium.roll.common.rolldice"),
+                label: game.i18n.format(system.Consts.SYSTEMID + ".roll.common.rolldice"),
                 default: true,
                 icon: "fa-solid fa-floppy-disk",
             }

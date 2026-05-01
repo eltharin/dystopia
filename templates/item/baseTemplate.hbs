@@ -1,4 +1,4 @@
-<div class="sheet beryllium mysheet item-sheet">
+<div class="sheet {{ SYSTEMID }} mysheet item-sheet">
     <div class="sidebar">
         <div class="image">
             <img data-action="editImage" data-edit="img" src="{{document.img}}" alt="Photo de {{document.name}}" />
@@ -7,7 +7,7 @@
     <main>
         <div class="top">
             <div >
-                <label>{{localize "beryllium.itemsheet.common.nom"}}</label>
+                <label>{{localize (concat (SYSTEMID) ".itemsheet.common.nom")}}</label>
                 <div>{{ fieldOrInput "name" class="pj-sheet-input" value=document.name }}</div>
             </div>
         </div>

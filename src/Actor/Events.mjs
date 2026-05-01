@@ -3,7 +3,7 @@ class ActorUpdates
     static getChangedValue(actor, changes, property)
     {
         if(! foundry.utils.hasProperty(changes, property) ) return null;
-        const oldValue = foundry.utils.getProperty(changes, "flags.beryllium.updateedValues." + property);
+        const oldValue = foundry.utils.getProperty(changes, "flags." + system.Consts.SYSTEMID + ".updateedValues." + property);
         const newValue = foundry.utils.getProperty(actor, property);
 
         if(oldValue == newValue) return null;
@@ -44,19 +44,19 @@ export function register()
         let flags = {};
         console.log(foundry.utils.deepClone(changes));
         Object.entries(foundry.utils.flattenObject(changes)).forEach(([k,v]) => {foundry.utils.setProperty(flags,k,foundry.utils.getProperty(actor, k));});
-        foundry.utils.setProperty(changes, "flags.beryllium.updateedValues", flags);
+        foundry.utils.setProperty(changes, "flags." + system.Consts.SYSTEMID + ".updateedValues", flags);
     });*/
 /*
     Hooks.on("preCreateActiveEffect", (effect, changes, options, userId) => {
-        if(changes.name == "Mort" && !foundry.utils.getProperty(changes, "flags.beryllium.effetmort") ) {
+        if(changes.name == "Mort" && !foundry.utils.getProperty(changes, "flags." + system.Consts.SYSTEMID + ".effetmort") ) {
             effect.parent.createEmbeddedDocuments("ActiveEffect", [{
                 label: "Mort",
                 name: "Mort",
                 statuses:["dead"],
-                icon: "systems/beryllium/assets/croix_rouge.webp",
+                icon: system.Consts.ASSETS_PATH + "/croix_rouge.webp",
                 flags: { 
                     core: { overlay: true } ,
-                    beryllium: {effetmort: true}
+                    " + system.Consts.SYSTEMID + ": {effetmort: true}
                 }
             }]);
         }

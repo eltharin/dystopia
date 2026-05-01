@@ -2,7 +2,7 @@
 import * as system  from "../../_helpers.mjs";
 
 export class CompetenceRoll extends system.DiceRoller.BaseRoll{
-    static CHAT_TEMPLATE = "systems/beryllium/templates/dice/roll-result.hbs";
+    static CHAT_TEMPLATE = system.Consts.SYSTEMTEMPLATE + "/dice/roll-result.hbs";
 
     constructor(formula="", data={}, options={}) {
         super(formula, data, options);
@@ -20,7 +20,7 @@ export class CompetenceRoll extends system.DiceRoller.BaseRoll{
 
     async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
         let ret = await super._prepareChatRenderContext({flavor, isPrivate, ...options});
-        ret.title = game.i18n.format("beryllium.roll.title.carac", {carac: this.options.competence});
+        ret.title = game.i18n.format(system.Consts.SYSTEMID + ".roll.title.carac", {carac: this.options.competence});
 
         ret.actions = null;
         return ret;

@@ -1,14 +1,21 @@
-<div class="sheet beryllium pj-sheet">
+<div class="sheet {{ SYSTEMID }} pj-sheet">
     <div class="sidebar">
-        {{> "systems/beryllium/templates/actor/pj/parts/sidebar.hbs" }}
+        
     </div>
     <div class="content">
         <div class="top">
-            {{> "systems/beryllium/templates/actor/pj/parts/topbar.hbs" }}
+            {{> "topbar" }}
         </div>
         <div class="main">
             {{{tabs.sheet.html}}}
             <div class="pages tabscontainer">
+                {{ SYSTEMID }}
+                {{ SYSTEMTEMPLATE }}
+                {{ concat (SYSTEMID)  ".toto" }}
+                
+
+                {{localize (concat (SYSTEMID)  ".toto")}}
+
             </div>
         </div>
     </div>

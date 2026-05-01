@@ -5,14 +5,10 @@ import { BaseItemSheet } from "./BaseItemSheet.mjs";
 export class ObjetSheet extends BaseItemSheet {
   static PARTS = {
     form: { 
-      template: "systems/beryllium/templates/item/baseTemplate.hbs",
+      template: system.Consts.TEMPLATES_PATH + "/item/baseTemplate.hbs",
     },
     main: {
-      template: "systems/beryllium/templates/item/objet.hbs",
-      container: { id: "form" , element: ".tabscontainer" },
-    },
-    effects: {
-      template: "systems/beryllium/templates/shared/effet/listEffets.hbs",
+      template: system.Consts.TEMPLATES_PATH + "/templates/item/objet.hbs",
       container: { id: "form" , element: ".tabscontainer" },
     }
   };
@@ -20,8 +16,7 @@ export class ObjetSheet extends BaseItemSheet {
   static TABS = {
     sheet: {
       tabs: [
-        { id: "main", label:"beryllium.sheets.nav.main"},
-        { id: "effects", label:"beryllium.sheets.nav.effects"},
+        { id: "main", label: system.Consts.SYSTEMID + ".sheets.nav.main"},
       ],
       initial: "main",
     }
