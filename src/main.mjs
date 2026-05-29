@@ -10,7 +10,7 @@ import { ObjetSheet } from "./Item/Sheet/ObjetSheet.mjs";
 
 import { ObjetDataModel } from "./Item/DataModel/ObjetDataModel.mjs";
 
-import {registerFunctions as registerHandleBarFunctions} from "./Handlebars.mjs"
+import {registerFunctions as registerHandleBarFunctions} from "./SystemBase/Helpers/Handlebars.mjs"
 
 
 Hooks.once("init", () => {
@@ -29,5 +29,9 @@ Hooks.once("init", () => {
   system.Actor.Events.register();
 
   system.DiceRoller.fct.registerDiceRolls();
+
+  
+  system.Base.Helpers.Migration.register( system.Settings.Migration  );
 });
+
 

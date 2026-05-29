@@ -1,4 +1,4 @@
-import { SystemConsts } from "./SystemConsts.mjs";
+import { SystemConsts } from "../../SystemConsts.mjs";
 
 
 export function registerFunctions() {
