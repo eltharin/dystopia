@@ -3,13 +3,8 @@ import { SystemConsts } from "./SystemConsts.mjs";
 
 export function registerFunctions() {
 
-    Handlebars.registerHelper('SYSTEMID', function(key){
-        return SystemConsts.SYSTEMID;
-    });
-
-    Handlebars.registerHelper('SYSTEMTEMPLATE', function(key){
-        return SystemConsts.TEMPLATES_PATH;
-    });
+    Handlebars.registerHelper('SYSTEMID', () => SystemConsts.SYSTEMID);
+    Handlebars.registerHelper('SYSTEMTEMPLATE', () => SystemConsts.TEMPLATES_PATH);
 
     Handlebars.registerHelper('times', function(n, block) {
         var accum = '';

@@ -48,7 +48,7 @@ export function BaseSheet(BaseApplication) {
 
             for ( const [groupId, groupData] of Object.entries(this.constructor.TABS) ) {
                 context.tabs[groupId] = { content: this._prepareTabs(groupId), html: ""};
-                context.tabs[groupId].html = await foundry.applications.handlebars.renderTemplate(groupData.template ?? SystemConsts.TEMPLATES_PATH + "/models/tabs.hbs", {
+                context.tabs[groupId].html = await foundry.applications.handlebars.renderTemplate(groupData.template ?? SystemConsts.TEMPLATES_PATH + "/systemBase/tabs.hbs", {
                     id: groupId,
                     ...groupData,
                     tabs: context.tabs[groupId].content,

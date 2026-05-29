@@ -1,7 +1,7 @@
 import * as system from "../../_helpers.mjs";
 
 
-export class BaseActorDataModel extends system.Models.SystemDataModel {
+export class BaseActorDataModel extends system.Base.SystemDataModel {
     static defineSchema() {
     // All Actors have resources.
         return { 

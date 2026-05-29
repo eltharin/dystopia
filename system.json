@@ -1,11 +1,11 @@
 {
-  "id": "glyphes",
-  "title": "glyphes",
-  "description": "Glyphes system for foundryVTT.",
+  "id": "change_me",
+  "title": "change_me",
+  "description": "change_me system for foundryVTT.",
   "version": "#{VERSION}#",
   "compatibility": {
     "minimum": 13,
-    "verified": 13
+    "verified": 14
   },
   "authors": [{
     "name": "eltharin",

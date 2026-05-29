@@ -1,8 +1,7 @@
 import * as system  from "../../_helpers.mjs";
-import { BaseSheet } from "../../Models/Sheet/BaseSheet.mjs";
 
 
-export class BaseActorSheet extends BaseSheet (
+export class BaseActorSheet extends system.Base.BaseSheet (
   foundry.applications.sheets.ActorSheetV2
 ) {
   static PARTS = {

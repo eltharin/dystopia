@@ -16,30 +16,10 @@ import {registerFunctions as registerHandleBarFunctions} from "./Handlebars.mjs"
 Hooks.once("init", () => {
   console.log(system.Consts.SYSTEMID + " | Initialisation du système " + system.Consts.SYSTEMID);
 
-  CONFIG.Actor.dataModels = {
-    pj: ActorPjDataModel,
-    pnj: ActorPnjDataModel,
-  };
-  
-  CONFIG.Item.dataModels = {
-    objet: ObjetDataModel,
-  };
-  
-  foundry.documents.collections.Actors.registerSheet(system.Consts.SYSTEMID, PjSheet, {
-    types: ["pj"],
-    makeDefault: true,
-    label: "Feuille de Personnage Joueur"
-  });
-  foundry.documents.collections.Actors.registerSheet(system.Consts.SYSTEMID, PnjSheet, {
-    types: ["pnj"],
-    makeDefault: true,
-    label: "Feuille de Personnage Non Joueur"
-  });
-  foundry.documents.collections.Items.registerSheet(system.Consts.SYSTEMID, ObjetSheet, {
-    types: ["objet"],
-    makeDefault: true,
-    label: "Feuille d'objet"
-  });
+  system.Base.Helpers.Actor.register("pj", ActorPjDataModel, PjSheet, "Feuille de Personnage Joueur");
+  system.Base.Helpers.Actor.register("pnj", ActorPnjDataModel, PnjSheet, "Feuille de Personnage Non Joueur");
+  system.Base.Helpers.Item.register("objet", ObjetDataModel, ObjetSheet, "Feuille d'objet");
+
 
   system.Settings.fct.registerSettings();
 
