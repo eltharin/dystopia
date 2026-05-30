@@ -2,6 +2,16 @@
 
 export class SystemDataModel extends foundry.abstract.TypeDataModel {
 
+    static DEFAULT_ICON  = "";
+    
+    constructor(data, options) 
+    {
+        super(data, options);
+        if(this.constructor.DEFAULT_ICON && options.parent.img === options.parent.constructor.DEFAULT_ICON) {
+            options.parent.img = this.constructor.DEFAULT_ICON;
+        }
+    }
+
     static preSaveFunctions = [
     ];
 
