@@ -6,6 +6,14 @@ export function registerFunctions() {
     Handlebars.registerHelper('SYSTEMID', () => SystemConsts.SYSTEMID);
     Handlebars.registerHelper('SYSTEMTEMPLATE', () => SystemConsts.TEMPLATES_PATH);
 
+    Handlebars.registerHelper('localizeSystem', function(key) {
+        return game.i18n.localize(SystemConsts.SYSTEMID + "." + key);
+    });
+    
+    Handlebars.registerHelper('getTemplate', function(subPath) {
+        return game.i18n.localize(SystemConsts.TEMPLATES_PATH + "/" + subPath);
+    });
+
     Handlebars.registerHelper('times', function(n, block) {
         var accum = '';
         for(var i = 0; i < n; ++i)
