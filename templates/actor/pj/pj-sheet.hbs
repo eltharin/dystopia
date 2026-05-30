@@ -1,16 +1,16 @@
-<div class="sheet {{ SYSTEMID }} pj-sheet">
+<div class="{{ SYSTEMID }}-sheet pj-sheet">
     <div class="sidebar">
-        
+        {{> "sidebar" }}
     </div>
-    <div class="content">
+    <main>
         <div class="top">
             {{> "topbar" }}
         </div>
         <div class="main">
             {{{tabs.sheet.html}}}
             <div class="pages tabscontainer">
-
+                
             </div>
         </div>
-    </div>
+    </main>
 </div>

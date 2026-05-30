@@ -1,0 +1,30 @@
+<div>
+
+    <h2>
+        <span>{{localizeSystem "sheet.actor.items.titre"}}</span>
+        <span class="action add button" data-action="addItem" data-type="aptitude" title="{{localizeSystem "sheet.actor.items.ajout"}}">{{localizeSystem "sheet.actor.items.ajoutbtn"}}</span>
+    </h2>
+
+    <div class="tabitem">
+        {{#each items as |item|}}
+            <div class="item">
+                <div class="lignetab">
+                    <label>{{item.name}}</label>
+                    <label data-width="100">{{item.type}}</label>
+                    <span class="action" >
+                        {{#if item.system.notes}}<a data-action="toggle"  data-toggle="item_{{item._id}}"><i class="fas fa-eye"></i></a>{{/if}}
+                        <a data-action="editItem" data-itemid="{{item.id}}" title="{{localizeSystem "sheet.actor.items.edit"}}"><i class="fas fa-edit"></i></a>
+                        <a data-action="deleteItem" data-itemid="{{item.id}}" title="{{localizeSystem "sheet.actor.items.delete"}}"><i class="fas fa-trash"></i></a>
+                    </span>    
+                </div>
+                {{#if item.system.notes}}
+                <div class="toggleable flexrow" data-toggle_section="item_{{item._id}}">
+                    <div class="infos">
+                        {{item.system.notes}}
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+        {{/each}}
+    </div>
+</div>

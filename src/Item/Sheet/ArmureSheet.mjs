@@ -2,13 +2,13 @@ import * as system  from "../../_helpers.mjs";
 
 import { BaseItemSheet } from "./BaseItemSheet.mjs";
 
-export class ObjetSheet extends BaseItemSheet {
+export class ArmureSheet extends BaseItemSheet {
   static PARTS = {
     form: { 
       template: system.Consts.TEMPLATES_PATH + "/item/baseTemplate.hbs",
     },
     main: {
-      template: system.Consts.TEMPLATES_PATH + "/item/objet.hbs",
+      template: system.Consts.TEMPLATES_PATH + "/item/armure.hbs",
       container: { id: "form" , element: ".tabscontainer" },
     }
   };
@@ -30,8 +30,8 @@ export class ObjetSheet extends BaseItemSheet {
       height: 360,
     },
   }
-/*
-  _prepareSubmitData(event, form, formData, updateData) { 
+
+  /*_prepareSubmitData(event, form, formData, updateData) { 
 
     let data  = super._prepareSubmitData(event, form, formData, updateData);
     const submitData = foundry.utils.expandObject(formData.object);
@@ -39,6 +39,6 @@ export class ObjetSheet extends BaseItemSheet {
     foundry.utils.setProperty(data, "system.prixmoyen", system.Common.Argent.convertBtoA(submitData.system.prix));
 
     return data ; 
-  }
-  */
+  }*/
+  
 }

@@ -7,24 +7,65 @@ export class BaseActorSheet extends system.Base.BaseSheet (
   static PARTS = {
     form: { 
       template: system.Consts.TEMPLATES_PATH + "/actor/pj/pj-sheet.hbs",
-      templates: [
-
-      ] 
+      templates: [      ] ,
     },
+    main: {
+      template: system.Consts.TEMPLATES_PATH + "/actor/parts/carac.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+    },
+    perso: {
+      template: system.Consts.TEMPLATES_PATH + "/actor/parts/perso.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+    },
+    aptitudes: {
+      template: system.Consts.TEMPLATES_PATH + "/actor/parts/aptitudes.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+      scrollable: [".tabscontainer"]
+    },
+    competences: {
+      template: system.Consts.TEMPLATES_PATH + "/actor/parts/competences.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+      scrollable: [".tabscontainer"]
+    },
+    combat: {
+      template: system.Consts.TEMPLATES_PATH + "/actor/parts/combat.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+    },
+    inventaire: {
+      template: system.Consts.TEMPLATES_PATH + "/actor/parts/inventaire.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+    },
+    notes: {
+      template: system.Consts.TEMPLATES_PATH + "/actor/parts/notes.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+    },
+    GM: {
+      template: system.Consts.TEMPLATES_PATH + "/actor/parts/gm.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+    },
+
+    
   };
 
   static TABS = {
     sheet: {
       tabs: [
-
+        {id: "main", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.main"},
+        {id: "perso", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.perso"},
+        {id: "aptitudes", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.aptitudes"},
+        {id: "competences", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.competences"},
+        {id: "combat", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.combat"},
+        {id: "inventaire", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.inventaire"},
+        {id: "notes", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.notes"},
+        {id: "GM", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.GM"},
       ],
-      initial: "",
+      initial: "main",
     }
   };
 
   static PARTIALS = {
-    //sidebar: system.Consts.TEMPLATES_PATH + "/actor/parts/sidebar.hbs",
-    topbar: system.Consts.TEMPLATES_PATH + "/actor/pj/parts/topbar.hbs",
+    sidebar: system.Consts.TEMPLATES_PATH + "/actor/parts/sidebar.hbs",
+    topbar: system.Consts.TEMPLATES_PATH + "/actor/parts/topbar.hbs",
     //actionHeroique_liste: system.Consts.TEMPLATES_PATH + "/shared/actionHeroique/liste.hbs",
   };
 
@@ -33,6 +74,13 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     actions: {
       verouillage: this.verouillage,
       deverouillage: this.deverouillage,
+      toggle: this._onToggle,
+
+      addItem: this._onAddItem,
+      editItem: this._onEditItem,
+      deleteItem: this._onDeleteItem,
+
+      globalRoll: this._onGlobalRoll,
     },
     position: {
       width: 1030,
@@ -77,6 +125,11 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     this._updateFrame({window: {}});
   }
 
+  static async _onToggle(event, target) {
+    this.element.querySelectorAll("[data-toggle_section='" + target.dataset.toggle + "']").forEach(e => e.classList.toggle("visible"));
+    //--TODO: ajouter changement icone
+  }
+
   _prepareSubmitData(event, form, formData, updateData) { 
 
     let data  = super._prepareSubmitData(event, form, formData, updateData);
@@ -91,10 +144,92 @@ export class BaseActorSheet extends system.Base.BaseSheet (
 
     context.isVerrou = this.actor.system.isLocked;
 
+
+    let allItems = foundry.utils.deepClone(this.document.items.documentsByType);
+
+    context.armes = allItems.arme || [];
+    delete allItems.arme;
+    context.armures = allItems.armure || [];
+    delete allItems.armure;
+    context.aptitudes = allItems.aptitude || [];
+    delete allItems.aptitude;
+    context.competences = allItems.competence || [];
+    delete allItems.competence;
+    context.consommables = allItems.consommable || [];
+    delete allItems.consommable;
+    
+    context.items = Object.values(allItems).reduce((a, b ) => [...a, ...b], []);
+
     return context
   }
+  
+  static async _onAddItem(event, target) {
+    event.preventDefault();
+    const type = target.dataset.type;
+    
+    const itemData = {
+      name: type,
+      type: type,
+      system: {}
+    };
+    
+    // Créer l'item sans render automatique
+    const created = await this.document.createEmbeddedDocuments("Item", [itemData], { render: true });
+    if (created && created[0]) {
+      created[0].sheet.render(true, { force: true });
+    }
+    
+    return created;
+  }
+  
+  static async _onEditItem(event, target) {
+    event.preventDefault();
+    const item = this.document.items.get(target.dataset.itemid);
+    if (item) {      
+      if (item.sheet.rendered) {
+        item.sheet.bringToTop();
+      } else {
+        item.sheet.render(true, { force: true });
+      }
+    }
+  }
+  
+  static async _onDeleteItem(event, target) {
+    event.preventDefault();
+    const item = this.document.items.get(target.dataset.itemid);
 
-  static async _onSkillRoll(event, target){
+
+    if (item) {
+      if(item.system.isDefault == true)
+      {
+        ui.notifications.error(`Vous ne pouvez pas supprimer ${item.name}, c'est un élément de base.`);
+        return;
+      }
+
+      let confirmed = false;
+
+      if(event.ctrlKey && event.shiftKey)
+      {
+        confirmed = true;
+      }
+      else
+      {
+        confirmed = await system.Base.Dialog.confirm({
+          content: `<p>Êtes-vous sûr de vouloir supprimer ${item.name}?</p>`,
+          rejectClose: false,
+          modal: true
+        });
+      }
+
+      if (confirmed) {
+
+        await item.delete({ render: true });
+        ui.notifications.info(`${item.name} supprimé(e)`);
+      }
+    }
+  }  
+
+  static async _onGlobalRoll(event, target){
     event.preventDefault();
 
     const actor = this.document;
@@ -128,8 +263,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       case "Item": 
         const item = fromUuidSync(data.uuid);
         
-        if(item.type == "objet")
-        {
+        if(item.type == "objet" || item.type == "armure" || item.type == "arme" || item.type == "aptitude" || item.type == "competence") {
           super._onDrop(event);
 
         }

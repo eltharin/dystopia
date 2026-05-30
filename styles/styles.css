@@ -1,0 +1,60 @@
+
+
+
+.dystopia-sheet .toggleable {
+    display:none;
+}
+
+.dystopia-sheet .toggleable.visible {
+    display:initial;
+}
+
+.dystopia-sheet .lignetab {
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dystopia-sheet .lignetab > *{
+    flex : 1 1 auto;
+}
+
+.dystopia-sheet .lignetab > [data-width]{
+    flex : 0 1 attr(data-width px);
+}
+
+.dystopia-sheet .lignetab > .action{
+    flex : 0 0 50px;
+    text-align: right;
+}
+
+.dystopia-sheet [data-action] {
+    cursor: pointer;
+}
+
+.dystopia-sheet textarea {
+    width:100%;
+}
+
+.dystopia-sheet {
+    display:flex;
+    flex-direction: row;
+}
+
+
+.dystopia-sheet .sidebar{
+    width: 200px;
+}
+
+.dystopia-sheet main{
+    flex-grow: 1;
+}
+
+
+.dystopia-sheet .field > div {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}

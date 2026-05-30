@@ -31,7 +31,11 @@
       "pnj": {  }
     },
     "Item": {
-      "objet": {}
+      "objet": {},
+      "arme":  {},
+      "armure": {},
+      "aptitude": {},
+      "competence": {}
     }
   },
   "socket": false,

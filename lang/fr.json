@@ -5,10 +5,81 @@
             "pnj": "Personnage Non-Joueur"
         },
         "Item": {
-            "objet": "Objet"
+            "objet": "Objet",
+            "arme":  "Arme",
+            "armure": "Armure",
+            "aptitude": "Aptitude",
+            "competence": "Compétence"
         }
     },
     "dystopia": {
+        "sheet": {
+            "common": {
+                "notes": {
+                    "titre": "Notes"
+                },
+                "nom" : "Nom"
+            },
+            "actor": {
+                "tabs": {
+                    "main": "Fiche",
+                    "perso": "Personnage",
+                    "aptitudes": "Aptitudes",
+                    "competences": "Compétences",
+                    "combat": "Combat",
+                    "inventaire": "Inventaire",
+                    "notes": "Notes",
+                    "GM": "MJ"
+                },
+                "carac": {
+                    "pv": "Points de Vie",
+                    "pe": "Points d'Endurance ",
+                    "pm": "Points de Magie",
+                    "sm": "Santé Mentale",
+                    "volonte": "Volonté"
+                },
+                "aptitudes": {
+                    "titre": "Aptitudes",
+                    "ajout": "Ajouter une aptitude",
+                    "ajoutbtn": "Ajouter",
+                    "edit": "Modifier l'aptitude",
+                    "delete": "Supprimer l'aptitude"
+                },
+                "competences": {
+                    "titre": "Compétences",
+                    "ajout": "Ajouter une compétence",
+                    "ajoutbtn": "Ajouter",
+                    "edit": "Modifier la compétence",
+                    "delete": "Supprimer la compétence"
+                },
+                "items": {
+                    "titre": "Objets",
+                    "ajout": "Ajouter un objet",
+                    "ajoutbtn": "Ajouter",
+                    "edit": "Modifier l'objet",
+                    "delete": "Supprimer l'objet"
+                },
+                "combat": {
+                    "arme": {
+                        "titre": "Armes",
+                        "ajout": "Ajouter une arme",
+                        "ajoutbtn": "Ajouter",
+                        "edit": "Modifier l'arme",
+                        "delete": "Supprimer l'arme"
+                    },
+                    "armure": {
+                        "titre": "Armures",
+                        "ajout": "Ajouter une armure",
+                        "ajoutbtn": "Ajouter",
+                        "edit": "Modifier l'armure",
+                        "delete": "Supprimer l'armure"
+                    }
+                },
 
+                "type" : "Type",
+                "niveau" : "Niveau",
+                "xp" : "XP"
+            }
+        }
     }
 }
