@@ -6,8 +6,9 @@ export function registerFunctions() {
     Handlebars.registerHelper('SYSTEMID', () => SystemConsts.SYSTEMID);
     Handlebars.registerHelper('SYSTEMTEMPLATE', () => SystemConsts.TEMPLATES_PATH);
 
-    Handlebars.registerHelper('localizeSystem', function(key) {
-        return game.i18n.localize(SystemConsts.SYSTEMID + "." + key);
+    Handlebars.registerHelper('localizeSystem', function(key, options) {
+        console.log(options.hash)
+        return game.i18n.format(SystemConsts.SYSTEMID + "." + key, options.hash);
     });
     
     Handlebars.registerHelper('getTemplate', function(subPath) {

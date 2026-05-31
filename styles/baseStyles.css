@@ -1,0 +1,20 @@
+.system-sheet .flexrow {
+    display:flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.system-sheet [data-action] {
+    cursor: pointer;
+}
+
+.system-sheet .button {
+    width: 100%;
+    padding : 2px;
+    text-align : center;
+    border: 1px solid lightgrey;
+}
+
+.system-sheet .button:hover {
+    background-color: grey;
+}
