@@ -14,7 +14,7 @@
     "discord": "eltharin"
   }],
   "esmodules": ["src/main.mjs"],
-  "styles": ["styles/styles.css"],
+  "styles": ["styles/baseStyles.css", "styles/styles.css"],
   "packs": [],
   "languages": [{
     "lang": "fr",

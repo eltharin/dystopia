@@ -1,14 +1,14 @@
 <div class="dice-roll" data-action="expandRoll">
     <div class="dice-result">
-        <div class="dice-formula">{{title}}</div>
+        <div class="dice-formula">{{seuil}}</div>
+        <div class="dice-formula">{{bonus}}</div>
+        <div class="dice-formula">{{critique}}</div>
         {{{tooltip}}}
         <div class="dice-formula">{{localize (concat (SYSTEMID) ".roll.common.total")}} : {{total}}</div>
-        <h4 class="dice-total">{{localize (concat (SYSTEMID) ".roll.common.total")}} : {{totalText}} = {{totalValue}}</h4>
-     
-        <div class="dice-formula">{{localize (concat (SYSTEMID) ".RollDifficulte.label")}} : {{seuil}}</div>
+
+        
         <h4 class="dice-total">{{result}}</h4>
 
-        {{{ fletrineTooltip }}}
         
         {{#if actions}}
         <div class="actions">
