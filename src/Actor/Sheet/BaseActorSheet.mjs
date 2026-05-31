@@ -81,6 +81,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       deleteItem: this._onDeleteItem,
 
       globalRoll: this._onGlobalRoll,
+      attaqueRoll: this._onAttaqueRoll,
     },
     position: {
       width: 1030,
@@ -173,7 +174,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       system: {}
     };
     
-    // Créer l'item sans render automatique
+    // Crï¿½er l'item sans render automatique
     const created = await this.document.createEmbeddedDocuments("Item", [itemData], { render: true });
     if (created && created[0]) {
       created[0].sheet.render(true, { force: true });
@@ -202,7 +203,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     if (item) {
       if(item.system.isDefault == true)
       {
-        ui.notifications.error(`Vous ne pouvez pas supprimer ${item.name}, c'est un élément de base.`);
+        ui.notifications.error(`Vous ne pouvez pas supprimer ${item.name}, c'est un ï¿½lï¿½ment de base.`);
         return;
       }
 
@@ -215,7 +216,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       else
       {
         confirmed = await system.Base.Dialog.confirm({
-          content: `<p>Êtes-vous sûr de vouloir supprimer ${item.name}?</p>`,
+          content: `<p>ï¿½tes-vous sï¿½r de vouloir supprimer ${item.name}?</p>`,
           rejectClose: false,
           modal: true
         });
@@ -224,7 +225,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       if (confirmed) {
 
         await item.delete({ render: true });
-        ui.notifications.info(`${item.name} supprimé(e)`);
+        ui.notifications.info(`${item.name} supprimï¿½(e)`);
       }
     }
   }  
@@ -233,7 +234,6 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     event.preventDefault();
 
     const actor = this.document;
-    const competence =  target.dataset.competence;
 
     const modificateurs = await system.DiceRoller.GlobalRollDialog.create({ });
     if (modificateurs == null) { return; }
@@ -249,6 +249,46 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     });
 
   }
+
+  static async _onAttaqueRoll(event, target){
+    event.preventDefault();
+
+    const actor = this.document;
+    const arme =  target.dataset.arme;
+
+    if(!game.user.targets.size) {
+      ui.notifications.error("Veuillez sÃ©lectionner une cible pour l'attaque.");
+      return;
+    }
+
+    ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ alias: this.document.name + " ( " + game.user.name + " )"}),
+      content: `Attaque avec l'arme ${arme} sur la cible ${[...game.user.targets].map(t => t.name).join(", ")}`
+    });
+    
+/*
+    const modificateurs = await system.DiceRoller.AttaqueRollDialog.create({ });
+    if (modificateurs == null) { return; }
+*/
+    const myRoll = new system.DiceRoller.AttaqueRoll("2d10",{}, {
+        actor: actor.uuid,
+        seuilCritique: actor.system.seuilCritique.total,
+        attaque: {
+          degat: actor.system.degat
+        },
+        cibles: [...game.user.targets].map(t => { return { uuid: t.uuid, nom: t.name, seuilDefense: t.actor.system.seuilDefense }; }),
+        arme: {
+          nom: arme,
+          bonusDegats: 0
+        }
+    });
+
+    myRoll.toMessage({
+      speaker: ChatMessage.getSpeaker({ alias: this.document.name + " ( " + game.user.name + " )"}),
+    });
+  
+  }
+  
 /*
   static async _onToggle(event, target) {
     this.element.querySelectorAll("[data-toggle_section='" + target.dataset.toggle + "']").forEach(e => e.classList.toggle("visible"));
@@ -281,7 +321,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       system: {}
     };
     
-    // Créer l'item sans render automatique
+    // Crï¿½er l'item sans render automatique
     const created = await this.document.createEmbeddedDocuments("Item", [itemData], { render: true });
     if (created && created[0]) {
       created[0].sheet.render(true, { force: true });
@@ -309,7 +349,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     if (item) {
       if(item.system.isDefault == true)
       {
-        ui.notifications.error(`Vous ne pouvez pas supprimer ${item.name}, c'est un élément de base.`);
+        ui.notifications.error(`Vous ne pouvez pas supprimer ${item.name}, c'est un ï¿½lï¿½ment de base.`);
         return;
       }
 
@@ -322,7 +362,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       else
       {
         confirmed = await system.Common.Dialog.confirm({
-          content: `<p>Êtes-vous sûr de vouloir supprimer ${item.name}?</p>`,
+          content: `<p>ï¿½tes-vous sï¿½r de vouloir supprimer ${item.name}?</p>`,
           rejectClose: false,
           modal: true
         });
@@ -331,7 +371,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       if (confirmed) {
 
         await item.delete({ render: true });
-        ui.notifications.info(`${item.name} supprimé(e)`);
+        ui.notifications.info(`${item.name} supprimï¿½(e)`);
       }
     }
   }  

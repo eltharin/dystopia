@@ -1,0 +1,30 @@
+<div class="dice-roll" data-action="expandRoll">
+    <div class="dice-result">
+        <div class="dice-formula">{{seuil}}</div>
+        <div class="dice-formula">{{bonus}}</div>
+        <div class="dice-formula">{{critique}}</div>
+        {{{tooltip}}}
+        <div class="dice-formula">{{localize (concat (SYSTEMID) ".roll.common.total")}} : {{total}}</div>
+
+        
+        {{#each result as |res|}}
+            <h4 class="dice-total">{{res.cible}}</h4>
+            <p>total PV : {{res.total}}</p>
+            <p>degats de base : {{res.attaque}}</p>
+            <p>seuil de defense : {{res.seuilDefense}}</p>
+            <p>critique : {{res.critique}}</p>
+        {{/each}}
+        
+        {{#if actions}}
+        <div class="actions">
+            {{#each actions as |action|}}
+                <button data-action="{{action.action}}"
+                {{#each action.data as |data|}}
+                     data-{{data.key}}="{{data.value}}"
+                {{/each}}
+                >{{action.label}}</button>
+            {{/each}}
+        </div>
+        {{/if}}  
+    </div>
+</div>

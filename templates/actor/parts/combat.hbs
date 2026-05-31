@@ -11,7 +11,7 @@
                 {{#each armes as |item|}}
                     <div class="item arme">
                         <div class="lignetab">
-                            <label>{{item.name}}</label>
+                            <label data-action="attaqueRoll" data-arme="{{item._id}}">{{item.name}}</label>
                             {{#if item.system.aptitude}}<label data-width="200">{{localizeSystem (concat "sheet.actor.combat.arme.aptitude." item.system.aptitude ".name") }}</label>{{/if}}
                             <span class="action" >
                                 {{#if item.system.notes}}<a data-action="toggle"  data-toggle="item_{{item._id}}"><i class="fas fa-eye"></i></a>{{/if}}

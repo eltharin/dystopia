@@ -50,7 +50,7 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
                 val: new foundry.data.fields.NumberField({min: 0, initial: 20}),
                 temp: new foundry.data.fields.NumberField({min: 0, initial: 0}),
             }),
-            armure: new foundry.data.fields.NumberField({initial: 0}),
+            seuilDefense: new foundry.data.fields.NumberField({initial: 0}),
             
             coutDeplacement: new foundry.data.fields.NumberField({initial: 3}),
             nbActionParTour: new foundry.data.fields.NumberField({initial: 2}),
