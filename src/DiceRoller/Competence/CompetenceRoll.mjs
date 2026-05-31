@@ -2,7 +2,7 @@
 import * as system  from "../../_helpers.mjs";
 
 export class CompetenceRoll extends system.DiceRoller.BaseRoll{
-    static CHAT_TEMPLATE = system.Consts.SYSTEMTEMPLATE + "/dice/roll-result.hbs";
+    static CHAT_TEMPLATE = system.Consts.TEMPLATES_PATH + "/dice/roll-result.hbs";
 
     constructor(formula="", data={}, options={}) {
         super(formula, data, options);

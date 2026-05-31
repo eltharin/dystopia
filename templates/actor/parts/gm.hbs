@@ -1,3 +1,24 @@
 <div>
-    gm
+    <div class="field">
+        <label>{{localizeSystem "sheet.actor.seuilCritique.temp"}}</label>
+        <div>{{ fieldOrInput "system.seuilCritique.temp" class="pj-sheet-input" }}</div>
+    </div>
+
+    <h2>{{localizeSystem "sheet.actor.traumas.titre"}}</h2>
+    <div class="field">
+        <label>{{localizeSystem "sheet.actor.traumas.nbNiveaux"}}</label>
+        <div>{{ fieldOrInput "system.traumas.nbNiveaux" class="pj-sheet-input" }}</div>
+    </div>
+
+    <div>
+        <label>{{localizeSystem "sheet.actor.traumas.nbTraumas"}}</label>
+        <div class="flexrow">
+        {{#times system.traumas.nbNiveaux}}
+            <div class="field">
+                <label>{{localizeSystem "sheet.actor.traumas.titreNiveau" key=index1}}</label>
+                <div>{{ fieldOrInput (concat "system.traumas.niveaux." index ".nbTraumas") class="pj-sheet-input" }}</div>
+            </div>
+        {{/times}}
+        </div>
+    </div>
 </div>

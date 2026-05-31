@@ -3,6 +3,7 @@ import * as system  from "../_helpers.mjs";
 import { MessageActionResolver } from "../ChatMessage/MessageActionResolver.mjs";
 
 export function registerDiceRolls() {
+    CONFIG.Dice.rolls.push(system.DiceRoller.GlobalRoll);
     CONFIG.Dice.rolls.push(system.DiceRoller.CompetenceRoll);
 }
 

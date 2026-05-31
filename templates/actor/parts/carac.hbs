@@ -1,29 +1,35 @@
 <div>
-    <div class="field">
-        <label>{{localizeSystem "sheet.actor.carac.pv"}}</label>
-        <div>{{ fieldOrInput "system.values.pv.val" class="pj-sheet-input" }} / {{ fieldOrInput "system.values.pv.max" class="pj-sheet-input" }}</div>
-    </div>
+
     
     <div class="field">
-        <label>{{localizeSystem "sheet.actor.carac.pe"}}</label>
-        <div>{{ fieldOrInput "system.values.pe.val" class="pj-sheet-input" }} / {{ fieldOrInput "system.values.pe.max" class="pj-sheet-input" }}</div>
-    </div>
-    
-    <div class="field">
-        <label>{{localizeSystem "sheet.actor.carac.pm"}}</label>
-        <div>{{ fieldOrInput "system.values.pm.val" class="pj-sheet-input" }} / {{ fieldOrInput "system.values.pm.max" class="pj-sheet-input" }}</div>
-    </div>
-    
-    <div class="field">
-        <label>{{localizeSystem "sheet.actor.carac.sm"}}</label>
-        <div>{{ fieldOrInput "system.values.sm.val" class="pj-sheet-input" }} / {{ fieldOrInput "system.values.sm.max" class="pj-sheet-input" }}</div>
-    </div>
-    
-    <div class="field">
-        <label>{{localizeSystem "sheet.actor.carac.volonte"}}</label>
-        <div>{{ fieldOrInput "system.values.volonte.val" class="pj-sheet-input" }} / {{ fieldOrInput "system.values.volonte.max" class="pj-sheet-input" }}</div>
+        <label>{{localizeSystem "sheet.actor.soin"}}</label>
+        <div>{{ fieldOrInput "system.soin" class="pj-sheet-input" }}</div>
     </div>
 
+    
+
+
+    </hr>
+
+    <h3>{{localizeSystem "sheet.actor.traumas.titre"}}</h3>
+
+    {{#times system.traumas.nbNiveaux}}
+        <div class="listeElement">
+            <h4>{{localizeSystem "sheet.actor.traumas.titreNiveau" key=index1}}</h4>
+            <div>
+                {{#with (lookup system.traumas.niveaux index) as |niveau|}}
+                    {{#times niveau.nbTraumas}}
+                        <div>
+                            <div class="field">
+                                <label>{{localizeSystem "sheet.actor.traumas.titreTraumas" key=index1}}</label>
+                                <div>{{ fieldOrInput (concat "system.traumas.niveaux." ../../index ".traumas." index) class="pj-sheet-input" }}</div>
+                            </div>
+                        </div>
+                    {{/times}}
+                {{/with}}
+            </div>
+        </div>
+    {{/times}}
 
 
 

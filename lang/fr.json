@@ -75,10 +75,43 @@
                         "delete": "Supprimer l'armure"
                     }
                 },
-
+                "degats": "Dégats de base",
+                "armure": "Armure de base",
+                "soin": "Soin",
+                "perso": "Personnage",
+                "alignement": "Alignement",
+                "historique": "Historique",
+                "traumas": {
+                    "titre": "Traumas",
+                    "titreNiveau" : "Niveau  {key}",
+                    "titreTraumas" : "Trauma  {key}",
+                    "nbNiveaux": "Nombre de niveaux de trauma",
+                    "nbTraumas": "Nombre de traumas pour le niveau"
+                },
+                "coutDeplacement": "Coût de déplacement",
                 "type" : "Type",
                 "niveau" : "Niveau",
-                "xp" : "XP"
+                "xp" : "XP",
+                "seuilCritique": {
+                    "titre": "Seuil de critique",
+                    "temp": "Seuil de critique Temporaire"
+                }
+            }
+        },
+        "roll": {
+            "title": {
+                "carac": "Jet de {carac}"
+            },
+            "common": {
+                "dialog": {
+                    "seuil": "Seuil de réussite",
+                    "bonus": "Bonus",
+                    "nbDeBonus": "Nombre de dés bonus"    
+                },
+                "rolldice": "Lancer les dés",
+                "seuil": "Seuil de réussite : {seuil}",
+                "bonus": "Bonus : {bonus}",
+                "total": "Total"
             }
         }
     }

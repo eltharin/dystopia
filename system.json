@@ -28,7 +28,8 @@
   "documentTypes": {
     "Actor": {
       "pj": {  },
-      "pnj": {  }
+      "pnj": {  },
+      "boss": {  }
     },
     "Item": {
       "objet": {},

@@ -1,3 +1,19 @@
 <div>
-    perso
+    <h2>{{localizeSystem "sheet.actor.perso"}}</h2>
+
+    <div class="field">
+        <label>{{localizeSystem "sheet.actor.alignement"}}</label>
+        <div>{{ fieldOrInput "system.alignement" class="pj-sheet-input" }}</div>
+    </div>
+
+    <div class="field">
+        <label>{{localizeSystem "sheet.actor.historique"}}</label>
+        
+        <div>
+            {{#fieldOrInput "system.historique" class="pj-sheet-input" }}
+            <textarea name="system.historique" rows="20" class="pj-sheet-input" placeholder="">{{system.historique}}</textarea>
+            {{/fieldOrInput}}
+        </div>
+    </div>
+
 </div>

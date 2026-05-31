@@ -5,6 +5,7 @@
     display:none;
 }
 
+
 .dystopia-sheet .toggleable.visible {
     display:initial;
 }
@@ -29,9 +30,7 @@
     text-align: right;
 }
 
-.dystopia-sheet [data-action] {
-    cursor: pointer;
-}
+
 
 .dystopia-sheet textarea {
     width:100%;
@@ -40,6 +39,9 @@
 .dystopia-sheet {
     display:flex;
     flex-direction: row;
+    
+    min-height: 0;
+    gap: 5px;
 }
 
 
@@ -48,9 +50,26 @@
 }
 
 .dystopia-sheet main{
-    flex-grow: 1;
+    flex: 1 0 200px;
+    display:flex;
+    flex-direction: column;
 }
 
+.dystopia-sheet > main > .main {
+    min-height:0;
+    display:flex;
+    flex-direction: column;
+}
+
+.dystopia-sheet > main > .main > .tabscontainer{
+    min-height:0;
+    display:flex;
+    flex-direction: column;
+}
+
+.dystopia-sheet > main > .main > .tabscontainer > section{
+    overflow-y: auto;
+}
 
 .dystopia-sheet .field > div {
     display:flex;
@@ -58,3 +77,12 @@
     align-items: center;
     gap: 5px;
 }
+
+
+
+.dystopia-sheet .listeElement ~ .listeElement {
+    border-top : 1px solid white;
+    padding-top: 1em;
+}
+
+
