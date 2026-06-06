@@ -160,6 +160,12 @@
                 "bonus": "Bonus : {bonus}",
                 "total": "Total"
             }
+        },
+        "settings": {
+            "combatBars": {
+                "showTokenBars": "Afficher les barres sur les tokens",
+                "showCombattantBars": "Afficher les barres sur les combattants"
+            }
         }
     }
 }

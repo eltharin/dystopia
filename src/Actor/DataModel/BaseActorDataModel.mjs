@@ -10,36 +10,36 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
             photo: new foundry.data.fields.StringField({}),
             values: new foundry.data.fields.SchemaField({
                 pv: new foundry.data.fields.SchemaField({
-                    val: new foundry.data.fields.NumberField({min: 1, initial: 1}),
-                    max: new foundry.data.fields.NumberField({min: 1, initial: 1}),
+                    val: new foundry.data.fields.NumberField({min: 0, initial: 1}),
+                    max: new foundry.data.fields.NumberField({min: 0, initial: 1}),
                     temp: new foundry.data.fields.NumberField({min: 0, initial: 0}),
                     tempMax: new foundry.data.fields.NumberField({min: 0, initial: 0}),
                 }),
                 
                 pe: new foundry.data.fields.SchemaField({
-                    val: new foundry.data.fields.NumberField({min: 1, initial: 1}),
-                    max: new foundry.data.fields.NumberField({min: 1, initial: 1}),
+                    val: new foundry.data.fields.NumberField({min: 0, initial: 1}),
+                    max: new foundry.data.fields.NumberField({min: 0, initial: 1}),
                     temp: new foundry.data.fields.NumberField({min: 0, initial: 0}),
                     tempMax: new foundry.data.fields.NumberField({min: 0, initial: 0}),
                 }),
                 
                 pm: new foundry.data.fields.SchemaField({
-                    val: new foundry.data.fields.NumberField({min: 1, initial: 1}),
-                    max: new foundry.data.fields.NumberField({min: 1, initial: 1}),
+                    val: new foundry.data.fields.NumberField({min: 0, initial: 1}),
+                    max: new foundry.data.fields.NumberField({min: 0, initial: 1}),
                     temp: new foundry.data.fields.NumberField({min: 0, initial: 0}),
                     tempMax: new foundry.data.fields.NumberField({min: 0, initial: 0}),
                 }),
                 
                 sm: new foundry.data.fields.SchemaField({
-                    val: new foundry.data.fields.NumberField({min: 1, initial: 1}),
-                    max: new foundry.data.fields.NumberField({min: 1, initial: 1}),
+                    val: new foundry.data.fields.NumberField({min: 0, initial: 1}),
+                    max: new foundry.data.fields.NumberField({min: 0, initial: 1}),
                     temp: new foundry.data.fields.NumberField({min: 0, initial: 0}),
                     tempMax: new foundry.data.fields.NumberField({min: 0, initial: 0}),
                 }),
                 
                 volonte: new foundry.data.fields.SchemaField({
-                    val: new foundry.data.fields.NumberField({min: 1, initial: 1}),
-                    max: new foundry.data.fields.NumberField({min: 1, initial: 1}),
+                    val: new foundry.data.fields.NumberField({min: 0, initial: 1}),
+                    max: new foundry.data.fields.NumberField({min: 0, initial: 1}),
                     temp: new foundry.data.fields.NumberField({min: 0, initial: 0}),
                     tempMax: new foundry.data.fields.NumberField({min: 0, initial: 0}),
                 }),

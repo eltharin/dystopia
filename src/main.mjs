@@ -23,6 +23,7 @@ import { AptitudeDataModel } from "./Item/DataModel/AptitudeDataModel.mjs";
 import { CompetenceDataModel } from "./Item/DataModel/CompetenceDataModel.mjs";
 
 import {registerFunctions as registerHandleBarFunctions} from "./SystemBase/Helpers/Handlebars.mjs"
+import {CombatBars} from "./Settings/CombatBars.mjs"
 
 
 Hooks.once("init", () => {
@@ -51,6 +52,8 @@ Hooks.once("init", () => {
 
   
   system.Base.Helpers.Migration.register( system.Settings.Migration  );
+
+  CombatBars.init();
 });
 
 
