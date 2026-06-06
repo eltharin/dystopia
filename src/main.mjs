@@ -54,7 +54,13 @@ Hooks.once("init", () => {
   system.Base.Helpers.Migration.register( system.Settings.Migration  );
 
   CombatBars.init();
+  
+  system.Settings.CombatantReaction.init();
 });
+
+
+
+
 
 
 
