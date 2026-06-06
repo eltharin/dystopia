@@ -10,13 +10,18 @@ export class ArmeSheet extends BaseItemSheet {
     main: {
       template: system.Consts.TEMPLATES_PATH + "/item/arme.hbs",
       container: { id: "form" , element: ".tabscontainer" },
+    },
+    notes: {
+      template: system.Consts.TEMPLATES_PATH + "/item/common/notes.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
     }
   };
 
   static TABS = {
     sheet: {
       tabs: [
-        { id: "main", label: system.Consts.SYSTEMID + ".sheets.nav.main"},
+        { id: "main", label: system.Consts.SYSTEMID + ".sheet.items.arme.nav.main"},
+        { id: "notes", label: system.Consts.SYSTEMID + ".sheet.common.notes.titre"},
       ],
       initial: "main",
     }

@@ -16,7 +16,7 @@ export class CompetenceSheet extends BaseItemSheet {
   static TABS = {
     sheet: {
       tabs: [
-        { id: "main", label: system.Consts.SYSTEMID + ".sheets.nav.main"},
+        { id: "main", label: system.Consts.SYSTEMID + ".sheet.items.competence.nav.main"},
       ],
       initial: "main",
     }

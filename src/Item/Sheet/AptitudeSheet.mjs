@@ -16,7 +16,7 @@ export class AptitudeSheet extends BaseItemSheet {
   static TABS = {
     sheet: {
       tabs: [
-        { id: "main", label: system.Consts.SYSTEMID + ".sheets.nav.main"},
+        { id: "main", label: system.Consts.SYSTEMID + ".sheet.items.aptitude.nav.main"},
       ],
       initial: "main",
     }

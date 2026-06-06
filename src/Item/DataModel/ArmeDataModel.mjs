@@ -13,6 +13,7 @@ export class ArmeDataModel extends system.Base.SystemDataModel {
       //prixmoyen: new foundry.data.fields.NumberField({initial: 0, min:0}),
       notes: new foundry.data.fields.StringField({}),
       coutUtilisation: new foundry.data.fields.NumberField({initial: 1, min:0}),
+      degatsBase: new foundry.data.fields.NumberField({initial: 1}),
     };
   }
 

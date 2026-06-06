@@ -93,14 +93,14 @@ export class BaseActorSheet extends system.Base.BaseSheet (
         {
           action: "verouillage",
           icon: "fa-solid fa-lock",
-          label: system.Consts.SYSTEMID + ".pjsheet.action.lock",
+          label: system.Consts.SYSTEMID + ".sheet.common.verrou",
           ownership: "OWNER",
           visible: this.#canVerouillage
         },
         {
           action: "deverouillage",
           icon: "fa-solid fa-unlock",
-          label: system.Consts.SYSTEMID + ".pjsheet.action.unlock",
+          label: system.Consts.SYSTEMID + ".sheet.common.deverrou",
           ownership: "OWNER",
           visible: this.#canDeverouillage
         }
@@ -152,6 +152,8 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     delete allItems.arme;
     context.armures = allItems.armure || [];
     delete allItems.armure;
+    context.sorts = allItems.sort || [];
+    delete allItems.sort;
     context.aptitudes = allItems.aptitude || [];
     delete allItems.aptitude;
     context.competences = allItems.competence || [];
@@ -304,7 +306,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       case "Item": 
         const item = fromUuidSync(data.uuid);
         
-        if(item.type == "objet" || item.type == "armure" || item.type == "arme" || item.type == "aptitude" || item.type == "competence") {
+        if(item.type == "objet" || item.type == "arme" || item.type == "armure" || item.type == "sort" || item.type == "aptitude" || item.type == "competence") {
           super._onDrop(event);
 
         }

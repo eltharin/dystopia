@@ -2,9 +2,9 @@ import * as system from "../../_helpers.mjs";
 
 
 
-export class ArmureDataModel extends system.Base.SystemDataModel {
+export class SortDataModel extends system.Base.SystemDataModel {
 
-  static DEFAULT_ICON = system.Consts.ASSETS_PATH + "/pics/armure.svg";
+  static DEFAULT_ICON = system.Consts.ASSETS_PATH + "/pics/sort.svg";
 
 
 
@@ -12,8 +12,6 @@ export class ArmureDataModel extends system.Base.SystemDataModel {
     return {
       //prixmoyen: new foundry.data.fields.NumberField({initial: 0, min:0}),
       notes: new foundry.data.fields.StringField({}),
-      bonusArmure: new foundry.data.fields.NumberField({initial: 1}),
-      coutDeplacement: new foundry.data.fields.NumberField({initial: 1}),
     };
   }
 
