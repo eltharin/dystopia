@@ -10,7 +10,7 @@
             <div class="item">
                 <div class="lignetab">
                     <label>{{item.name}}</label>
-                    <label data-width="100">{{item.system.type}}</label>
+                    <label data-width="100" style="--localwidth:100px">{{item.system.type}}</label>
                     <span class="action" >
                         {{#if item.system.notes}}<a data-action="toggle"  data-toggle="item_{{item._id}}"><i class="fas fa-eye"></i></a>{{/if}}
                         <a data-action="editItem" data-itemid="{{item.id}}" title="{{localizeSystem "sheet.actor.aptitudes.edit"}}"><i class="fas fa-edit"></i></a>

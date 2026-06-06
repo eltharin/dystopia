@@ -22,7 +22,8 @@
 }
 
 .dystopia-sheet .lignetab > [data-width]{
-    flex : 0 1 attr(data-width px);
+    --localwidth: attr(data-width px);
+    flex : 0 1 var(--localwidth);
 }
 
 .dystopia-sheet .lignetab > .action{

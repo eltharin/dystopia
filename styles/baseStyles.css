@@ -18,3 +18,14 @@
 .system-sheet .button:hover {
     background-color: grey;
 }
+
+.system-sheet .flexcols {
+    display:flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 5px;
+
+    > * {
+        flex: 1 1 1px;
+    }
+}

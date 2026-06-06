@@ -163,6 +163,11 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     
     context.items = Object.values(allItems).reduce((a, b ) => [...a, ...b], []);
 
+    context.system.coutDeplacement.bonus = context.armures.reduce((acc, armure) => acc + armure.system.coutDeplacement, 0);
+
+    context.system.coutDeplacement.total = context.system.coutDeplacement.val + context.system.coutDeplacement.temp + context.system.coutDeplacement.bonus;
+
+
     return context
   }
   
@@ -176,7 +181,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       system: {}
     };
     
-    // Cr�er l'item sans render automatique
+    // Creer l'item sans render automatique
     const created = await this.document.createEmbeddedDocuments("Item", [itemData], { render: true });
     if (created && created[0]) {
       created[0].sheet.render(true, { force: true });
@@ -256,7 +261,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     event.preventDefault();
 
     const actor = this.document;
-    const arme =  target.dataset.arme;
+    const arme =  this.document.items.get(target.dataset.arme);
 
     if(!game.user.targets.size) {
       ui.notifications.error("Veuillez sélectionner une cible pour l'attaque.");
@@ -265,7 +270,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
 
     ChatMessage.create({
       speaker: ChatMessage.getSpeaker({ alias: this.document.name + " ( " + game.user.name + " )"}),
-      content: `Attaque avec l'arme ${arme} sur la cible ${[...game.user.targets].map(t => t.name).join(", ")}`
+      content: `Attaque avec l'arme ${arme.name} sur la cible ${[...game.user.targets].map(t => t.name).join(", ")}`
     });
     
 /*
@@ -275,12 +280,11 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     const myRoll = new system.DiceRoller.AttaqueRoll("2d10",{}, {
         actor: actor.uuid,
         seuilCritique: actor.system.seuilCritique.total,
-        attaque: {
-          degat: actor.system.degat
-        },
         cibles: [...game.user.targets].map(t => { return { uuid: t.uuid, nom: t.name, seuilDefense: t.actor.system.seuilDefense }; }),
         arme: {
-          nom: arme,
+          nom: arme.name,
+          degat: arme.system.degatsBase,
+          //degatsMagiques: arme.system.degatsMagiques,
           bonusDegats: 0
         }
     });

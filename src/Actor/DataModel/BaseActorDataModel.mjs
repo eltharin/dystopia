@@ -45,14 +45,18 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
                 }),
                 
             }),
-            degat: new foundry.data.fields.NumberField({initial: 0}),
+            //degat: new foundry.data.fields.NumberField({initial: 0}),
             seuilCritique: new foundry.data.fields.SchemaField({
                 val: new foundry.data.fields.NumberField({min: 0, initial: 20}),
                 temp: new foundry.data.fields.NumberField({min: 0, initial: 0}),
             }),
             seuilDefense: new foundry.data.fields.NumberField({initial: 0}),
             
-            coutDeplacement: new foundry.data.fields.NumberField({initial: 3}),
+            coutDeplacement: new foundry.data.fields.SchemaField({
+                val:  new foundry.data.fields.NumberField({initial: 3}),
+                temp:  new foundry.data.fields.NumberField({initial: 0}),
+            }),
+
             nbActionParTour: new foundry.data.fields.NumberField({initial: 2}),
 
         };
@@ -67,7 +71,6 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
     prepareDerivedData() {
         
         this.seuilCritique.total = this.seuilCritique.val - this.seuilCritique.temp;
-
 
 
         this._prepareDerivedData();

@@ -46,7 +46,7 @@ export class AttaqueRoll extends system.DiceRoller.BaseRoll{
         return this.options.cibles.map(cible => {return {
             cible: cible.nom,
             total: this.getTotal(cible),
-            attaque: this.options.attaque.degat,
+            attaque: this.options.arme.degat,
             seuilDefense: cible.seuilDefense,
             critique: this.isCritique(),
 
@@ -56,7 +56,7 @@ export class AttaqueRoll extends system.DiceRoller.BaseRoll{
 
     getTotal(cible)
     {
-        return this.options.attaque.degat + Math.floor((this.total - cible.seuilDefense)/2) + (this.isCritique() ? this.total : 0);
+        return this.options.arme.degat + Math.floor((this.total - cible.seuilDefense)/2) + (this.isCritique() ? this.options.arme.degat : 0);
     }
 /*
     getTotalParts()

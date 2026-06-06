@@ -5,35 +5,34 @@
 <div>
     <div class="button" data-action="globalRoll">Lancer les dés</div>
 </div>
-<div class="field">
-    <label>{{localizeSystem "sheet.actor.niveau"}}</label>
-    <div>{{ fieldOrInput "system.niveau" class="pj-sheet-input" }}</div>
-</div>
+
 
 <div class="flexcols">
-    <div class="field">
-        <label>{{localizeSystem "sheet.actor.degats"}}</label>
-        <div>{{ fieldOrInput "system.degat" class="pj-sheet-input" }}</div>
-    </div>
-
     <div class="field">
         <label>{{localizeSystem "sheet.actor.seuilDefense"}}</label>
         <div>{{ fieldOrInput "system.seuilDefense" class="pj-sheet-input" }}</div>
     </div>
 </div>
 
-<div class="field">
-    <label>{{localizeSystem "sheet.actor.seuilCritique.titre"}}</label>
-    <div>
+<div class="flexcols">
+    <div class="field">
+        <label>{{localizeSystem "sheet.actor.seuilCritique.titre"}}</label>
         <div>{{ fieldOrInput "system.seuilCritique.val" class="pj-sheet-input" }}</div>
-        <div>(+ {{system.seuilCritique.temp}})</div>
-        <div> => {{system.seuilCritique.total}}</div>
     </div>
+    <div>(+ {{system.seuilCritique.temp}}) => {{system.seuilCritique.total}}</div>
 </div>
 
 <div class="field">
     <label>{{localizeSystem "sheet.actor.carac.pv"}}</label>
     <div>{{ fieldOrInput "system.values.pv.val" class="pj-sheet-input" }} / {{ fieldOrInput "system.values.pv.max" class="pj-sheet-input" }}</div>
+</div>
+
+<div class="flexcols">
+    <div class="field">
+        <label>{{localizeSystem "sheet.actor.coutDeplacement"}} (PE/m)</label>
+        <div>{{ fieldOrInput "system.coutDeplacement.val" class="pj-sheet-input" }}</div>
+    </div>
+    <div> / {{system.coutDeplacement.temp}} / {{system.coutDeplacement.bonus}} / {{system.coutDeplacement.total}}</div>
 </div>
 
 <div class="field">

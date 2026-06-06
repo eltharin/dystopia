@@ -2,12 +2,14 @@
     "TYPES": {
         "Actor": {
             "pj": "Joueur",
-            "pnj": "Personnage Non-Joueur"
+            "pnj": "Personnage Non-Joueur",
+            "boss": "Boss"
         },
         "Item": {
             "objet": "Objet",
             "arme":  "Arme",
             "armure": "Armure",
+            "sort": "Sort",
             "aptitude": "Aptitude",
             "competence": "Compétence"
         }
@@ -18,7 +20,9 @@
                 "notes": {
                     "titre": "Notes"
                 },
-                "nom" : "Nom"
+                "nom" : "Nom",
+                "verrou": "Verouiller la fiche",
+                "deverrou": "Déverouiller la fiche"
             },
             "actor": {
                 "tabs": {
@@ -73,10 +77,17 @@
                         "ajoutbtn": "Ajouter",
                         "edit": "Modifier l'armure",
                         "delete": "Supprimer l'armure"
+                    },
+                    "sort": {
+                        "titre": "Sorts",
+                        "ajout": "Ajouter un sort",
+                        "ajoutbtn": "Ajouter",
+                        "edit": "Modifier le sort",
+                        "delete": "Supprimer le sort"
                     }
                 },
                 "degats": "Dégats de base",
-                "armure": "Armure de base",
+                "seuilDefense": "Seuil de défense",
                 "soin": "Soin",
                 "perso": "Personnage",
                 "alignement": "Alignement",
@@ -95,6 +106,42 @@
                 "seuilCritique": {
                     "titre": "Seuil de critique",
                     "temp": "Seuil de critique Temporaire"
+                }
+            },
+            "items": {
+                "aptitude": {
+                    "nav": {
+                        "main": "Aptitude"
+                    }
+                },
+                "arme": {
+                    "nav": {
+                        "main": "Arme"
+                    },
+                    "degatsBase": "Dégats de base",
+                    "coutUtilisation": "Coût d'utilisation"
+                },
+                "armure": {
+                    "nav": {
+                        "main": "Armure"
+                    },
+                    "bonusArmure": "Bonus d'armure",
+                    "coutDeplacement": "Coût de déplacement"
+                },
+                "competence": {
+                    "nav": {
+                        "main": "Compétence"
+                    }
+                },
+                "objet": {
+                    "nav": {
+                        "main": "Objet"
+                    }
+                },
+                "sort": {
+                    "nav": {
+                        "main": "Sort"
+                    }
                 }
             }
         },
