@@ -5,11 +5,6 @@ export class ActorPjDataModel extends system.Actor.BaseActorDataModel {
         return {
             ...super.defineSchema(),
             
-            historique: new foundry.data.fields.StringField({}),
-            alignement: new foundry.data.fields.StringField({}),
-            niveau: new foundry.data.fields.NumberField({min:1, initial: 1}),
-            
-            
 
             traumas: new foundry.data.fields.SchemaField({
                 nbNiveaux: new foundry.data.fields.NumberField({initial: 3}),
