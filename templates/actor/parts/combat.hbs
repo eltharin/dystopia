@@ -12,7 +12,7 @@
                     <div class="lignetab">
                         <label ></label>
                         <label data-width="100px" style="--localwidth:100px">Cout Util.</label>
-                        <label data-width="100px" style="--localwidth:100px">Dégats Base</label>
+                        <label data-width="100px" style="--localwidth:100px">Dégats</label>
                         <label data-width="50px" style="--localwidth:50px">Actions</label>
                     </div>
                 </div>
@@ -20,10 +20,10 @@
                 {{#each armes as |item|}}
                     <div class="item arme">
                         <div class="lignetab">
-                            <label data-action="attaqueRoll" data-arme="{{item._id}}">{{item.name}}</label>
+                            <label data-action="attaque" data-itemattaque="{{item._id}}">{{item.name}}</label>
                             
                             <label data-width="100px" style="--localwidth:100px">{{item.system.coutUtilisation}} PE</label>
-                            <label data-width="100px" style="--localwidth:100px">{{item.system.degatsBase}}</label>
+                            <label data-width="100px" style="--localwidth:100px">⚔️{{item.system.degats.physique}} 🌠{{item.system.degats.magique}}</label>
 
                             {{#if item.system.aptitude}}<label data-width="200" style="--localwidth:200px">{{localizeSystem (concat "sheet.actor.combat.arme.aptitude." item.system.aptitude ".name") }}</label>{{/if}}
                             <span class="action" >
@@ -61,7 +61,7 @@
                 {{#each sorts as |item|}}
                     <div class="item sort">
                         <div class="lignetab">
-                            <label data-action="attaqueRoll" data-arme="{{item._id}}">{{item.name}}</label>
+                            <label data-action="attaque" data-itemattaque="{{item._id}}">{{item.name}}</label>
                             {{#if item.system.aptitude}}<label data-width="200" style="--localwidth:200px">{{localizeSystem (concat "sheet.actor.combat.arme.aptitude." item.system.aptitude ".name") }}</label>{{/if}}
                             <span class="action" >
                                 {{#if item.system.notes}}<a data-action="toggle"  data-toggle="item_{{item._id}}"><i class="fas fa-eye"></i></a>{{/if}}
@@ -101,7 +101,7 @@
                         <div class="lignetab">
                             <label>{{item.name}}</label>
                             
-                            <label data-width="100px" style="--localwidth:100px">{{item.system.bonusArmure}}</label>
+                            <label data-width="100px" style="--localwidth:100px">{{item.system.armure.physique}} ⚔️ {{item.system.armure.mixte}} 🌠 {{item.system.armure.magique}}</label>
                             <label data-width="100px" style="--localwidth:100px">{{item.system.coutDeplacement}}</label>
 
                             <span class="action" >

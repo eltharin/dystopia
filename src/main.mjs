@@ -29,6 +29,8 @@ import {CombatBars} from "./Settings/CombatBars.mjs"
 Hooks.once("init", () => {
   console.log(system.Consts.SYSTEMID + " | Initialisation du système " + system.Consts.SYSTEMID);
 
+  system.Base.init();
+
   system.Base.Helpers.Actor.register("pj", ActorPjDataModel, PjSheet, "Feuille de Personnage Joueur");
   system.Base.Helpers.Actor.register("pnj", ActorPnjDataModel, PnjSheet, "Feuille de Personnage Non Joueur");
   system.Base.Helpers.Actor.register("boss", ActorBossDataModel, BossSheet, "Feuille de Personnage Non Joueur");
@@ -45,7 +47,6 @@ Hooks.once("init", () => {
 
   registerHandleBarFunctions();
 
-  system.DiceRoller.fct.registerMessageEventListener();
   system.Actor.Events.register();
 
   system.DiceRoller.fct.registerDiceRolls();
@@ -57,6 +58,12 @@ Hooks.once("init", () => {
   
   system.Settings.CombatantReaction.init();
 });
+
+
+
+
+
+
 
 
 

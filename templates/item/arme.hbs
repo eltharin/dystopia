@@ -2,12 +2,21 @@
 
 
     <div class="field">
-        <label>{{localizeSystem "sheet.items.arme.degatsBase"}}</label>
-        <div>{{ fieldOrInput "system.degatsBase" class="pj-sheet-input" }}</div>
+        <label>{{localizeSystem "sheet.items.arme.degats.physique"}}</label>
+        <div>{{ fieldOrInput "system.degats.physique" class="pj-sheet-input" }}</div>
     </div>
+    
+    <div class="field">
+        <label>{{localizeSystem "sheet.items.arme.degats.magique"}}</label>
+        <div>{{ fieldOrInput "system.degats.magique" class="pj-sheet-input" }}</div>
+    </div>
+    
     <div class="field">
         <label>{{localizeSystem "sheet.items.arme.coutUtilisation"}}</label>
         <div>{{ fieldOrInput "system.coutUtilisation" class="pj-sheet-input" }}</div>
     </div>
 
+    <div>
+        <div data-action="prout">prout</div>
+    </div>
 </section>

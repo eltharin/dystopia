@@ -20,6 +20,9 @@
                 "notes": {
                     "titre": "Notes"
                 },
+                "effets": {
+                    "titre": "Effets"
+                },
                 "nom" : "Nom",
                 "verrou": "Verouiller la fiche",
                 "deverrou": "Déverouiller la fiche"
@@ -118,14 +121,22 @@
                     "nav": {
                         "main": "Arme"
                     },
-                    "degatsBase": "Dégats de base",
+                    "degats": {
+                        "physique": "Dégats physiques",
+                        "magique": "Dégats magiques"
+                    },
                     "coutUtilisation": "Coût d'utilisation"
                 },
                 "armure": {
                     "nav": {
                         "main": "Armure"
                     },
-                    "bonusArmure": "Bonus d'armure",
+                    "armure": {
+                        "physique": "Dégats physiques",
+                        "magique": "Dégats magiques",
+                        "mixte": "Dégats Mixtes"
+
+                    },
                     "coutDeplacement": "Coût de déplacement"
                 },
                 "competence": {

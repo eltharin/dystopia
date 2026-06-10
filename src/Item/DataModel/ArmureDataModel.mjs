@@ -12,7 +12,11 @@ export class ArmureDataModel extends system.Base.SystemDataModel {
     return {
       //prixmoyen: new foundry.data.fields.NumberField({initial: 0, min:0}),
       notes: new foundry.data.fields.StringField({}),
-      bonusArmure: new foundry.data.fields.NumberField({initial: 1}),
+      armure: new foundry.data.fields.SchemaField({
+          physique: new foundry.data.fields.NumberField({min: 0, initial: 1}),
+          magique: new foundry.data.fields.NumberField({min: 0, initial: 1}),
+          mixte: new foundry.data.fields.NumberField({min: 0, initial: 1}),
+      }),
       coutDeplacement: new foundry.data.fields.NumberField({initial: 1}),
     };
   }

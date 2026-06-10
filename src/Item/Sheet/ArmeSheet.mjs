@@ -11,6 +11,10 @@ export class ArmeSheet extends BaseItemSheet {
       template: system.Consts.TEMPLATES_PATH + "/item/arme.hbs",
       container: { id: "form" , element: ".tabscontainer" },
     },
+    effets: {
+      template: system.Consts.TEMPLATES_PATH + "/item/common/effets.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+    },
     notes: {
       template: system.Consts.TEMPLATES_PATH + "/item/common/notes.hbs",
       container: { id: "form" , element: ".tabscontainer" },
@@ -21,6 +25,7 @@ export class ArmeSheet extends BaseItemSheet {
     sheet: {
       tabs: [
         { id: "main", label: system.Consts.SYSTEMID + ".sheet.items.arme.nav.main"},
+        { id: "effets", label: system.Consts.SYSTEMID + ".sheet.common.effets.titre"},
         { id: "notes", label: system.Consts.SYSTEMID + ".sheet.common.notes.titre"},
       ],
       initial: "main",
@@ -34,6 +39,21 @@ export class ArmeSheet extends BaseItemSheet {
       width: 790,
       height: 360,
     },
+    actions: {
+      ...super.DEFAULT_OPTIONS.actions,
+      addEffect: this._onAddEffect,
+      editEffect: this._onEditEffect,
+      deleteEffect: this._onDeleteEffect,
+    },
+  }
+
+  async _prepareContext(options) {
+    
+    const context = await super._prepareContext(options)
+
+    context.effets = this.document.effects;
+
+    return context
   }
 
   /*_prepareSubmitData(event, form, formData, updateData) { 
@@ -46,4 +66,23 @@ export class ArmeSheet extends BaseItemSheet {
     return data ; 
   }*/
   
+
+
+    static async _onAddEffect(event, target){
+      const effects = await this.document.createEmbeddedDocuments("ActiveEffect", [{name: "Nouvel effet"}]);
+      
+      new ActiveEffectConfig(effects[0]).render(true);
+    }
+
+    static async _onEditEffect(event, target){
+      console.log("edit effect", target, target.dataset.effectid);
+      const effect = this.document.effects.get(target.dataset.effectid);
+      new ActiveEffectConfig(effect).render(true);
+     }
+      
+      
+    static async _onDeleteEffect(event, target){
+      const effect = this.document.effects.get(target.dataset.effectid);
+      await effect.delete();
+    }
 }
