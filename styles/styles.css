@@ -89,7 +89,8 @@
 
 
 
-#sidebar #combat ol.combat-tracker > li.combatant {
+#sidebar #combat ol.combat-tracker > li.combatant,
+#combat-popout ol.combat-tracker > li.combatant {
 
     .custom-bars {
     margin-top: 4px;

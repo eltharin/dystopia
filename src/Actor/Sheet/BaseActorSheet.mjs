@@ -81,7 +81,8 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       deleteItem: this._onDeleteItem,
 
       globalRoll: this._onGlobalRoll,
-      attaqueRoll: this._onAttaqueRoll,
+
+      attaque: this._onAttaque,
     },
     position: {
       width: 1030,
@@ -257,50 +258,44 @@ export class BaseActorSheet extends system.Base.BaseSheet (
 
   }
 
-  static async _onAttaqueRoll(event, target){
+  static async _onAttaque(event, target){
     event.preventDefault();
 
     const actor = this.document;
-    const arme =  this.document.items.get(target.dataset.arme);
+    const item =  this.document.items.get(target.dataset.itemattaque);
 
+    
     if(!game.user.targets.size) {
       ui.notifications.error("Veuillez sélectionner une cible pour l'attaque.");
       return;
-    }
-
-    ChatMessage.create({
-      speaker: ChatMessage.getSpeaker({ alias: this.document.name + " ( " + game.user.name + " )"}),
-      content: `Attaque avec l'arme ${arme.name} sur la cible ${[...game.user.targets].map(t => t.name).join(", ")}`
-    });
+    }    
     
-/*
-    const modificateurs = await system.DiceRoller.AttaqueRollDialog.create({ });
-    if (modificateurs == null) { return; }
-*/
-    const myRoll = new system.DiceRoller.AttaqueRoll("2d10",{}, {
-        actor: actor.uuid,
-        seuilCritique: actor.system.seuilCritique.total,
-        cibles: [...game.user.targets].map(t => { return { uuid: t.uuid, nom: t.name, seuilDefense: t.actor.system.seuilDefense }; }),
-        arme: {
-          nom: arme.name,
-          degat: arme.system.degatsBase,
-          //degatsMagiques: arme.system.degatsMagiques,
-          bonusDegats: 0
+    const myRoll = new system.Combat.AttaqueMessage("0",{}, {
+        actor: {
+          uuid: actor.uuid,
+          name: actor.name,
+        },
+        item: item,
+        cibles: [...game.user.targets].reduce(function(r, e) {
+          r[e.actor.uuid] = {
+            uuid: e.actor.uuid, 
+            name: e.actor.name,
+            seuil: e.actor.system.seuilDefense,
+            armure: system.Actor.fct.getArmure(e.actor),
+            result: null
+          };
+          return r;
+        }, {}),
+        sounds:null
         }
-    });
+    );
 
     myRoll.toMessage({
       speaker: ChatMessage.getSpeaker({ alias: this.document.name + " ( " + game.user.name + " )"}),
     });
+
   
   }
-  
-/*
-  static async _onToggle(event, target) {
-    this.element.querySelectorAll("[data-toggle_section='" + target.dataset.toggle + "']").forEach(e => e.classList.toggle("visible"));
-    //--TODO: ajouter changement icone
-  }
-*/
 
   async _onDrop(event) {
     const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);

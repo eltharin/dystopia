@@ -10,64 +10,56 @@ export class AttaqueRoll extends system.DiceRoller.BaseRoll{
         }
         */
         super(formula, data, options);
-        
-        
     }
 
     async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
         let ret = await super._prepareChatRenderContext({flavor, isPrivate, ...options});
 
-        ret.seuil = this.options.modificateurs?.seuil > 0 ? game.i18n.format(system.Consts.SYSTEMID + ".roll.common.seuil", {seuil: this.options.modificateurs?.seuil}) : "Jet de dé";
-        ret.bonus = game.i18n.format(system.Consts.SYSTEMID + ".roll.common.bonus", {bonus: this.options.modificateurs?.bonus});
-        
-        ret.critique = "seuil critique : " + (this.options.seuilCritique || 50);    
-
-        ret.result = this.getResult();
+        ret.critique = this.isCritique();  
+        ret.item = this.options.item;  
+        ret.cibles = this.options.cibles.map(c => {
+            return {
+                uuid: c.uuid,
+                name: c.name,
+                seuil: c.seuil,
+                degats: this.calculDegats(c),
+                armure: c.armure
+            };
+        });
 
         return ret;
     }
-/*
-    isCompetenceMagie()
-    {
-        return this.options.competence == "magie";
-    }
 
-    getActor()
-    {
-        return this.options.actorMagie;
-    }
-*/
     isCritique() {
         return this.total > (this.options.seuilCritique || 50);
     }
 
-    getResult()
-    {
-        return this.options.cibles.map(cible => {return {
-            cible: cible.nom,
-            total: this.getTotal(cible),
-            attaque: this.options.arme.degat,
-            seuilDefense: cible.seuilDefense,
-            critique: this.isCritique(),
+    calculDegats(cible) {
+        const degatsPhysiques = (this.options.item.system.degats.physique * (this.isCritique() ? 2 : 1)) - cible.armure.physique;
+        const degatsMagiques = (this.options.item.system.degats.magique * (this.isCritique() ? 2 : 1)) - cible.armure.magique;
+        const degatsMixtes = this.total - cible.seuil - cible.armure.mixte;
 
-        }});
-            
+        return this.formuleDegats(degatsPhysiques, degatsMagiques, degatsMixtes)
     }
 
-    getTotal(cible)
-    {
-        return this.options.arme.degat + Math.floor((this.total - cible.seuilDefense)/2) + (this.isCritique() ? this.options.arme.degat : 0);
-    }
-/*
-    getTotalParts()
-    {
-        return [
-            this.options?.actorCompetence?.value,
-            this.options?.modificateurs?.modificateur,
+    formuleDegats(degatsPhysiques, degatsMagiques, degatsMixtes) {
+        let totalDegatsPhysiques = degatsPhysiques;
+        let totalDegatsMagiques = degatsMagiques;
+        let totalDegatsMixtes = degatsMixtes;
 
-        ]
+        if( totalDegatsPhysiques < 0) {
+            totalDegatsMixtes = Math.max(Math.min(0, totalDegatsMixtes), totalDegatsMixtes + totalDegatsPhysiques);
+            totalDegatsPhysiques = 0;
+        }
+
+        if( totalDegatsMagiques < 0) {
+            totalDegatsMixtes = Math.max(Math.min(0, totalDegatsMixtes), totalDegatsMixtes + totalDegatsMagiques);
+            totalDegatsMagiques = 0;
+        }
+
+        return Math.max(0, totalDegatsPhysiques + totalDegatsMagiques + totalDegatsMixtes);
     }
-*/
+
     getSeuil() {
         return (this.options?.modificateurs?.seuil || 0);
     }

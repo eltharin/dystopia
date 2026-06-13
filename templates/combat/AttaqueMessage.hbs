@@ -1,0 +1,23 @@
+<div class="dice-roll">
+    <div class="dice-result">
+        <span class="flavor-text" style="">{{localizeSystem "combat.attaque.label" actor=actor}}</span>
+        <div class="dice-formula">
+            <ul>
+                {{log cibles}}
+                {{#each cibles as |cible|}}
+                    <li>{{cible.name}}
+                        {{#if cible.result}}
+                            {{cible.result}}
+                        {{else}}
+                            {{#if cible.canUpdate}}
+                                <span data-action="reponseAttaque" data-foractoruuid="{{cible.uuid}}">{{localizeSystem "combat.attaque.repondreBtn" }}</span>
+                            {{/if}}
+                        {{/if}}
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+        
+        <div class="dice-forumla" data-action="deAttaque">{{localizeSystem "combat.attaque.attaqueBtn" }}</div>
+    </div>
+</div>

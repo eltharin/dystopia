@@ -99,13 +99,14 @@ export class CombatBars  {
             const combatant = game.combat.combatants.get(combatantId);
 
             const actor = combatant?.actor;
+
             if (!actor) continue;
 
             // Récupération des ressources
             const bars = [
-            { color: "#ff0000", data: actor.system.values.pv },
-            { color: "#00ff00", data: actor.system.values.pm },
-            { color: "#4a6df0", data: actor.system.values.pe }
+            { color: system.Consts.COLOR_ACTOR_VALUES_PV, data: actor.system.values.pv },
+            { color: system.Consts.COLOR_ACTOR_VALUES_PM, data: actor.system.values.pm },
+            { color: system.Consts.COLOR_ACTOR_VALUES_PE, data: actor.system.values.pe }
             ];
 
             // Conteneur
@@ -114,20 +115,20 @@ export class CombatBars  {
 
             // Génération des barres
             for (const bar of bars) {
-            if (!bar.data || bar.data.max === 0) continue;
+                if (!bar.data || bar.data.max === 0) continue;
 
-            const pct = (bar.data.val / bar.data.max) * 100;
+                const pct = (bar.data.val / bar.data.max) * 100;
 
-            const line = document.createElement("div");
-            line.classList.add("bar-line");
+                const line = document.createElement("div");
+                line.classList.add("bar-line");
 
-            const fill = document.createElement("div");
-            fill.classList.add("bar-fill");
-            fill.style.width = pct + "%";
-            fill.style.background = bar.color;
+                const fill = document.createElement("div");
+                fill.classList.add("bar-fill");
+                fill.style.width = pct + "%";
+                fill.style.background = bar.color;
 
-            line.appendChild(fill);
-            container.appendChild(line);
+                line.appendChild(fill);
+                container.appendChild(line);
             }
 
             // Injection dans l’entrée du tracker

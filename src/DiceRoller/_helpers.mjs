@@ -8,6 +8,8 @@ export {GlobalRoll} from "./Global/GlobalRoll.mjs";
 export {AttaqueRollDialog} from "./Attaque/AttaqueRollDialog.mjs";
 export {AttaqueRoll} from "./Attaque/AttaqueRoll.mjs";
 
+export * from "./Combat/EsquiveRoll.mjs";
+
 /*
 
 export {CompetenceRollDialog} from "./Competence/CompetenceRollDialog.mjs";

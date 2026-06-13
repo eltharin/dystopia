@@ -1,30 +1,23 @@
 <div class="dice-roll" data-action="expandRoll">
     <div class="dice-result">
-        <div class="dice-formula">{{seuil}}</div>
-        <div class="dice-formula">{{bonus}}</div>
-        <div class="dice-formula">{{critique}}</div>
+        {{#if critique}}<div class="dice-formula">Coup Critique</div>{{/if}}
+        <div class="dice-formula">Degats physiques : {{item.system.degats.physique}}</div>
+        <div class="dice-formula">Degats magiques : {{item.system.degats.magique}}</div>
         {{{tooltip}}}
         <div class="dice-formula">{{localize (concat (SYSTEMID) ".roll.common.total")}} : {{total}}</div>
 
         
-        {{#each result as |res|}}
-            <h4 class="dice-total">{{res.cible}}</h4>
-            <p>total PV : {{res.total}}</p>
-            <p>degats de base : {{res.attaque}}</p>
-            <p>seuil de defense : {{res.seuilDefense}}</p>
-            <p>critique : {{res.critique}}</p>
+        {{#each cibles as |cible|}}
+            <h4 class="dice-total">{{cible.name}}</h4>
+
+            <p>seuil Défense : {{cible.seuil}}</p>
+            <p>armure physique : {{cible.armure.physique}}</p>
+            <p>armure magique : {{cible.armure.magique}}</p>
+            <p>armure mixte : {{cible.armure.mixte}}</p>
+    
+            <p>total PV : {{cible.degats}}</p>
+            <div class="dice-formula" data-action="enleverPV" data-token="{{cible.uuid}}" data-nbPv="{{cible.degats}}">{{localize (concat (SYSTEMID) ".combat.attaque.supprPV")}}</div>
         {{/each}}
         
-        {{#if actions}}
-        <div class="actions">
-            {{#each actions as |action|}}
-                <button data-action="{{action.action}}"
-                {{#each action.data as |data|}}
-                     data-{{data.key}}="{{data.value}}"
-                {{/each}}
-                >{{action.label}}</button>
-            {{/each}}
-        </div>
-        {{/if}}  
     </div>
 </div>

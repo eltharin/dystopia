@@ -1,0 +1,12 @@
+<div class="dice-roll" data-action="expandRoll">
+    <div class="dice-result">
+        <span class="flavor-text" style="">{{localizeSystem "roll.esquive.titre" actor=actor}}</span>
+        <div class="dice-formula">{{localizeSystem "roll.esquive.reaction" reaction=reaction}}</div>
+        
+        {{{tooltip}}}
+        <div class="dice-formula">{{localizeSystem "roll.common.total" }} : {{total}}</div>
+
+        <h4 class="dice-total" >{{#if result}}{{localizeSystem "roll.esquive.reussite" }}{{else}}{{localizeSystem "roll.esquive.echec" }}{{/if}}</h4>
+
+    </div>
+</div>

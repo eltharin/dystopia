@@ -170,6 +170,49 @@
                 "seuil": "Seuil de réussite : {seuil}",
                 "bonus": "Bonus : {bonus}",
                 "total": "Total"
+            },
+            "esquive": {
+                "titre": "{actor} tente une esquive",
+                "reaction": "Seuil de réaction : {reaction}",
+                "reussite": "Réussite",
+                "echec" : "Echec"
+            }
+        },
+        "combat": {
+            "attaque": {
+                "title": "Attaque avec {item}",
+                "dialog": {
+                    "degats": "Dégats",
+                    "bonus": "Bonus",
+                    "nbDeBonus": "Nombre de dés bonus"
+                },
+                "label": "{actor} attaque : ",
+                "repondreBtn" : "répondre",
+                "attaqueBtn": "Lancer l'attaque",
+                "waitDeAttaque": "Vous devez attendre que tout le monde choisisse l'action",
+                "supprPV" : "Déduire les PV"
+            },
+            "reponseAttaqueDialog": {
+                "title": "Réponse à l'attaque",
+                "content": "Comment souhaitez vous répondre à l'attaque",
+                "buttons": {
+                    "rien": "Ne rien faire",
+                    "parer": "Parer",
+                    "esquiver": "Esquiver"
+                },
+                "actions": {
+                    "rien": "{actor} encaisse l'attaque",
+                    "parer": "{actor} parie l'attaque mais ce glandeur de dev n'a pas encore travaillé dessus, a se demander ce qu'il fout quand meme.",
+                    "esquiver": "{actor} tente d'esquiver l'attaque",
+                    "esquiveAuto": "{actor} effectue une esquive automatique"
+                }
+            },
+            "reaction": {
+                "reset": "Changer la valeur de la réation de {acteur}",
+                "title": "Changer la réaction",
+                "buttons": {
+                    "changer": "Changer"
+                }
             }
         },
         "settings": {

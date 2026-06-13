@@ -24,6 +24,8 @@ import { CompetenceDataModel } from "./Item/DataModel/CompetenceDataModel.mjs";
 
 import {registerFunctions as registerHandleBarFunctions} from "./SystemBase/Helpers/Handlebars.mjs"
 import {CombatBars} from "./Settings/CombatBars.mjs"
+import { MessageActionResolver } from "./SystemBase/ChatMessage/MessageActionResolver.mjs";
+import { CombatManager } from "./Combat/CombatManager.mjs";
 
 
 Hooks.once("init", () => {
@@ -56,8 +58,30 @@ Hooks.once("init", () => {
 
   CombatBars.init();
   
-  system.Settings.CombatantReaction.init();
+  system.Combat.CombatManager.init();
+
+  MessageActionResolver.register("reponseAttaque", CombatManager._onReponseAttaque)
+  MessageActionResolver.register("deAttaque", CombatManager._onDeAttaque)
+  MessageActionResolver.register("enleverPV", CombatManager._onEnlevePV)
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

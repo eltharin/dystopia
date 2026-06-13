@@ -75,7 +75,6 @@ export class ArmeSheet extends BaseItemSheet {
     }
 
     static async _onEditEffect(event, target){
-      console.log("edit effect", target, target.dataset.effectid);
       const effect = this.document.effects.get(target.dataset.effectid);
       new ActiveEffectConfig(effect).render(true);
      }

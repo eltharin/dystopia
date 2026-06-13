@@ -7,7 +7,8 @@ export function registerDiceRolls() {
 
 
 
-    //CONFIG.Dice.rolls.push(system.Combat.AttaqueMessage);
+    CONFIG.Dice.rolls.push(system.Combat.AttaqueMessage);
+    CONFIG.Dice.rolls.push(system.DiceRoller.EsquiveRoll);
 
 
     
