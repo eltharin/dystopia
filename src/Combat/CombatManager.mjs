@@ -13,9 +13,10 @@ export class CombatManager {
             }
         });
 
-        Hooks.on("updateCombat", (combat, change) => {
 
+        Hooks.on("preUpdateCombat", (combat, change) => {
             if (!("round" in change)) return;
+            if (combat.round >= change.round) return;
 
             ChatMessage.create({
                 user: game.user.id,
