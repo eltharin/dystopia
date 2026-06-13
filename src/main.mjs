@@ -25,9 +25,19 @@ import { CompetenceDataModel } from "./Item/DataModel/CompetenceDataModel.mjs";
 import {registerFunctions as registerHandleBarFunctions} from "./SystemBase/Helpers/Handlebars.mjs"
 import {CombatBars} from "./Settings/CombatBars.mjs"
 
+import { DynMessage } from "./SystemBase/ChatMessage/DynMessage.mjs";
 
 Hooks.once("init", () => {
-  console.log(system.Consts.SYSTEMID + " | Initialisation du système " + system.Consts.SYSTEMID);
+  console.log(system.Consts.SYSTEMID + " | Initialisation du syst�me " + system.Consts.SYSTEMID);
+
+  /*
+  Hooks.on("renderChatMessageHTML", async (message, html, data) => {
+  if (!message.flags.DynamicMessage) return;
+
+  const newhtml = await system.Combat.AttaqueMessage.render(message.flags.DynamicMessage.data, message, html);
+
+  html.querySelector('.message-content').replaceChildren(foundry.utils.parseHTML("<div>" + newhtml + "</div>"));
+});*/
 
   system.Base.init();
 
@@ -40,7 +50,7 @@ Hooks.once("init", () => {
   system.Base.Helpers.Item.register("armure", ArmureDataModel, ArmureSheet, "Feuille d'armure");
   system.Base.Helpers.Item.register("sort", SortDataModel, SortSheet, "Feuille de sort");
   system.Base.Helpers.Item.register("aptitude", AptitudeDataModel, AptitudeSheet, "Feuille d'aptitude");
-  system.Base.Helpers.Item.register("competence", CompetenceDataModel, CompetenceSheet, "Feuille de compétence");
+  system.Base.Helpers.Item.register("competence", CompetenceDataModel, CompetenceSheet, "Feuille de comp�tence");
 
 
   system.Settings.fct.registerSettings();
@@ -58,19 +68,3 @@ Hooks.once("init", () => {
   
   system.Settings.CombatantReaction.init();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

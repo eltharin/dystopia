@@ -38,6 +38,9 @@
       "sort": {},
       "aptitude": {},
       "competence": {}
+    },
+    "ChatMessage": {
+      "dynamic": {}
     }
   },
   "socket": false,
