@@ -132,7 +132,7 @@ export class CombatBars  {
             }
 
             // Injection dans l’entrée du tracker
-            li.querySelector('.token-name').appendChild(container);
+            li.appendChild(container);
         }
     };
 }

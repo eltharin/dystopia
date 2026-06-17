@@ -57,6 +57,7 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
             }),
 
             nbActionParTour: new foundry.data.fields.NumberField({initial: 2}),
+            initiative: new foundry.data.fields.NumberField({initial: 0}),
 
             historique: new foundry.data.fields.StringField({}),
             alignement: new foundry.data.fields.StringField({}),

@@ -45,6 +45,7 @@
     "distance": 1.5,
     "units": "m"
   },
+  "initiative": "@initiative",
   "url": "#{URL}#",
   "bugs": "#{URL}#/issues",
   "readme": "#{URL}#/blob/main/README.md",

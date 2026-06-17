@@ -92,11 +92,14 @@
 #sidebar #combat ol.combat-tracker > li.combatant,
 #combat-popout ol.combat-tracker > li.combatant {
 
+    flex-wrap:wrap;
+    
     .custom-bars {
     margin-top: 4px;
     display: flex;
     flex-direction: column;
     gap: 2px;
+    width:100%;
     }
 
     .custom-bars .bar-line {

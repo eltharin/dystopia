@@ -28,6 +28,8 @@ import { MessageActionResolver } from "./SystemBase/ChatMessage/MessageActionRes
 import { CombatManager } from "./Combat/CombatManager.mjs";
 
 
+CONFIG.ActiveEffect.expiryAction = "delete"
+
 Hooks.once("init", () => {
   console.log(system.Consts.SYSTEMID + " | Initialisation du système " + system.Consts.SYSTEMID);
 

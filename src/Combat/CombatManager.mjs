@@ -41,13 +41,13 @@ export class CombatManager {
                 }
 
                 // Conteneur
-                const container = document.createElement("div");
-                container.classList.add("reaction-container");
+                const reactionContainer = document.createElement("div");
+                reactionContainer.classList.add("reaction-container");
                 
                 const button = document.createElement("div");
                 button.classList.add("reaction-button");
                 button.innerHTML = combatant.getFlag(system.Consts.SYSTEMID, "reaction");
-                container.appendChild(button);
+                reactionContainer.appendChild(button);
 
                 button.onclick = async (e) => {
                     if(!game.user.isGM) return;
@@ -66,9 +66,19 @@ export class CombatManager {
                 };
 
                 // Injection dans l’entrée du tracker
-                li.insertBefore(container, li.lastElementChild);
+                li.insertBefore(reactionContainer, li.lastElementChild);
             }
         });  
+
+        Hooks.on("createCombatant", async (combatant, options, userId) => {
+            const actor = combatant.actor;
+            if (!actor) return;
+
+            const initValue = actor.system?.initiative ?? 0;
+
+            await combatant.update({ initiative: initValue });
+        });
+
 
         Hooks.on("updateCombatant", (combatant, options, userId) => {
             document.querySelector(`li.combatant[data-combatant-id="${combatant.id}"] .reaction-button`).innerHTML = combatant.flags[game.system.id]?.reaction || 0;
