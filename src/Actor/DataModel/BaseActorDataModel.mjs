@@ -84,7 +84,6 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
     }
 
     checkMaxValues(changes, clone){
-        console.log(changes, clone)
         if(foundry.utils.getProperty(clone, "values.pv.val") > foundry.utils.getProperty(clone, "values.pv.max")) {
             foundry.utils.setProperty(changes, "system.values.pv.val", foundry.utils.getProperty(clone, "values.pv.max"));
         }

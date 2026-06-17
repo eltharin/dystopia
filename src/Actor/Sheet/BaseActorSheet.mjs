@@ -91,6 +91,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       globalRoll: this._onGlobalRoll,
 
       attaque: this._onAttaque,
+      consommePtsAttaque: this._onConsommePtsAttaque,
       consommeItem: this._onConsommeItem,
       
       addEffect: system.EffetManager._onAddEffect,
@@ -284,7 +285,28 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       ui.notifications.error("Veuillez sélectionner une cible pour l'attaque.");
       return;
     }    
+
+    let useUpdate = {};
     
+    if(item.type == "sort") {
+      if(foundry.utils.getProperty(this.actor, "system.values.pm.val") < item.system.coutUtilisation) {
+        ui.notifications.error("Vous n'avez pas assez de PM pour cela.");
+        return;
+      }
+
+      useUpdate["system.values.pm.val"] = foundry.utils.getProperty(this.actor, "system.values.pm.val") - item.system.coutUtilisation;
+    }
+    
+    if(item.type == "arme") {
+      if(foundry.utils.getProperty(this.actor, "system.values.pe.val") < item.system.coutUtilisation) {
+        ui.notifications.error("Vous n'avez pas assez de PE pour cela.");
+        return;
+      }
+
+      useUpdate["system.values.pe.val"] = foundry.utils.getProperty(this.actor, "system.values.pe.val") - item.system.coutUtilisation;
+    }
+
+
     const myRoll = new system.Combat.AttaqueMessage("0",{}, {
         actor: {
           uuid: actor.uuid,
@@ -309,7 +331,8 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       speaker: ChatMessage.getSpeaker({ alias: this.document.name + " ( " + game.user.name + " )"}),
     });
 
-  
+    this.actor.update(useUpdate);
+    
   }
 
   async _onDrop(event) {
@@ -414,6 +437,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
   } 
 */
 
+
   static async _onConsommeItem(event, target) {
     const item = fromUuidSync(target.dataset.item);
     if(!item) return;
@@ -439,7 +463,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
 
     await this.actor.update(changes);
 
-
+    await item.delete();
   } 
 
 

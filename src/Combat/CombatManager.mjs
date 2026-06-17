@@ -131,35 +131,31 @@ export class CombatManager {
             flags: {"dystopia": {"reponseAttaqueMessage": {id: attaqueMessageId, cible: token.uuid, action: null}}}
         };
     
-        const dialog = await system.Base.Dialog.input({
+        const dialog = await system.Base.Dialog.wait({
             content: game.i18n.localize(system.Consts.SYSTEMID + ".combat.reponseAttaqueDialog.content"),
             window: {title: game.i18n.localize(system.Consts.SYSTEMID + ".combat.reponseAttaqueDialog.title")},
-            ok: {
+            buttons: [{
+                action: "rien",
                 label: game.i18n.localize(system.Consts.SYSTEMID + ".combat.reponseAttaqueDialog.buttons.rien"),
                 callback: (event, button, dialog) => {
                     chatMessage.content = game.i18n.format(system.Consts.SYSTEMID + ".combat.reponseAttaqueDialog.actions.rien", { actor: token.name });
                     chatMessage.flags.dystopia.reponseAttaqueMessage.action = "rien";
                     ChatMessage.create(chatMessage);
                 }
-            },
-            buttons: [{
-            action: "parer",
-            label: game.i18n.localize(system.Consts.SYSTEMID + ".combat.reponseAttaqueDialog.buttons.parer"),
-            callback: (event, button, dialog) => {
-                chatMessage.content = game.i18n.format(system.Consts.SYSTEMID + ".combat.reponseAttaqueDialog.actions.parer", { actor: token.name });
-                //chatMessage.flags.dystopia.attaqueMessage.response = "parer";
-                ChatMessage.create(chatMessage);
-            }
+            },{
+                action: "parer",
+                label: game.i18n.localize(system.Consts.SYSTEMID + ".combat.reponseAttaqueDialog.buttons.parer"),
+                callback: (event, button, dialog) => {
+                    chatMessage.content = game.i18n.format(system.Consts.SYSTEMID + ".combat.reponseAttaqueDialog.actions.parer", { actor: token.name });
+                    ChatMessage.create(chatMessage);
+                }
             }, {
-            label: game.i18n.localize(system.Consts.SYSTEMID + ".combat.reponseAttaqueDialog.buttons.esquiver"),
-            callback: (event, button, dialog) => {
-                CombatManager.testEsquive(token, chatMessage)
-
-            },
+                action: "esquiveoupas",
+                label: game.i18n.localize(system.Consts.SYSTEMID + ".combat.reponseAttaqueDialog.buttons.esquiver"),
+                callback: (event, button, dialog) => {
+                    CombatManager.testEsquive(token, chatMessage)
+                },
             }],
-            submit: result => {
-                // maj message attaque
-            }
         });
         
     }
