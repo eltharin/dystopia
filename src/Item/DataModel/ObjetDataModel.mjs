@@ -9,7 +9,7 @@ export class ObjetDataModel extends system.Base.SystemDataModel {
     return {
       //prixmoyen: new foundry.data.fields.NumberField({initial: 0, min:0}),
       notes: new foundry.data.fields.StringField({}),
-      isConsomable: new foundry.data.fields.BooleanField({initial: false}),
+      isConsommable: new foundry.data.fields.BooleanField({initial: false}),
     };
   }
 

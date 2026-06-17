@@ -67,7 +67,7 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
 
     static preSaveFunctions = [
         ...super.preSaveFunctions,
-
+        "checkMaxValues"
     ];
 
     
@@ -83,4 +83,22 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
 
     }
 
+    checkMaxValues(changes, clone){
+        console.log(changes, clone)
+        if(foundry.utils.getProperty(clone, "values.pv.val") > foundry.utils.getProperty(clone, "values.pv.max")) {
+            foundry.utils.setProperty(changes, "system.values.pv.val", foundry.utils.getProperty(clone, "values.pv.max"));
+        }
+        if(foundry.utils.getProperty(clone, "values.pe.val") > foundry.utils.getProperty(clone, "values.pe.max")) {
+            foundry.utils.setProperty(changes, "system.values.pe.val", foundry.utils.getProperty(clone, "values.pe.max"));
+        }
+        if(foundry.utils.getProperty(clone, "values.pm.val") > foundry.utils.getProperty(clone, "values.pm.max")) {
+            foundry.utils.setProperty(changes, "system.values.pm.val", foundry.utils.getProperty(clone, "values.pm.max"));
+        }
+        if(foundry.utils.getProperty(clone, "values.sm.val") > foundry.utils.getProperty(clone, "values.sm.max")) {
+            foundry.utils.setProperty(changes, "system.values.sm.val", foundry.utils.getProperty(clone, "values.sm.max"));
+        }
+        if(foundry.utils.getProperty(clone, "values.volonte.val") > foundry.utils.getProperty(clone, "values.volonte.max")) {
+            foundry.utils.setProperty(changes, "system.values.volonte.val", foundry.utils.getProperty(clone, "values.volonte.max"));
+        }
+    }
 }

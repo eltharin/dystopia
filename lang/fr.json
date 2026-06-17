@@ -87,7 +87,11 @@
                     "ajout": "Ajouter un objet",
                     "ajoutbtn": "Ajouter",
                     "edit": "Modifier l'objet",
-                    "delete": "Supprimer l'objet"
+                    "delete": "Supprimer l'objet",
+                    "use": {
+                        "dialogTitle" : "Utilisation Objet",
+                        "dialogText": "Etes vous sur de vouloir utiliser {objet} ?"
+                    }
                 },
                 "combat": {
                     "arme": {
@@ -170,7 +174,8 @@
                 "objet": {
                     "nav": {
                         "main": "Objet"
-                    }
+                    },
+                    "isConsommable": "Est un consommable ?"
                 },
                 "sort": {
                     "nav": {

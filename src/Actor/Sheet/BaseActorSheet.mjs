@@ -91,6 +91,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       globalRoll: this._onGlobalRoll,
 
       attaque: this._onAttaque,
+      consommeItem: this._onConsommeItem,
       
       addEffect: system.EffetManager._onAddEffect,
       editEffect: system.EffetManager._onEditEffect,
@@ -412,6 +413,34 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     this.actor.items.get(target.dataset.itemid).update({"system.isEquipe": false});
   } 
 */
+
+  static async _onConsommeItem(event, target) {
+    const item = fromUuidSync(target.dataset.item);
+    if(!item) return;
+
+    const confirm = await system.Base.Dialog.confirm({
+          title: game.i18n.format(system.Consts.SYSTEMID + ".sheet.actor.items.use.dialogTitle"),
+          content: game.i18n.format(system.Consts.SYSTEMID + ".sheet.actor.items.use.dialogText", {objet: item.name}),
+          rejectClose: false,
+          modal: true
+        });
+
+    if(!confirm) return;
+
+    
+
+    let changes = {};
+
+    item.effects.filter(e => e.type == "effetConsomme").forEach(e => {
+      e.changes.forEach(c => {
+        changes[c.key] = (changes[c.key] ?? foundry.utils.getProperty(this.actor, c.key)) + (c.value * (c.type == "add" ? 1 : -1));
+      });
+    });
+
+    await this.actor.update(changes);
+
+
+  } 
 
 
 }

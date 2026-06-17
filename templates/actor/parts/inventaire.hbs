@@ -9,7 +9,7 @@
         {{#each items as |item|}}
             <div class="item">
                 <div class="lignetab">
-                    <label>{{item.name}}</label>
+                    <label{{#if item.system.isConsommable}} data-action="consommeItem" data-item="{{item.uuid}}"{{/if}}>{{item.name}}</label>
                     <label data-width="100px" style="--localwidth:100px">{{item.type}}</label>
                     <span class="action" >
                         {{#if item.system.notes}}<a data-action="toggle"  data-toggle="item_{{item._id}}"><i class="fas fa-eye"></i></a>{{/if}}
