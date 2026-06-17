@@ -3,6 +3,9 @@ import * as system  from "../../_helpers.mjs";
 import { BaseItemSheet } from "./BaseItemSheet.mjs";
 
 export class AptitudeSheet extends BaseItemSheet {
+  
+  static EffetTypes = ["effetPorte", "effetApplique", "effetConsomme"];
+
   static PARTS = {
     form: { 
       template: system.Consts.TEMPLATES_PATH + "/item/baseTemplate.hbs",

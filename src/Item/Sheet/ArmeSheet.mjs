@@ -3,6 +3,8 @@ import * as system  from "../../_helpers.mjs";
 import { BaseItemSheet } from "./BaseItemSheet.mjs";
 
 export class ArmeSheet extends BaseItemSheet {
+  static EffetTypes = ["effetPorte", "effetApplique"];
+
   static PARTS = {
     form: { 
       template: system.Consts.TEMPLATES_PATH + "/item/baseTemplate.hbs",
@@ -41,9 +43,9 @@ export class ArmeSheet extends BaseItemSheet {
     },
     actions: {
       ...super.DEFAULT_OPTIONS.actions,
-      addEffect: this._onAddEffect,
-      editEffect: this._onEditEffect,
-      deleteEffect: this._onDeleteEffect,
+      addEffect: system.EffetManager._onAddEffect,
+      editEffect: system.EffetManager._onEditEffect,
+      deleteEffect: system.EffetManager._onDeleteEffect,
     },
   }
 
@@ -67,21 +69,4 @@ export class ArmeSheet extends BaseItemSheet {
   }*/
   
 
-
-    static async _onAddEffect(event, target){
-      const effects = await this.document.createEmbeddedDocuments("ActiveEffect", [{name: "Nouvel effet"}]);
-      
-      new ActiveEffectConfig(effects[0]).render(true);
-    }
-
-    static async _onEditEffect(event, target){
-      const effect = this.document.effects.get(target.dataset.effectid);
-      new ActiveEffectConfig(effect).render(true);
-     }
-      
-      
-    static async _onDeleteEffect(event, target){
-      const effect = this.document.effects.get(target.dataset.effectid);
-      await effect.delete();
-    }
 }

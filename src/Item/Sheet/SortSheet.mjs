@@ -3,6 +3,8 @@ import * as system  from "../../_helpers.mjs";
 import { BaseItemSheet } from "./BaseItemSheet.mjs";
 
 export class SortSheet extends BaseItemSheet {
+  static EffetTypes = ["effetApplique", "effetConsomme"];
+
   static PARTS = {
     form: { 
       template: system.Consts.TEMPLATES_PATH + "/item/baseTemplate.hbs",

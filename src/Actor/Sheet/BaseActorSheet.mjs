@@ -4,6 +4,9 @@ import * as system  from "../../_helpers.mjs";
 export class BaseActorSheet extends system.Base.BaseSheet (
   foundry.applications.sheets.ActorSheetV2
 ) {
+
+  static EffetTypes = ["effetPorte"];
+
   static PARTS = {
     form: { 
       template: system.Consts.TEMPLATES_PATH + "/actor/pj/pj-sheet.hbs",
@@ -43,6 +46,10 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       template: system.Consts.TEMPLATES_PATH + "/actor/parts/gm.hbs",
       container: { id: "form" , element: ".tabscontainer" },
     },
+    effets: {
+      template: system.Consts.TEMPLATES_PATH + "/item/common/effets.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+    },
 
     
   };
@@ -52,6 +59,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       tabs: [
         {id: "main", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.main"},
         {id: "perso", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.perso"},
+        { id: "effets", label: system.Consts.SYSTEMID + ".sheet.common.effets.titre"},
         {id: "aptitudes", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.aptitudes"},
         {id: "competences", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.competences"},
         {id: "combat", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.combat"},
@@ -83,6 +91,10 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       globalRoll: this._onGlobalRoll,
 
       attaque: this._onAttaque,
+      
+      addEffect: system.EffetManager._onAddEffect,
+      editEffect: system.EffetManager._onEditEffect,
+      deleteEffect: system.EffetManager._onDeleteEffect,
     },
     position: {
       width: 1030,
@@ -168,6 +180,8 @@ export class BaseActorSheet extends system.Base.BaseSheet (
 
     context.system.coutDeplacement.total = context.system.coutDeplacement.val + context.system.coutDeplacement.temp + context.system.coutDeplacement.bonus;
 
+    
+    context.effets = this.document.effects;
 
     return context
   }
@@ -305,9 +319,21 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       case "Item": 
         const item = fromUuidSync(data.uuid);
         
-        if(item.type == "objet" || item.type == "arme" || item.type == "armure" || item.type == "sort" || item.type == "aptitude" || item.type == "competence") {
+        if([
+          "objet",
+          "arme",
+          "armure",
+          "sort",
+          "aptitude",
+          "competence",
+        ].includes(item.type)) {
           super._onDrop(event);
-
+        }
+        else if(item.type == "effetContainer") {
+          
+        }
+        else {
+          ui.notifications.error("impossible de glisser ca ici")
         }
     }
   }
@@ -386,5 +412,6 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     this.actor.items.get(target.dataset.itemid).update({"system.isEquipe": false});
   } 
 */
-  
+
+
 }

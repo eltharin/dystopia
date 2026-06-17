@@ -8,8 +8,7 @@
         <div class="item effet titre">
             <div class="lignetab">
                 <label ></label>
-                <label data-width="100px" style="--localwidth:100px">Cout Util.</label>
-                <label data-width="100px" style="--localwidth:100px">Dégats</label>
+                <label data-width="100px" style="--localwidth:100px">{{localizeSystem "effet.cols.type"}}</label>
                 <label data-width="50px" style="--localwidth:50px">Actions</label>
             </div>
         </div>
@@ -18,6 +17,8 @@
             <div class="item effet">
                 <div class="lignetab">
                     <label >{{effet.name}}</label>
+
+                    <label data-width="100px" style="--localwidth:100px">{{localize (concat "TYPES.ActiveEffect." type)}}</label>
 
                     <span class="action" >
                        <a data-action="editEffect" data-effectid="{{effet.id}}" title="{{localizeSystem "sheet.actor.combat.arme.edit"}}"><i class="fas fa-edit"></i></a>

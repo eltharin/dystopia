@@ -3,12 +3,19 @@ import * as system  from "../../_helpers.mjs";
 import { BaseItemSheet } from "./BaseItemSheet.mjs";
 
 export class ObjetSheet extends BaseItemSheet {
+  
+  static EffetTypes = ["effetPorte", "effetConsomme"];
+
   static PARTS = {
     form: { 
       template: system.Consts.TEMPLATES_PATH + "/item/baseTemplate.hbs",
     },
     main: {
       template: system.Consts.TEMPLATES_PATH + "/item/objet.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+    },
+    effets: {
+      template: system.Consts.TEMPLATES_PATH + "/item/common/effets.hbs",
       container: { id: "form" , element: ".tabscontainer" },
     },
     notes: {
@@ -21,6 +28,7 @@ export class ObjetSheet extends BaseItemSheet {
     sheet: {
       tabs: [
         { id: "main", label: system.Consts.SYSTEMID + ".sheet.items.objet.nav.main"},
+        { id: "effets", label: system.Consts.SYSTEMID + ".sheet.common.effets.titre"},
         { id: "notes", label: system.Consts.SYSTEMID + ".sheet.common.notes.titre"},
       ],
       initial: "main",
@@ -34,6 +42,21 @@ export class ObjetSheet extends BaseItemSheet {
       width: 790,
       height: 360,
     },
+    actions: {
+      ...super.DEFAULT_OPTIONS.actions,
+      addEffect: system.EffetManager._onAddEffect,
+      editEffect: system.EffetManager._onEditEffect,
+      deleteEffect: system.EffetManager._onDeleteEffect,
+    },
+  }
+
+  async _prepareContext(options) {
+    
+    const context = await super._prepareContext(options);
+
+    context.effets = this.document.effects;
+
+    return context
   }
 /*
   _prepareSubmitData(event, form, formData, updateData) { 

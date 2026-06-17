@@ -14,6 +14,11 @@ import { ArmureSheet } from "./Item/Sheet/ArmureSheet.mjs";
 import { SortSheet } from "./Item/Sheet/SortSheet.mjs";
 import { AptitudeSheet } from "./Item/Sheet/AptitudeSheet.mjs";
 import { CompetenceSheet } from "./Item/Sheet/CompetenceSheet.mjs";
+import { EffetContainerSheet } from "./Item/Sheet/EffetContainerSheet.mjs";
+
+import { AppliqueSheet } from "./Effet/Sheet/AppliqueSheet.mjs"
+import { ConsommeSheet } from "./Effet/Sheet/ConsommeSheet.mjs"
+import { PorteSheet } from "./Effet/Sheet/PorteSheet.mjs"
 
 import { ObjetDataModel } from "./Item/DataModel/ObjetDataModel.mjs";
 import { ArmeDataModel } from "./Item/DataModel/ArmeDataModel.mjs";
@@ -21,6 +26,11 @@ import { ArmureDataModel } from "./Item/DataModel/ArmureDataModel.mjs";
 import { SortDataModel } from "./Item/DataModel/SortDataModel.mjs";
 import { AptitudeDataModel } from "./Item/DataModel/AptitudeDataModel.mjs";
 import { CompetenceDataModel } from "./Item/DataModel/CompetenceDataModel.mjs";
+import { EffetContainerDataModel } from "./Item/DataModel/EffetContainerDataModel.mjs";
+
+import { AppliqueDataModel } from "./Effet/DataModel/AppliqueDataModel.mjs"
+import { ConsommeDataModel } from "./Effet/DataModel/ConsommeDataModel.mjs"
+import { PorteDataModel } from "./Effet/DataModel/PorteDataModel.mjs"
 
 import {registerFunctions as registerHandleBarFunctions} from "./SystemBase/Helpers/Handlebars.mjs"
 import {CombatBars} from "./Settings/CombatBars.mjs"
@@ -45,7 +55,11 @@ Hooks.once("init", () => {
   system.Base.Helpers.Item.register("sort", SortDataModel, SortSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.sort"));
   system.Base.Helpers.Item.register("aptitude", AptitudeDataModel, AptitudeSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.aptitude"));
   system.Base.Helpers.Item.register("competence", CompetenceDataModel, CompetenceSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.competence"));
+  system.Base.Helpers.Item.register("effetContainer", EffetContainerDataModel, EffetContainerSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.effetContainer"));
   
+  system.Base.Helpers.Effet.register("effetPorte", PorteDataModel, PorteSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.effetPorte"));
+  system.Base.Helpers.Effet.register("effetApplique", AppliqueDataModel, AppliqueSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.effetApplique"));
+  system.Base.Helpers.Effet.register("effetConsomme", ConsommeDataModel, ConsommeSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.effetConsomme"));
 
   system.Settings.fct.registerSettings();
 
@@ -66,37 +80,4 @@ Hooks.once("init", () => {
   MessageActionResolver.register("deAttaque", CombatManager._onDeAttaque)
   MessageActionResolver.register("enleverPV", CombatManager._onEnlevePV)
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

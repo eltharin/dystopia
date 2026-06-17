@@ -2,16 +2,13 @@ import * as system  from "../../_helpers.mjs";
 
 import { BaseItemSheet } from "./BaseItemSheet.mjs";
 
-export class ArmureSheet extends BaseItemSheet {
-  static EffetTypes = ["effetPorte"];
-
+export class EffetContainerSheet extends BaseItemSheet {
+  
+  static EffetTypes = ["effetPorte", "effetApplique", "effetConsomme"];
+  
   static PARTS = {
     form: { 
       template: system.Consts.TEMPLATES_PATH + "/item/baseTemplate.hbs",
-    },
-    main: {
-      template: system.Consts.TEMPLATES_PATH + "/item/armure.hbs",
-      container: { id: "form" , element: ".tabscontainer" },
     },
     effets: {
       template: system.Consts.TEMPLATES_PATH + "/item/common/effets.hbs",
@@ -26,7 +23,6 @@ export class ArmureSheet extends BaseItemSheet {
   static TABS = {
     sheet: {
       tabs: [
-        { id: "main", label: system.Consts.SYSTEMID + ".sheet.items.armure.nav.main"},
         { id: "effets", label: system.Consts.SYSTEMID + ".sheet.common.effets.titre"},
         { id: "notes", label: system.Consts.SYSTEMID + ".sheet.common.notes.titre"},
       ],
@@ -51,7 +47,7 @@ export class ArmureSheet extends BaseItemSheet {
 
   async _prepareContext(options) {
     
-    const context = await super._prepareContext(options)
+    const context = await super._prepareContext(options);
 
     context.effets = this.document.effects;
 
@@ -67,5 +63,6 @@ export class ArmureSheet extends BaseItemSheet {
 
     return data ; 
   }*/
+
   
 }

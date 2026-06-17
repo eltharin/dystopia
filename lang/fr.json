@@ -11,7 +11,13 @@
             "armure": "Armure",
             "sort": "Sort",
             "aptitude": "Aptitude",
-            "competence": "Compétence"
+            "competence": "Compétence",
+            "effetContainer": "Effet Modèle"
+        },
+        "ActiveEffect": {
+            "effetPorte": "Effet porté",
+            "effetApplique": "Effet appliqué (arme/sort)",
+            "effetConsomme": "Effet consommé"
         }
     },
     "dystopia": {
@@ -26,7 +32,12 @@
                 "armure": "Feuille d'armure",
                 "sort": "Feuille de sort",
                 "aptitude": "Feuille d'aptitude",
-                "competence": "Feuille de compétence"
+                "competence": "Feuille de compétence",
+                "effetContainer": "Effet Modèle",
+                
+                "effetPorte": "Effet Porté",
+                "effetApplique": "Effet Appliqué",
+                "effetConsomme": "Effet Consommé"
             },
             "common": {
                 "notes": {
@@ -231,6 +242,16 @@
             "combatBars": {
                 "showTokenBars": "Afficher les barres sur les tokens",
                 "showCombattantBars": "Afficher les barres sur les combattants"
+            }
+        },
+        "effet": {
+            "choix": {
+                "title": "Type d'effet",
+                "question": "Quel type d'effet voulez vous créer ?"
+            },
+            "cols": {
+                "type": "Type"
+                
             }
         }
     }

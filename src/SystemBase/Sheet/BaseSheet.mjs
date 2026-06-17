@@ -6,6 +6,8 @@ export function BaseSheet(BaseApplication) {
     class BaseSheetClass extends foundry.applications.api.HandlebarsApplicationMixin(
         BaseApplication
     ) {
+        static EffetTypes = ["effetPorte", "effetApplique", "effetConsomme"];
+
         constructor(options) {
             super(options);
             for ( const [groupId, groupData] of Object.entries(this.constructor.TABS) ) {

@@ -37,7 +37,13 @@
       "armure": {},
       "sort": {},
       "aptitude": {},
-      "competence": {}
+      "competence": {},
+      "effetContainer": {}
+    },
+    "ActiveEffect": {
+      "effetPorte": {},
+      "effetApplique": {},
+      "effetConsomme": {}
     }
   },
   "socket": false,

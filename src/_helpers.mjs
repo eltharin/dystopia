@@ -12,5 +12,6 @@ export * as Actor from "./Actor/_helpers.mjs"
 export * as Item from "./Item/_helpers.mjs"
 export * as Combat from "./Combat/_helpers.mjs"
 
+export * from "./Effet/EffetManager.mjs"
 
 
