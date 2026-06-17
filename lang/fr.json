@@ -16,6 +16,18 @@
     },
     "dystopia": {
         "sheet": {
+            "names": {
+                "pj":  "Feuille de Personnage Joueur",
+                "pnj" : "Feuille de Personnage Non Joueur",
+                "boss": "Feuille de Personnage Non Joueur",
+                
+                "objet": "Feuille d'objet",
+                "arme": "Feuille d'arme",
+                "armure": "Feuille d'armure",
+                "sort": "Feuille de sort",
+                "aptitude": "Feuille d'aptitude",
+                "competence": "Feuille de compétence"
+            },
             "common": {
                 "notes": {
                     "titre": "Notes"

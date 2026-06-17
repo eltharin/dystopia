@@ -35,17 +35,17 @@ Hooks.once("init", () => {
 
   system.Base.init();
 
-  system.Base.Helpers.Actor.register("pj", ActorPjDataModel, PjSheet, "Feuille de Personnage Joueur");
-  system.Base.Helpers.Actor.register("pnj", ActorPnjDataModel, PnjSheet, "Feuille de Personnage Non Joueur");
-  system.Base.Helpers.Actor.register("boss", ActorBossDataModel, BossSheet, "Feuille de Personnage Non Joueur");
+  system.Base.Helpers.Actor.register("pj", ActorPjDataModel, PjSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.pj"));
+  system.Base.Helpers.Actor.register("pnj", ActorPnjDataModel, PnjSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.pnj"));
+  system.Base.Helpers.Actor.register("boss", ActorBossDataModel, BossSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.boss"));
   
-  system.Base.Helpers.Item.register("objet", ObjetDataModel, ObjetSheet, "Feuille d'objet");
-  system.Base.Helpers.Item.register("arme", ArmeDataModel, ArmeSheet, "Feuille d'arme");
-  system.Base.Helpers.Item.register("armure", ArmureDataModel, ArmureSheet, "Feuille d'armure");
-  system.Base.Helpers.Item.register("sort", SortDataModel, SortSheet, "Feuille de sort");
-  system.Base.Helpers.Item.register("aptitude", AptitudeDataModel, AptitudeSheet, "Feuille d'aptitude");
-  system.Base.Helpers.Item.register("competence", CompetenceDataModel, CompetenceSheet, "Feuille de compétence");
-
+  system.Base.Helpers.Item.register("objet", ObjetDataModel, ObjetSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.objet"));
+  system.Base.Helpers.Item.register("arme", ArmeDataModel, ArmeSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.arme"));
+  system.Base.Helpers.Item.register("armure", ArmureDataModel, ArmureSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.armure"));
+  system.Base.Helpers.Item.register("sort", SortDataModel, SortSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.sort"));
+  system.Base.Helpers.Item.register("aptitude", AptitudeDataModel, AptitudeSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.aptitude"));
+  system.Base.Helpers.Item.register("competence", CompetenceDataModel, CompetenceSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.competence"));
+  
 
   system.Settings.fct.registerSettings();
 
