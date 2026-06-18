@@ -15,6 +15,7 @@
             "effetContainer": "Effet Modèle"
         },
         "ActiveEffect": {
+            "effetEtat": "Etat",
             "effetPorte": "Effet porté",
             "effetApplique": "Effet appliqué (arme/sort)",
             "effetConsomme": "Effet consommé"

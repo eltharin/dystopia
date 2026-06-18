@@ -1,0 +1,62 @@
+<div>
+    
+    <h2>
+        <span>{{localizeSystem "sheet.common.effets.titre"}}</span>
+    </h2>
+
+    <div class="tabitem">
+        <div class="item effet titre">
+            <div class="lignetab">
+                <label ></label>
+                <label data-width="50px" style="--localwidth:50px">Score</label>
+                <label data-width="50px" style="--localwidth:50px">Actions</label>
+            </div>
+        </div>
+
+        {{#each effets.effetEtat as |effet|}}
+            <div class="item effet">
+                <div class="lignetab">
+                    <label >{{effet.name}}</label>
+
+                    <label data-width="50px" style="--localwidth:50px">{{localize (concat "TYPES.ActiveEffect." type)}}</label>
+                    <label data-width="50px" style="--localwidth:50px">{{effet.flags.etat.nb}}</label>
+
+                    <span class="action" >
+                       <a data-action="editEffect" data-effectid="{{effet.id}}" title="{{localizeSystem "sheet.actor.combat.arme.edit"}}"><i class="fas fa-edit"></i></a>
+                        <a data-action="deleteEffect" data-effectid="{{effet.id}}" title="{{localizeSystem "sheet.actor.combat.arme.delete"}}"><i class="fas fa-trash"></i></a>
+                    </span>    
+                </div>
+            </div>
+        {{/each}}
+    </div>
+
+    <h2>
+        <span>{{localizeSystem "sheet.common.effets.titre"}}</span>
+        <span class="action add button" data-action="addEffect" data-type="arme" title="{{localizeSystem "sheet.actor.combat.arme.ajout"}}">{{localizeSystem "sheet.actor.combat.arme.ajoutbtn"}}</span>
+    </h2>
+
+    <div class="tabitem">
+        <div class="item effet titre">
+            <div class="lignetab">
+                <label ></label>
+                <label data-width="100px" style="--localwidth:100px">{{localizeSystem "effet.cols.type"}}</label>
+                <label data-width="50px" style="--localwidth:50px">Actions</label>
+            </div>
+        </div>
+
+        {{#each effets.other as |effet|}}
+            <div class="item effet">
+                <div class="lignetab">
+                    <label >{{effet.name}}</label>
+
+                    <label data-width="100px" style="--localwidth:100px">{{localize (concat "TYPES.ActiveEffect." type)}}</label>
+
+                    <span class="action" >
+                       <a data-action="editEffect" data-effectid="{{effet.id}}" title="{{localizeSystem "sheet.actor.combat.arme.edit"}}"><i class="fas fa-edit"></i></a>
+                        <a data-action="deleteEffect" data-effectid="{{effet.id}}" title="{{localizeSystem "sheet.actor.combat.arme.delete"}}"><i class="fas fa-trash"></i></a>
+                    </span>    
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>

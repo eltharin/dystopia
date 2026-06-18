@@ -47,7 +47,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       container: { id: "form" , element: ".tabscontainer" },
     },
     effets: {
-      template: system.Consts.TEMPLATES_PATH + "/item/common/effets.hbs",
+      template: system.Consts.TEMPLATES_PATH + "/actor/parts/effets.hbs",
       container: { id: "form" , element: ".tabscontainer" },
     },
 
@@ -182,8 +182,12 @@ export class BaseActorSheet extends system.Base.BaseSheet (
 
     context.system.coutDeplacement.total = context.system.coutDeplacement.val + context.system.coutDeplacement.temp + context.system.coutDeplacement.bonus;
 
-    
-    context.effets = this.document.effects;
+    context.effets = {
+      other: [],
+      effetEtat: []
+    };
+
+    this.document.effects.forEach(e => context.effets [e.type == "effetEtat" ? "effetEtat" : "other"].push(e));
 
     return context
   }
@@ -354,7 +358,9 @@ export class BaseActorSheet extends system.Base.BaseSheet (
           super._onDrop(event);
         }
         else if(item.type == "effetContainer") {
-          
+          let effets = [];
+          item.effects.forEach(e => effets.push(e.clone()));
+          this.document.createEmbeddedDocuments("ActiveEffect", effets);
         }
         else {
           ui.notifications.error("impossible de glisser ca ici")

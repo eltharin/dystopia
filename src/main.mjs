@@ -60,6 +60,7 @@ Hooks.once("init", () => {
   system.Base.Helpers.Effet.register("effetPorte", PorteDataModel, PorteSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.effetPorte"));
   system.Base.Helpers.Effet.register("effetApplique", AppliqueDataModel, AppliqueSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.effetApplique"));
   system.Base.Helpers.Effet.register("effetConsomme", ConsommeDataModel, ConsommeSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.effetConsomme"));
+  system.Base.Helpers.Effet.register("effetEtat", PorteDataModel, PorteSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.effetConsomme"));
 
   system.Settings.fct.registerSettings();
 
@@ -79,5 +80,8 @@ Hooks.once("init", () => {
   MessageActionResolver.register("reponseAttaque", CombatManager._onReponseAttaque)
   MessageActionResolver.register("deAttaque", CombatManager._onDeAttaque)
   MessageActionResolver.register("enleverPV", CombatManager._onEnlevePV)
+
+  system.Settings.StatusEffect.init();
+
 });
 

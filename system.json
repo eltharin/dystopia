@@ -41,6 +41,7 @@
       "effetContainer": {}
     },
     "ActiveEffect": {
+      "effetEtat": {},
       "effetPorte": {},
       "effetApplique": {},
       "effetConsomme": {}

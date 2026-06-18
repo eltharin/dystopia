@@ -47,7 +47,7 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
             //degat: new foundry.data.fields.NumberField({initial: 0}),
             seuilCritique: new foundry.data.fields.SchemaField({
                 val: new foundry.data.fields.NumberField({min: 0, initial: 20}),
-                temp: new foundry.data.fields.NumberField({min: 0, initial: 0}),
+                temp: new foundry.data.fields.NumberField({ initial: 0}),
             }),
             seuilDefense: new foundry.data.fields.NumberField({initial: 0}),
             

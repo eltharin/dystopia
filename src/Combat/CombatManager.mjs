@@ -44,12 +44,12 @@ export class CombatManager {
                 const reactionContainer = document.createElement("div");
                 reactionContainer.classList.add("reaction-container");
                 
-                const button = document.createElement("div");
-                button.classList.add("reaction-button");
-                button.innerHTML = combatant.getFlag(system.Consts.SYSTEMID, "reaction");
-                reactionContainer.appendChild(button);
+                const reactionButton = document.createElement("div");
+                reactionButton.classList.add("reaction-button");
+                reactionButton.innerHTML = combatant.getFlag(system.Consts.SYSTEMID, "reaction");
+                reactionContainer.appendChild(reactionButton);
 
-                button.onclick = async (e) => {
+                reactionButton.onclick = async (e) => {
                     if(!game.user.isGM) return;
                     e.stopPropagation();
 
@@ -67,6 +67,35 @@ export class CombatManager {
 
                 // Injection dans l’entrée du tracker
                 li.insertBefore(reactionContainer, li.lastElementChild);
+
+
+                //-- ajout zone effets
+                const effetsContainer = document.createElement("div");
+                effetsContainer.classList.add("effets-container");
+
+                let allEffects = [];
+
+                [...combatant.actor.allApplicableEffects().filter(e => e.statuses.size > 0)].forEach(e => {
+                    e.statuses.forEach(s => {
+                        if(system.Settings.StatusEffect.hasLanceDe(s)) {
+                            allEffects.push({status: s, nb: e.flags.etat.nb});
+                        }
+                    });
+                });
+
+                if(allEffects.length > 0) {
+                    const EffetButton = document.createElement("div");
+                    EffetButton.classList.add("reaction-button");
+                    EffetButton.innerHTML = "Lancer dés effets";
+                    effetsContainer.appendChild(EffetButton);
+
+                    EffetButton.onclick = async (e) => {
+                        e.stopPropagation();
+                        system.Settings.StatusEffect.lanceDegat(allEffects)
+                    };
+                }
+                li.querySelector('.token-name').appendChild(effetsContainer);
+                
             }
         });  
 
