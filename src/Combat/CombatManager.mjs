@@ -65,7 +65,7 @@ export class CombatManager {
                     });
                 };
 
-                // Injection dans l’entrée du tracker
+                // Injection dans l'entrée du tracker
                 li.insertBefore(reactionContainer, li.lastElementChild);
 
 

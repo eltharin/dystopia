@@ -231,7 +231,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     if (item) {
       if(item.system.isDefault == true)
       {
-        ui.notifications.error(`Vous ne pouvez pas supprimer ${item.name}, c'est un �l�ment de base.`);
+        ui.notifications.error(`Vous ne pouvez pas supprimer ${item.name}, c'est un élément de base.`);
         return;
       }
 
@@ -244,7 +244,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       else
       {
         confirmed = await system.Base.Dialog.confirm({
-          content: `<p>�tes-vous s�r de vouloir supprimer ${item.name}?</p>`,
+          content: `<p>Etes-vous sur de vouloir supprimer ${item.name}?</p>`,
           rejectClose: false,
           modal: true
         });
@@ -253,7 +253,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       if (confirmed) {
 
         await item.delete({ render: true });
-        ui.notifications.info(`${item.name} supprim�(e)`);
+        ui.notifications.info(`${item.name} supprimé(e)`);
       }
     }
   }  
@@ -378,7 +378,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       system: {}
     };
     
-    // Cr�er l'item sans render automatique
+    // Créer l'item sans render automatique
     const created = await this.document.createEmbeddedDocuments("Item", [itemData], { render: true });
     if (created && created[0]) {
       created[0].sheet.render(true, { force: true });
@@ -406,7 +406,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     if (item) {
       if(item.system.isDefault == true)
       {
-        ui.notifications.error(`Vous ne pouvez pas supprimer ${item.name}, c'est un �l�ment de base.`);
+        ui.notifications.error(`Vous ne pouvez pas supprimer ${item.name}, c'est un élément de base.`);
         return;
       }
 
@@ -419,7 +419,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       else
       {
         confirmed = await system.Common.Dialog.confirm({
-          content: `<p>�tes-vous s�r de vouloir supprimer ${item.name}?</p>`,
+          content: `<p>Etes-vous sûr de vouloir supprimer ${item.name}?</p>`,
           rejectClose: false,
           modal: true
         });
@@ -428,7 +428,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       if (confirmed) {
 
         await item.delete({ render: true });
-        ui.notifications.info(`${item.name} supprim�(e)`);
+        ui.notifications.info(`${item.name} supprimé(e)`);
       }
     }
   }  
