@@ -91,7 +91,7 @@ export class CombatManager {
 
                     EffetButton.onclick = async (e) => {
                         e.stopPropagation();
-                        system.Settings.StatusEffect.lanceDegat(allEffects)
+                        system.Settings.StatusEffect.lanceDegat(combatant, allEffects)
                     };
                 }
                 li.querySelector('.token-name').appendChild(effetsContainer);
@@ -284,4 +284,15 @@ export class CombatManager {
         const token = fromUuidSync(event.target.dataset.token);
         token.update({"system.values.pv.val" : token.system.values.pv.val - event.target.dataset.nbpv});
     }
+
+    static _onAffectDegatEffets(event, message, target) {
+        const token = fromUuidSync(event.target.dataset.token);
+        let updates = {};
+        updates[event.target.dataset.key] = token.system.values.pv.val + event.target.dataset.value * event.target.dataset.sens;
+        token.update(updates);
+        let rolls = message.rolls;
+        rolls[0].options.isAffected = true;
+        message.update({rolls: rolls});
+    }
+    
 }

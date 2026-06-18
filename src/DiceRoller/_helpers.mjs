@@ -9,6 +9,7 @@ export {AttaqueRollDialog} from "./Attaque/AttaqueRollDialog.mjs";
 export {AttaqueRoll} from "./Attaque/AttaqueRoll.mjs";
 
 export * from "./Combat/EsquiveRoll.mjs";
+export * from "./Combat/DegatEffetsRoll.mjs";
 
 /*
 

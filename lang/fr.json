@@ -137,6 +137,9 @@
                 "seuilCritique": {
                     "titre": "Seuil de critique",
                     "temp": "Seuil de critique Temporaire"
+                },
+                "effets": {
+                    "etats": "Etats"
                 }
             },
             "items": {
@@ -257,7 +260,14 @@
             },
             "cols": {
                 "type": "Type"
-                
+            },
+            "degateffet": {
+                "pv": {
+                    "button" : "Déduire {nb} PV"
+                },
+                "pvmax": {
+                    "button" : "Déduire {nb} PV MAX"
+                }
             }
         }
     }

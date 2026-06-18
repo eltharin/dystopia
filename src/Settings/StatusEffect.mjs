@@ -5,6 +5,10 @@ import * as system from "./../_helpers.mjs";
 
 export class StatusEffect  {
 
+    static properties = {
+        "pv" : {key: "system.values.pv.val", sens: -1},
+        "pvmax" : {key: "system.values.pv.maxtemp", sens: -1},
+    }
     static customType = {
         brule:     { id: "brule", img: "icons/svg/fire.svg", name: "Brule", degatsOnTurn: {type: "pv"}},
         glace:     { id: "glace", img: "icons/svg/frozen.svg", name: "Glacé", degatsOnTurn: {type: "pv"}},
@@ -59,7 +63,7 @@ export class StatusEffect  {
 
     }
 
-    static lanceDegat(arrayOfStatuses) {
+    static lanceDegat(combatant, arrayOfStatuses) {
 
         const lances = {};
 
@@ -73,10 +77,11 @@ export class StatusEffect  {
             lances[degats.type].push((s.nb < 3 ? "1D4" : (s.nb < 6 ? "1D6" : "1D8")) + "[" + s.status + "]");
         });
 
-        Object.values(lances).forEach(l => {
-            const roll = new Roll(l.join(" + "), {}, {
-
-
+        Object.entries(lances).forEach(([key, l]) => {
+            const roll = new system.DiceRoller.DegatEffetsRoll(l.join(" + "), {}, {
+                type: key,
+                key: this.properties[key],
+                token: combatant.actor.uuid,
             });
             roll.toMessage({
                 //speaker: ChatMessage.getSpeaker({ alias: this.document.name + " ( " + game.user.name + " )"}),

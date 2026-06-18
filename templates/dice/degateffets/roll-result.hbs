@@ -1,0 +1,11 @@
+<div class="dice-roll" data-action="expandRoll">
+    <div class="dice-result">
+        
+        {{{tooltip}}}
+        <div class="dice-formula">{{localizeSystem "roll.common.total" }} : {{total}}</div>
+
+{{#if canAffect}}
+        <h4 class="dice-total" data-action="affectDegatEffets" data-token="{{token}}" data-value="{{total}}" data-key="{{key.key}}" data-sens="{{key.sens}}">{{localizeSystem (concat "effet.degateffet." type ".button") nb=total}}</h4>
+{{/if}}
+    </div>
+</div>
