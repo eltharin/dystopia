@@ -81,6 +81,7 @@ Hooks.once("init", () => {
   MessageActionResolver.register("deAttaque", CombatManager._onDeAttaque)
   MessageActionResolver.register("enleverPV", CombatManager._onEnlevePV)
   MessageActionResolver.register("affectDegatEffets", CombatManager._onAffectDegatEffets)
+  MessageActionResolver.register("ajoutEtatEffets", CombatManager._onAjoutEtatEffets)
 
   system.Settings.StatusEffect.init();
 

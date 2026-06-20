@@ -115,7 +115,7 @@ export class CombatManager {
     }
 
     static _getCombatantFromToken(token) {
-        return game.combat.getCombatantByToken(token.parent ? token.token.id : token.getActiveTokens()[0].id);
+        return game.combat.getCombatantsByToken(token.parent ? token.token.id : token.getActiveTokens()[0].id)[0];
     }
 
     static updateAttaqueMesage(messageId) {
@@ -255,7 +255,7 @@ export class CombatManager {
                     id: token.uuid,
                     name: token.name
                 },
-                reaction: combatant.getFlag(system.Consts.SYSTEMID, "reaction")
+                reaction: combatant.getFlag(system.Consts.SYSTEMID, "reaction") + combatant.actor.system.malus.reaction.val
             });
             
             const msg = await myRoll.toMessage({
@@ -288,11 +288,24 @@ export class CombatManager {
     static _onAffectDegatEffets(event, message, target) {
         const token = fromUuidSync(event.target.dataset.token);
         let updates = {};
-        updates[event.target.dataset.key] = token.system.values.pv.val + event.target.dataset.value * event.target.dataset.sens;
+        updates[event.target.dataset.key] = foundry.utils.getProperty(token, event.target.dataset.key) + event.target.dataset.value * event.target.dataset.sens;
         token.update(updates);
         let rolls = message.rolls;
         rolls[0].options.isAffected = true;
         message.update({rolls: rolls});
     }
+    static _onAjoutEtatEffets(event, message, target) {
+        const token = fromUuidSync(event.target.dataset.token);
+
+        token.toggleStatusEffect(event.target.dataset.etat, {active: true});
+
+        let rolls = message.rolls;
+        rolls[0].options.etatAffected.push(event.target.dataset.etat);
+        message.update({rolls: rolls});
+
+
+        
+    }
+    
     
 }

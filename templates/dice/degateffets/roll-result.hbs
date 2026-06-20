@@ -1,11 +1,21 @@
 <div class="dice-roll" data-action="expandRoll">
     <div class="dice-result">
-        
+        <div class="dice-formula">{{localizeSystem "effet.degateffet.msgtitle" actor=actor effet=etat }}</div>
         {{{tooltip}}}
         <div class="dice-formula">{{localizeSystem "roll.common.total" }} : {{total}}</div>
 
 {{#if canAffect}}
-        <h4 class="dice-total" data-action="affectDegatEffets" data-token="{{token}}" data-value="{{total}}" data-key="{{key.key}}" data-sens="{{key.sens}}">{{localizeSystem (concat "effet.degateffet." type ".button") nb=total}}</h4>
+    <h4 class="dice-total" data-action="affectDegatEffets" data-token="{{token}}" data-value="{{total}}" data-key="{{key.key}}" data-sens="{{key.sens}}">{{localizeSystem (concat "effet.degateffet." type ".button") nb=total}}</h4>
 {{/if}}
+
+{{#each addEtats as |etat| }}
+{{etat.id}}
+{{etat.name}}
+{{etat.isAffected}}
+    {{#if etat.isNotAffected}}
+        <h4 class="dice-total" data-action="ajoutEtatEffets" data-token="{{../token}}" data-etat="{{etat.id}}">{{localizeSystem "effet.degateffet.etat" etat=etat.name}}</h4>
+    {{/if}}
+{{/each}}
+
     </div>
 </div>

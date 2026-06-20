@@ -254,6 +254,15 @@
             }
         },
         "effet": {
+            "libelle": {
+                "brule": "Brulé",
+                "poison": "Empoisonné",
+                "glace": "Gelé",
+                "elec": "Electrocuté",
+                "saigne": "Saignement",
+                "corrosion": "Corrosion",
+                "necrose": "Nécrose"
+            },
             "choix": {
                 "title": "Type d'effet",
                 "question": "Quel type d'effet voulez vous créer ?"
@@ -262,12 +271,14 @@
                 "type": "Type"
             },
             "degateffet": {
+                "msgtitle": "{actor} à l'effet {effet}",
                 "pv": {
                     "button" : "Déduire {nb} PV"
                 },
                 "pvmax": {
                     "button" : "Déduire {nb} PV MAX"
-                }
+                },
+                "etat" : "Appliquer l'état {etat}"
             }
         }
     }

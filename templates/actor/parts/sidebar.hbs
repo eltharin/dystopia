@@ -24,7 +24,8 @@
 
 <div class="field">
     <label>{{localizeSystem "sheet.actor.carac.pv"}}</label>
-    <div>{{ fieldOrInput "system.values.pv.val" class="pj-sheet-input" }} / {{ fieldOrInput "system.values.pv.max" class="pj-sheet-input" }}</div>
+    <div>{{ fieldOrInput "system.values.pv.val" class="pj-sheet-input" }} ({{ fieldOrInput "system.values.pv.temp" class="pj-sheet-input" }}) => {{system.values.pv.total}}</div>
+    <div>{{ fieldOrInput "system.values.pv.max" class="pj-sheet-input" }} ({{ fieldOrInput "system.values.pv.tempMax" class="pj-sheet-input" }}) => {{system.values.pv.totalMax}}</div>
 </div>
 
 <div class="flexcols">
@@ -55,4 +56,13 @@
     <div>{{ fieldOrInput "system.values.volonte.val" class="pj-sheet-input" }} / {{ fieldOrInput "system.values.volonte.max" class="pj-sheet-input" }}</div>
 </div>
 
+<div class="field">
+    <label>malus reaction</label>
+    <div>{{system.malus.reaction.val}}</div>
+</div>
+
+<div class="field">
+    <label>malus armure</label>
+    <div>{{system.malus.armure.val}}</div>
+</div>
 

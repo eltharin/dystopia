@@ -11,36 +11,36 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
                 pv: new foundry.data.fields.SchemaField({
                     val: new foundry.data.fields.NumberField({min: 0, initial: 1}),
                     max: new foundry.data.fields.NumberField({min: 0, initial: 1}),
-                    temp: new foundry.data.fields.NumberField({min: 0, initial: 0}),
-                    tempMax: new foundry.data.fields.NumberField({min: 0, initial: 0}),
+                    temp: new foundry.data.fields.NumberField({initial: 0}),
+                    tempMax: new foundry.data.fields.NumberField({initial: 0}),
                 }),
                 
                 pe: new foundry.data.fields.SchemaField({
                     val: new foundry.data.fields.NumberField({min: 0, initial: 1}),
                     max: new foundry.data.fields.NumberField({min: 0, initial: 1}),
-                    temp: new foundry.data.fields.NumberField({min: 0, initial: 0}),
-                    tempMax: new foundry.data.fields.NumberField({min: 0, initial: 0}),
+                    temp: new foundry.data.fields.NumberField({initial: 0}),
+                    tempMax: new foundry.data.fields.NumberField({initial: 0}),
                 }),
                 
                 pm: new foundry.data.fields.SchemaField({
                     val: new foundry.data.fields.NumberField({min: 0, initial: 1}),
                     max: new foundry.data.fields.NumberField({min: 0, initial: 1}),
-                    temp: new foundry.data.fields.NumberField({min: 0, initial: 0}),
-                    tempMax: new foundry.data.fields.NumberField({min: 0, initial: 0}),
+                    temp: new foundry.data.fields.NumberField({initial: 0}),
+                    tempMax: new foundry.data.fields.NumberField({initial: 0}),
                 }),
                 
                 sm: new foundry.data.fields.SchemaField({
                     val: new foundry.data.fields.NumberField({min: 0, initial: 1}),
                     max: new foundry.data.fields.NumberField({min: 0, initial: 1}),
-                    temp: new foundry.data.fields.NumberField({min: 0, initial: 0}),
-                    tempMax: new foundry.data.fields.NumberField({min: 0, initial: 0}),
+                    temp: new foundry.data.fields.NumberField({initial: 0}),
+                    tempMax: new foundry.data.fields.NumberField({initial: 0}),
                 }),
                 
                 volonte: new foundry.data.fields.SchemaField({
                     val: new foundry.data.fields.NumberField({min: 0, initial: 1}),
                     max: new foundry.data.fields.NumberField({min: 0, initial: 1}),
-                    temp: new foundry.data.fields.NumberField({min: 0, initial: 0}),
-                    tempMax: new foundry.data.fields.NumberField({min: 0, initial: 0}),
+                    temp: new foundry.data.fields.NumberField({initial: 0}),
+                    tempMax: new foundry.data.fields.NumberField({initial: 0}),
                 }),
                 
             }),
@@ -62,6 +62,17 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
             historique: new foundry.data.fields.StringField({}),
             alignement: new foundry.data.fields.StringField({}),
             niveau: new foundry.data.fields.NumberField({min:1, initial: 1}),
+            malus: new foundry.data.fields.SchemaField({
+                reaction:  new foundry.data.fields.SchemaField({
+                    val: new foundry.data.fields.NumberField({initial: 0}),
+                }),
+                armure:  new foundry.data.fields.SchemaField({
+                    val: new foundry.data.fields.NumberField({initial: 0}),
+                }),
+                pvmax:  new foundry.data.fields.SchemaField({
+                    val: new foundry.data.fields.NumberField({initial: 0}),
+                }),
+            }),
         };
     }
 
@@ -75,6 +86,10 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
         
         this.seuilCritique.total = this.seuilCritique.val - this.seuilCritique.temp;
 
+        Object.keys(this.values).forEach((k) => {
+            this.values[k].total = this.values[k].val + this.values[k].temp;
+            this.values[k].totalMax = this.values[k].max + this.values[k].tempMax;
+        });
 
         this._prepareDerivedData();
     }
@@ -84,20 +99,20 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
     }
 
     checkMaxValues(changes, clone){
-        if(foundry.utils.getProperty(clone, "values.pv.val") > foundry.utils.getProperty(clone, "values.pv.max")) {
-            foundry.utils.setProperty(changes, "system.values.pv.val", foundry.utils.getProperty(clone, "values.pv.max"));
-        }
-        if(foundry.utils.getProperty(clone, "values.pe.val") > foundry.utils.getProperty(clone, "values.pe.max")) {
-            foundry.utils.setProperty(changes, "system.values.pe.val", foundry.utils.getProperty(clone, "values.pe.max"));
-        }
-        if(foundry.utils.getProperty(clone, "values.pm.val") > foundry.utils.getProperty(clone, "values.pm.max")) {
-            foundry.utils.setProperty(changes, "system.values.pm.val", foundry.utils.getProperty(clone, "values.pm.max"));
-        }
-        if(foundry.utils.getProperty(clone, "values.sm.val") > foundry.utils.getProperty(clone, "values.sm.max")) {
-            foundry.utils.setProperty(changes, "system.values.sm.val", foundry.utils.getProperty(clone, "values.sm.max"));
-        }
-        if(foundry.utils.getProperty(clone, "values.volonte.val") > foundry.utils.getProperty(clone, "values.volonte.max")) {
-            foundry.utils.setProperty(changes, "system.values.volonte.val", foundry.utils.getProperty(clone, "values.volonte.max"));
-        }
+
+        Object.keys(this.values).forEach((k) => {
+        
+            if(foundry.utils.getProperty(clone, "values." + k + ".val") > (foundry.utils.getProperty(clone, "values." + k + ".max") + foundry.utils.getProperty(clone, "values." + k + ".tempMax"))) {
+                foundry.utils.setProperty(changes, "system.values." + k + ".val", foundry.utils.getProperty(clone, "values." + k + ".max") + foundry.utils.getProperty(clone, "values." + k + ".tempMax"));
+            }
+
+            if(foundry.utils.getProperty(clone, "values." + k + ".val") + foundry.utils.getProperty(clone, "values." + k + ".temp") > (foundry.utils.getProperty(clone, "values." + k + ".max") + foundry.utils.getProperty(clone, "values." + k + ".tempMax"))) {
+                foundry.utils.setProperty(changes, "system.values." + k + ".temp", Math.max(0, foundry.utils.getProperty(clone, "values." + k + ".max") + foundry.utils.getProperty(clone, "values." + k + ".tempMax") - foundry.utils.getProperty(clone, "values." + k + ".val")));
+                foundry.utils.setProperty(changes, "system.values." + k + ".val", Math.max(0, foundry.utils.getProperty(clone, "values." + k + ".max") + foundry.utils.getProperty(clone, "values." + k + ".tempMax") - foundry.utils.getProperty(changes, "system.values." + k + ".temp")));
+            }
+
+        });
+
+
     }
 }
