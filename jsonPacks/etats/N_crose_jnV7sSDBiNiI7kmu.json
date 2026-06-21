@@ -1,0 +1,76 @@
+{
+  "name": "Nécrose",
+  "type": "effetContainer",
+  "img": "icons/svg/bones.svg",
+  "flags": {
+    "effet": {
+      "status": "necrose"
+    }
+  },
+  "_id": "jnV7sSDBiNiI7kmu",
+  "system": {},
+  "effects": [
+    {
+      "name": "Nécrose",
+      "type": "effetEtat",
+      "statuses": [
+        "necrose"
+      ],
+      "duration": {
+        "expiry": "turnStart",
+        "units": "rounds",
+        "value": 2,
+        "expired": false
+      },
+      "flags": {
+        "etat": {
+          "id": "necrose"
+        }
+      },
+      "system": {
+        "changes": []
+      },
+      "_id": "x8FKwNRuSKYxdCtx",
+      "img": "icons/svg/aura.svg",
+      "disabled": false,
+      "start": null,
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "_stats": {
+        "coreVersion": "14.364",
+        "systemId": "dystopia",
+        "systemVersion": "0.1.0",
+        "createdTime": 1782029396481,
+        "modifiedTime": 1782029396481,
+        "lastModifiedBy": "zqc3bMQGPzZD1qXL",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!jnV7sSDBiNiI7kmu.x8FKwNRuSKYxdCtx"
+    }
+  ],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "zqc3bMQGPzZD1qXL": 3
+  },
+  "_stats": {
+    "coreVersion": "14.364",
+    "systemId": "dystopia",
+    "systemVersion": "0.1.0",
+    "createdTime": 1782029396481,
+    "modifiedTime": 1782029396514,
+    "lastModifiedBy": "zqc3bMQGPzZD1qXL",
+    "exportSource": null,
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 200000,
+  "_key": "!items!jnV7sSDBiNiI7kmu"
+}

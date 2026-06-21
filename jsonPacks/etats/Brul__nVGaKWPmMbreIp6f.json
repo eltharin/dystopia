@@ -1,0 +1,76 @@
+{
+  "name": "Brulé",
+  "type": "effetContainer",
+  "img": "icons/svg/fire.svg",
+  "flags": {
+    "effet": {
+      "status": "brule"
+    }
+  },
+  "_id": "nVGaKWPmMbreIp6f",
+  "system": {},
+  "effects": [
+    {
+      "name": "Brulé",
+      "type": "effetEtat",
+      "statuses": [
+        "brule"
+      ],
+      "duration": {
+        "expiry": "turnStart",
+        "units": "rounds",
+        "value": 2,
+        "expired": false
+      },
+      "flags": {
+        "etat": {
+          "id": "brule"
+        }
+      },
+      "system": {
+        "changes": []
+      },
+      "_id": "OJe3u9HRrmPx2rKS",
+      "img": "icons/svg/aura.svg",
+      "disabled": false,
+      "start": null,
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "_stats": {
+        "coreVersion": "14.364",
+        "systemId": "dystopia",
+        "systemVersion": "0.1.0",
+        "createdTime": 1782029387279,
+        "modifiedTime": 1782029387279,
+        "lastModifiedBy": "zqc3bMQGPzZD1qXL",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!nVGaKWPmMbreIp6f.OJe3u9HRrmPx2rKS"
+    }
+  ],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "zqc3bMQGPzZD1qXL": 3
+  },
+  "_stats": {
+    "coreVersion": "14.364",
+    "systemId": "dystopia",
+    "systemVersion": "0.1.0",
+    "createdTime": 1782029387279,
+    "modifiedTime": 1782029396517,
+    "lastModifiedBy": "zqc3bMQGPzZD1qXL",
+    "exportSource": null,
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 400000,
+  "_key": "!items!nVGaKWPmMbreIp6f"
+}

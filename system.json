@@ -15,7 +15,16 @@
   }],
   "esmodules": ["src/main.mjs"],
   "styles": ["styles/baseStyles.css", "styles/styles.css"],
-  "packs": [],
+  "packs": [
+    {
+      "name": "etats",
+      "label": "Etats",
+      "path": "packs/etats",
+      "type": "Item",
+      "system": "dystopia",
+      "private": false
+    }
+  ],
   "languages": [{
     "lang": "fr",
     "name": "Français",

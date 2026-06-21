@@ -1,0 +1,76 @@
+{
+  "name": "Empoisonné",
+  "type": "effetContainer",
+  "img": "icons/svg/poison.svg",
+  "flags": {
+    "effet": {
+      "status": "poison"
+    }
+  },
+  "_id": "JihHy8jRSrIKdn16",
+  "system": {},
+  "effects": [
+    {
+      "name": "Empoisonné",
+      "type": "effetEtat",
+      "statuses": [
+        "poison"
+      ],
+      "duration": {
+        "expiry": "turnStart",
+        "units": "rounds",
+        "value": 2,
+        "expired": false
+      },
+      "flags": {
+        "etat": {
+          "id": "poison"
+        }
+      },
+      "system": {
+        "changes": []
+      },
+      "_id": "tfAL5TCXBfTf5LD8",
+      "img": "icons/svg/aura.svg",
+      "disabled": false,
+      "start": null,
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "_stats": {
+        "coreVersion": "14.364",
+        "systemId": "dystopia",
+        "systemVersion": "0.1.0",
+        "createdTime": 1782029393552,
+        "modifiedTime": 1782029393552,
+        "lastModifiedBy": "zqc3bMQGPzZD1qXL",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!JihHy8jRSrIKdn16.tfAL5TCXBfTf5LD8"
+    }
+  ],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "zqc3bMQGPzZD1qXL": 3
+  },
+  "_stats": {
+    "coreVersion": "14.364",
+    "systemId": "dystopia",
+    "systemVersion": "0.1.0",
+    "createdTime": 1782029393552,
+    "modifiedTime": 1782029396514,
+    "lastModifiedBy": "zqc3bMQGPzZD1qXL",
+    "exportSource": null,
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 100000,
+  "_key": "!items!JihHy8jRSrIKdn16"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "dystopia",
+  "version": "1.0.0",
+  "description": "system for foundry vtt",
+  "author": "eltharin",
+  "license": "MIT",
+  "private": true,
+   "scripts": {
+    "pack": "node ./tools/pack.mjs"
+  },
+  "devDependencies": {
+    "@foundryvtt/foundryvtt-cli": "^3.0.0"
+  }
+}

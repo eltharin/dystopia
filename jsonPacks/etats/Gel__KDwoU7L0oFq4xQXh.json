@@ -1,0 +1,89 @@
+{
+  "name": "Gelé",
+  "type": "effetContainer",
+  "img": "icons/svg/frozen.svg",
+  "flags": {
+    "effet": {
+      "status": "glace"
+    }
+  },
+  "_id": "KDwoU7L0oFq4xQXh",
+  "system": {},
+  "effects": [
+    {
+      "name": "Gelé",
+      "type": "effetEtat",
+      "statuses": [
+        "glace"
+      ],
+      "duration": {
+        "expiry": "turnStart",
+        "units": "rounds",
+        "value": 2,
+        "expired": false
+      },
+      "flags": {
+        "etat": {
+          "id": "glace"
+        }
+      },
+      "system": {
+        "changes": [
+          {
+            "key": "system.coutDeplacement.temp",
+            "value": 2,
+            "type": "add",
+            "phase": "initial"
+          },
+          {
+            "key": "system.malus.reaction.val",
+            "value": 2,
+            "type": "add",
+            "phase": "initial"
+          }
+        ]
+      },
+      "_id": "zeeujBwJbpwIZnNm",
+      "img": "icons/svg/aura.svg",
+      "disabled": false,
+      "start": null,
+      "description": "",
+      "origin": null,
+      "tint": "#ffffff",
+      "transfer": true,
+      "showIcon": 1,
+      "folder": null,
+      "sort": 0,
+      "_stats": {
+        "coreVersion": "14.364",
+        "systemId": "dystopia",
+        "systemVersion": "0.1.0",
+        "createdTime": 1782029395078,
+        "modifiedTime": 1782029395078,
+        "lastModifiedBy": "zqc3bMQGPzZD1qXL",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!KDwoU7L0oFq4xQXh.zeeujBwJbpwIZnNm"
+    }
+  ],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "zqc3bMQGPzZD1qXL": 3
+  },
+  "_stats": {
+    "coreVersion": "14.364",
+    "systemId": "dystopia",
+    "systemVersion": "0.1.0",
+    "createdTime": 1782029395078,
+    "modifiedTime": 1782029396516,
+    "lastModifiedBy": "zqc3bMQGPzZD1qXL",
+    "exportSource": null,
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 300000,
+  "_key": "!items!KDwoU7L0oFq4xQXh"
+}

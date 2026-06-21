@@ -345,8 +345,8 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     switch(data.type)
     {
       case "Item": 
-        const item = fromUuidSync(data.uuid);
-        
+        const item = await system.Base.fct.getDocFromUuidSync(data.uuid);
+
         if([
           "objet",
           "arme",
