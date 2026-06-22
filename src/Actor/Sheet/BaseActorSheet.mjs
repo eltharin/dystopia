@@ -20,8 +20,8 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       template: system.Consts.TEMPLATES_PATH + "/actor/parts/perso.hbs",
       container: { id: "form" , element: ".tabscontainer" },
     },
-    aptitudes: {
-      template: system.Consts.TEMPLATES_PATH + "/actor/parts/aptitudes.hbs",
+    traits: {
+      template: system.Consts.TEMPLATES_PATH + "/actor/parts/traits.hbs",
       container: { id: "form" , element: ".tabscontainer" },
       scrollable: [".tabscontainer"]
     },
@@ -59,8 +59,8 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       tabs: [
         {id: "main", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.main"},
         {id: "perso", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.perso"},
-        { id: "effets", label: system.Consts.SYSTEMID + ".sheet.common.effets.titre"},
-        {id: "aptitudes", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.aptitudes"},
+        {id: "effets", label: system.Consts.SYSTEMID + ".sheet.common.effets.titre"},
+        {id: "traits", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.traits"},
         {id: "competences", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.competences"},
         {id: "combat", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.combat"},
         {id: "inventaire", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.inventaire"},
@@ -169,8 +169,8 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     delete allItems.armure;
     context.sorts = allItems.sort || [];
     delete allItems.sort;
-    context.aptitudes = allItems.aptitude || [];
-    delete allItems.aptitude;
+    context.traits = allItems.trait || [];
+    delete allItems.trait;
     context.competences = allItems.competence || [];
     delete allItems.competence;
     context.consommables = allItems.consommable || [];
@@ -352,7 +352,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
           "arme",
           "armure",
           "sort",
-          "aptitude",
+          "trait",
           "competence",
         ].includes(item.type)) {
           super._onDrop(event);

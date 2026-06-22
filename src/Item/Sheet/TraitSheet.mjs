@@ -2,7 +2,7 @@ import * as system  from "../../_helpers.mjs";
 
 import { BaseItemSheet } from "./BaseItemSheet.mjs";
 
-export class AptitudeSheet extends BaseItemSheet {
+export class TraitSheet extends BaseItemSheet {
   
   static EffetTypes = ["effetPorte", "effetApplique", "effetConsomme"];
 
@@ -11,7 +11,7 @@ export class AptitudeSheet extends BaseItemSheet {
       template: system.Consts.TEMPLATES_PATH + "/item/baseTemplate.hbs",
     },
     main: {
-      template: system.Consts.TEMPLATES_PATH + "/item/aptitude.hbs",
+      template: system.Consts.TEMPLATES_PATH + "/item/trait.hbs",
       container: { id: "form" , element: ".tabscontainer" },
     }
   };
@@ -19,7 +19,7 @@ export class AptitudeSheet extends BaseItemSheet {
   static TABS = {
     sheet: {
       tabs: [
-        { id: "main", label: system.Consts.SYSTEMID + ".sheet.items.aptitude.nav.main"},
+        { id: "main", label: system.Consts.SYSTEMID + ".sheet.items.trait.nav.main"},
       ],
       initial: "main",
     }

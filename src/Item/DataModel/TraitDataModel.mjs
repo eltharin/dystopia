@@ -2,9 +2,9 @@ import * as system from "../../_helpers.mjs";
 
 
 
-export class AptitudeDataModel extends system.Base.SystemDataModel {
+export class TraitDataModel extends system.Base.SystemDataModel {
 
-  static DEFAULT_ICON = system.Consts.ASSETS_PATH + "/pics/aptitude.svg";
+  static DEFAULT_ICON = system.Consts.ASSETS_PATH + "/pics/trait.svg";
 
   static defineSchema() {
     return {

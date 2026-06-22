@@ -10,7 +10,7 @@
             "arme":  "Arme",
             "armure": "Armure",
             "sort": "Sort",
-            "aptitude": "Aptitude",
+            "trait": "Trait",
             "competence": "Compétence",
             "effetContainer": "Effet Modèle"
         },
@@ -32,7 +32,7 @@
                 "arme": "Feuille d'arme",
                 "armure": "Feuille d'armure",
                 "sort": "Feuille de sort",
-                "aptitude": "Feuille d'aptitude",
+                "trait": "Feuille de traits",
                 "competence": "Feuille de compétence",
                 "effetContainer": "Effet Modèle",
                 
@@ -55,7 +55,7 @@
                 "tabs": {
                     "main": "Fiche",
                     "perso": "Personnage",
-                    "aptitudes": "Aptitudes",
+                    "traits": "Traits",
                     "competences": "Compétences",
                     "combat": "Combat",
                     "inventaire": "Inventaire",
@@ -69,12 +69,12 @@
                     "sm": "Santé Mentale",
                     "volonte": "Volonté"
                 },
-                "aptitudes": {
-                    "titre": "Aptitudes",
-                    "ajout": "Ajouter une aptitude",
+                "traits": {
+                    "titre": "Traits",
+                    "ajout": "Ajouter un trait",
                     "ajoutbtn": "Ajouter",
-                    "edit": "Modifier l'aptitude",
-                    "delete": "Supprimer l'aptitude"
+                    "edit": "Modifier le trait",
+                    "delete": "Supprimer le trait"
                 },
                 "competences": {
                     "titre": "Compétences",
@@ -143,9 +143,9 @@
                 }
             },
             "items": {
-                "aptitude": {
+                "trait": {
                     "nav": {
-                        "main": "Aptitude"
+                        "main": "Trait"
                     }
                 },
                 "arme": {

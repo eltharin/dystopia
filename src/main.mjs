@@ -12,7 +12,7 @@ import { ObjetSheet } from "./Item/Sheet/ObjetSheet.mjs";
 import { ArmeSheet } from "./Item/Sheet/ArmeSheet.mjs";
 import { ArmureSheet } from "./Item/Sheet/ArmureSheet.mjs";
 import { SortSheet } from "./Item/Sheet/SortSheet.mjs";
-import { AptitudeSheet } from "./Item/Sheet/AptitudeSheet.mjs";
+import { TraitSheet } from "./Item/Sheet/TraitSheet.mjs";
 import { CompetenceSheet } from "./Item/Sheet/CompetenceSheet.mjs";
 import { EffetContainerSheet } from "./Item/Sheet/EffetContainerSheet.mjs";
 
@@ -24,7 +24,7 @@ import { ObjetDataModel } from "./Item/DataModel/ObjetDataModel.mjs";
 import { ArmeDataModel } from "./Item/DataModel/ArmeDataModel.mjs";
 import { ArmureDataModel } from "./Item/DataModel/ArmureDataModel.mjs";
 import { SortDataModel } from "./Item/DataModel/SortDataModel.mjs";
-import { AptitudeDataModel } from "./Item/DataModel/AptitudeDataModel.mjs";
+import { TraitDataModel } from "./Item/DataModel/TraitDataModel.mjs";
 import { CompetenceDataModel } from "./Item/DataModel/CompetenceDataModel.mjs";
 import { EffetContainerDataModel } from "./Item/DataModel/EffetContainerDataModel.mjs";
 
@@ -53,7 +53,7 @@ Hooks.once("init", () => {
   system.Base.Helpers.Item.register("arme", ArmeDataModel, ArmeSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.arme"));
   system.Base.Helpers.Item.register("armure", ArmureDataModel, ArmureSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.armure"));
   system.Base.Helpers.Item.register("sort", SortDataModel, SortSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.sort"));
-  system.Base.Helpers.Item.register("aptitude", AptitudeDataModel, AptitudeSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.aptitude"));
+  system.Base.Helpers.Item.register("trait", TraitDataModel, TraitSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.trait"));
   system.Base.Helpers.Item.register("competence", CompetenceDataModel, CompetenceSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.competence"));
   system.Base.Helpers.Item.register("effetContainer", EffetContainerDataModel, EffetContainerSheet, game.i18n.localize(system.Consts.SYSTEMID + ".sheet.names.effetContainer"));
   
