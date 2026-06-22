@@ -46,7 +46,7 @@ export class StatusEffect  {
 
         corrosion: { 
             img: "icons/svg/acid.svg", 
-            degatsOnTurn: {type: "pvtemp"},
+            degatsOnTurn: {type: "pv"},
             changes:[{key: "system.malus.armure.val", value: 2, type: "add"}],
             onCreate: (e,n) => {return {changes: [
                 {key: "system.malus.armure.val", value: n+2, type: "add"}
@@ -94,10 +94,8 @@ export class StatusEffect  {
         });
     
         Hooks.on("preCreateActiveEffect", (effect, data, options, userId) => {
-      
-            if(effect.constructor.name !== "effetEtat") return;
+            if(effect.type !== "effetEtat" && effect.constructor.name !== "effetEtat") return;
             const oldEffect = effect.parent.effects.find(e => e.flags.etat.id == effect.flags.etat.id);
-                    
             if(!oldEffect)
             {
                 effect.updateSource({"flags.etat.nb": 1});
@@ -155,6 +153,9 @@ export class StatusEffect  {
     }
 
     static getEffetVariables(effect, score) {
-        return this.customType[effect.flags.etat.id]?.onCreate(effect, this.getLevel(score)) || {};
+        if(this.customType[effect.flags.etat.id]?.onCreate) {
+            return this.customType[effect.flags.etat.id]?.onCreate(effect, this.getLevel(score));
+        }
+        return {};
     }
 }
