@@ -37,62 +37,64 @@ export class CombatManager {
                 if (!actor) continue;
 
 
-                // Conteneur
-                const reactionContainer = document.createElement("div");
-                reactionContainer.classList.add("reaction-container");
-                
-                const reactionButton = document.createElement("div");
-                reactionButton.classList.add("reaction-button");
-                reactionButton.innerHTML = combatant.getFlag(system.Consts.SYSTEMID, "reaction");
-                reactionContainer.appendChild(reactionButton);
+                if(li.querySelectorAll(".reaction-container").length == 0) {
+                    // Conteneur
+                    const reactionContainer = document.createElement("div");
+                    reactionContainer.classList.add("reaction-container");
+                    
+                    const reactionButton = document.createElement("div");
+                    reactionButton.classList.add("reaction-button");
+                    reactionButton.innerHTML = combatant.getFlag(system.Consts.SYSTEMID, "reaction");
+                    reactionContainer.appendChild(reactionButton);
 
-                reactionButton.onclick = async (e) => {
-                    if(!game.user.isGM) return;
-                    e.stopPropagation();
-
-                    const dialog = await system.Base.Dialog.input({
-                        content: await foundry.applications.handlebars.renderTemplate(system.Consts.TEMPLATES_PATH + "/combat/popup-reset-reaction.hbs", { }),
-                        window: {title: game.i18n.localize(system.Consts.SYSTEMID + ".combat.reaction.title")},
-                        ok: {
-                            label: game.i18n.localize(system.Consts.SYSTEMID + ".combat.reaction.buttons.changer"),
-                        },
-                        submit: result => {
-                            combatant.setFlag(system.Consts.SYSTEMID, "reaction", result.reaction)
-                        }
-                    });
-                };
-
-                // Injection dans l'entrée du tracker
-                li.insertBefore(reactionContainer, li.lastElementChild);
-
-
-                //-- ajout zone effets
-                const effetsContainer = document.createElement("div");
-                effetsContainer.classList.add("effets-container");
-
-                let allEffects = [];
-
-                [...combatant.actor.allApplicableEffects().filter(e => e.statuses.size > 0)].forEach(e => {
-                    e.statuses.forEach(s => {
-                        if(system.Settings.StatusEffect.hasLanceDe(s)) {
-                            allEffects.push({status: s, nb: e.flags.etat.nb});
-                        }
-                    });
-                });
-
-                if(allEffects.length > 0) {
-                    const EffetButton = document.createElement("div");
-                    EffetButton.classList.add("reaction-button");
-                    EffetButton.innerHTML = "Lancer dés effets";
-                    effetsContainer.appendChild(EffetButton);
-
-                    EffetButton.onclick = async (e) => {
+                    reactionButton.onclick = async (e) => {
+                        if(!game.user.isGM) return;
                         e.stopPropagation();
-                        system.Settings.StatusEffect.lanceDegat(combatant, allEffects)
+
+                        const dialog = await system.Base.Dialog.input({
+                            content: await foundry.applications.handlebars.renderTemplate(system.Consts.TEMPLATES_PATH + "/combat/popup-reset-reaction.hbs", { }),
+                            window: {title: game.i18n.localize(system.Consts.SYSTEMID + ".combat.reaction.title")},
+                            ok: {
+                                label: game.i18n.localize(system.Consts.SYSTEMID + ".combat.reaction.buttons.changer"),
+                            },
+                            submit: result => {
+                                combatant.setFlag(system.Consts.SYSTEMID, "reaction", result.reaction)
+                            }
+                        });
                     };
+
+                    // Injection dans l'entrée du tracker
+                    li.insertBefore(reactionContainer, li.lastElementChild);
                 }
-                li.querySelector('.token-name').appendChild(effetsContainer);
-                
+
+                if(li.querySelectorAll(".reaction-container").length == 0) {
+                    //-- ajout zone effets
+                    const effetsContainer = document.createElement("div");
+                    effetsContainer.classList.add("effets-container");
+
+                    let allEffects = [];
+
+                    [...combatant.actor.allApplicableEffects().filter(e => e.statuses.size > 0)].forEach(e => {
+                        e.statuses.forEach(s => {
+                            if(system.Settings.StatusEffect.hasLanceDe(s)) {
+                                allEffects.push({status: s, nb: e.flags.etat.nb});
+                            }
+                        });
+                    });
+
+                    if(allEffects.length > 0) {
+                        const EffetButton = document.createElement("div");
+                        EffetButton.classList.add("reaction-button");
+                        EffetButton.innerHTML = "Lancer dés effets";
+                        effetsContainer.appendChild(EffetButton);
+
+                        EffetButton.onclick = async (e) => {
+                            e.stopPropagation();
+                            system.Settings.StatusEffect.lanceDegat(combatant, allEffects)
+                        };
+                    }
+                    li.querySelector('.token-name').appendChild(effetsContainer);
+                }
             }
         });  
 
@@ -236,7 +238,7 @@ export class CombatManager {
         const combatant = this._getCombatantFromToken(token);
 
         if(combatant.actor.system.values.pe.total < combatant.actor.system.coutPeEsquive) {
-            ui.notifications.error(game.i18n.format(system.Consts.SYSTEMID + ".combat.roll.esquive.noPe"));
+            ui.notifications.error(game.i18n.format(system.Consts.SYSTEMID + ".roll.esquive.noPe"));
             return;
         }
 

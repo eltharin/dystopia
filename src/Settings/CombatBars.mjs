@@ -104,12 +104,13 @@ export class CombatBars  {
 
             // Récupération des ressources
             const bars = [
-            { color: system.Consts.COLOR_ACTOR_VALUES_PV, data: actor.system.values.pv },
-            { color: system.Consts.COLOR_ACTOR_VALUES_PM, data: actor.system.values.pm },
-            { color: system.Consts.COLOR_ACTOR_VALUES_PE, data: actor.system.values.pe }
+                { color: system.Consts.COLOR_ACTOR_VALUES_PV, data: actor.system.values.pv },
+                { color: system.Consts.COLOR_ACTOR_VALUES_PM, data: actor.system.values.pm },
+                { color: system.Consts.COLOR_ACTOR_VALUES_PE, data: actor.system.values.pe }
             ];
 
             // Conteneur
+            if(li.querySelectorAll(".custom-bars").length > 0) return;
             const container = document.createElement("div");
             container.classList.add("custom-bars");
 
