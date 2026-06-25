@@ -47,7 +47,13 @@
 
 
 .dystopia-sheet .sidebar{
-    width: 200px;
+    width: 220px;
+    display:flex;
+    flex-direction: column;
+
+    > .sidebar_content {
+        overflow-y: auto;
+    }
 }
 
 .dystopia-sheet main{
