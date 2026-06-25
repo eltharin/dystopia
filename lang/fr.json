@@ -131,6 +131,8 @@
                     "nbTraumas": "Nombre de traumas pour le niveau"
                 },
                 "coutDeplacement": "Coût de déplacement",
+                "coutPeEsquive": "Coût PE pour esquive",
+                "initiative": "Initiative par défaut",
                 "type" : "Type",
                 "niveau" : "Niveau",
                 "xp" : "XP",
@@ -204,6 +206,7 @@
                 "total": "Total"
             },
             "esquive": {
+                "noPe": "Vous n'avez pas assez de PE pour cette action",
                 "titre": "{actor} tente une esquive",
                 "reaction": "Seuil de réaction : {reaction}",
                 "reussite": "Réussite",

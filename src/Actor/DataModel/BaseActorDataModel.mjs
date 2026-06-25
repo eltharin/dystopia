@@ -55,6 +55,7 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
                 val:  new foundry.data.fields.NumberField({initial: 3}),
                 temp:  new foundry.data.fields.NumberField({initial: 0}),
             }),
+            coutPeEsquive:  new foundry.data.fields.NumberField({initial: 2}),
 
             nbActionParTour: new foundry.data.fields.NumberField({initial: 2}),
             initiative: new foundry.data.fields.NumberField({initial: 0}),

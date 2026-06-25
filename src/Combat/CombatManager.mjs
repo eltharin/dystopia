@@ -235,6 +235,11 @@ export class CombatManager {
 
         const combatant = this._getCombatantFromToken(token);
 
+        if(combatant.actor.system.values.pe.total < combatant.actor.system.coutPeEsquive) {
+            ui.notifications.error(game.i18n.format(system.Consts.SYSTEMID + ".combat.roll.esquive.noPe"));
+            return;
+        }
+
         if((combatant.getFlag(system.Consts.SYSTEMID, "reaction") ?? 0) == 0) {
             reussite = true;
 
@@ -244,6 +249,7 @@ export class CombatManager {
             ChatMessage.create(chatMsg);
             
             combatant.setFlag(system.Consts.SYSTEMID, "reaction", 10);
+            combatant.actor.update({ "system.values.pe.val": foundry.utils.getProperty(combatant.actor, "system.values.pe.val") - combatant.actor.system.coutPeEsquive});
         }
         else {
 
@@ -273,6 +279,7 @@ export class CombatManager {
                 ChatMessage.create(chatMsg);
             
                 combatant.setFlag(system.Consts.SYSTEMID, "reaction", oldReact+2);
+                combatant.actor.update({ "system.values.pe.val": foundry.utils.getProperty(combatant.actor, "system.values.pe.val") - combatant.actor.system.coutPeEsquive});
             }
         }
     }
