@@ -1,6 +1,7 @@
 <div class="dice-roll" data-action="expandRoll">
     <div class="dice-result">
         {{#if critique}}<div class="dice-formula">Coup Critique</div>{{/if}}
+        <div class="dice-formula">seuil Crit : {{seuilCritique}}</div>
         <div class="dice-formula">Degats physiques : {{item.system.degats.physique}}</div>
         <div class="dice-formula">Degats magiques : {{item.system.degats.magique}}</div>
         {{{tooltip}}}
@@ -14,6 +15,7 @@
             <p>armure physique : {{cible.armure.physique}}</p>
             <p>armure magique : {{cible.armure.magique}}</p>
             <p>armure mixte : {{cible.armure.mixte}}</p>
+            <p>malus armure : {{cible.armure.malusPhysique}}/{{cible.armure.malusMagique}}</p>
     
             <p>total PV : {{cible.degats}}</p>
             <div class="dice-formula" data-action="enleverPV" data-token="{{cible.uuid}}" data-nbPv="{{cible.degats}}">{{localize (concat (SYSTEMID) ".combat.attaque.supprPV")}}</div>

@@ -67,7 +67,8 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
                     val: new foundry.data.fields.NumberField({initial: 0}),
                 }),
                 armure:  new foundry.data.fields.SchemaField({
-                    val: new foundry.data.fields.NumberField({initial: 0}),
+                    physique: new foundry.data.fields.NumberField({initial: 0}),
+                    magique: new foundry.data.fields.NumberField({initial: 0}),
                 }),
                 pvmax:  new foundry.data.fields.SchemaField({
                     val: new foundry.data.fields.NumberField({initial: 0}),

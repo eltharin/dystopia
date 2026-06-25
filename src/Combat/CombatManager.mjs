@@ -203,7 +203,6 @@ export class CombatManager {
 
         const myRoll = new system.DiceRoller.AttaqueRoll("2d10",{}, {
             actor: message.rolls[0].options.actor,
-
             cibles: cibles,
             
             item: message.rolls[0].options.item
