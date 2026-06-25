@@ -65,7 +65,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
         {id: "combat", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.combat"},
         {id: "inventaire", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.inventaire"},
         {id: "notes", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.notes"},
-        {id: "GM", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.GM"},
+        {id: "GM", label: system.Consts.SYSTEMID + ".sheet.actor.tabs.GM", condition: () => game.user.isGM,},
       ],
       initial: "main",
     }
