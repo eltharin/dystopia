@@ -36,9 +36,6 @@ export class CombatManager {
                 const actor = combatant?.actor;
                 if (!actor) continue;
 
-                if (!combatant.flags[game.system.id]?.reaction) {
-                    combatant.setFlag(system.Consts.SYSTEMID, "reaction", 0);
-                }
 
                 // Conteneur
                 const reactionContainer = document.createElement("div");
@@ -100,12 +97,13 @@ export class CombatManager {
         });  
 
         Hooks.on("createCombatant", async (combatant, options, userId) => {
+            if (!game.user.isGM) return;
             const actor = combatant.actor;
             if (!actor) return;
 
             const initValue = actor.system?.initiative ?? 0;
 
-            await combatant.update({ initiative: initValue });
+            await combatant.update({ initiative: initValue, "flags.dystopia.reaction": 0 });
         });
 
 
