@@ -175,7 +175,8 @@
                 "competence": {
                     "nav": {
                         "main": "Compétence"
-                    }
+                    },
+                    "macroId": "Id de la macro"
                 },
                 "objet": {
                     "nav": {

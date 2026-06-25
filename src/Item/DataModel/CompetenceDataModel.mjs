@@ -13,6 +13,7 @@ export class CompetenceDataModel extends system.Base.SystemDataModel {
       //prixmoyen: new foundry.data.fields.NumberField({initial: 0, min:0}),
       notes: new foundry.data.fields.StringField({}),
       coutUtilisation: new foundry.data.fields.NumberField({initial: 1, min:0}),
+      macroId: new foundry.data.fields.StringField({}),
     };
   }
 

@@ -12,6 +12,10 @@ export class CompetenceSheet extends BaseItemSheet {
     main: {
       template: system.Consts.TEMPLATES_PATH + "/item/competence.hbs",
       container: { id: "form" , element: ".tabscontainer" },
+    },
+    notes: {
+      template: system.Consts.TEMPLATES_PATH + "/item/common/notes.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
     }
   };
 
@@ -19,6 +23,7 @@ export class CompetenceSheet extends BaseItemSheet {
     sheet: {
       tabs: [
         { id: "main", label: system.Consts.SYSTEMID + ".sheet.items.competence.nav.main"},
+        { id: "notes", label: system.Consts.SYSTEMID + ".sheet.common.notes.titre"},
       ],
       initial: "main",
     }
