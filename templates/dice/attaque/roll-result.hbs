@@ -1,7 +1,8 @@
 <div class="dice-roll" data-action="expandRoll">
     <div class="dice-result">
         {{#if critique}}<div class="dice-formula">Coup Critique</div>{{/if}}
-        <div class="dice-formula">seuil Crit : {{seuilCritique}}</div>
+        <div class="dice-formula">seuil Crit : {{actor.seuilCritique}}</div>
+        <div class="dice-formula">Bonus Dégats : {{actor.bonusDegats}}</div>
         <div class="dice-formula">Degats physiques : {{item.system.degats.physique}}</div>
         <div class="dice-formula">Degats magiques : {{item.system.degats.magique}}</div>
         {{{tooltip}}}

@@ -1,13 +1,18 @@
 <div>
     <div class="field">
-        <label>{{localizeSystem "sheet.actor.seuilCritique.temp"}}</label>
-        <div>{{ system.seuilCritique.temp }}</div>
+        <label>{{localizeSystem "sheet.actor.seuilCritique"}}</label>
+        <div>{{ system.values.seuilCritique.temp }}</div>
     </div>
 
     <div class="field">
-        <label>{{localizeSystem "sheet.actor.reaction.temp"}}</label>
+        <label>{{localizeSystem "sheet.actor.reaction"}}</label>
         <div>{{ system.values.reaction.val }} + {{ system.values.reaction.temp }} = {{ system.values.reaction.total }}</div>
         <div>{{ system.values.coutUtilReaction.val }} + {{ system.values.coutUtilReaction.temp }} = {{ system.values.coutUtilReaction.total }}</div>
+    </div>
+
+    <div class="field">
+        <label>{{localizeSystem "sheet.actor.bonusDegats"}}</label>
+        <div>{{ system.values.bonusDegats.val }} + {{ system.values.bonusDegats.temp }} = {{ system.values.bonusDegats.total }}</div>
     </div>
 
     <div class="field">

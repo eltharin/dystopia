@@ -269,7 +269,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     const myRoll = new system.DiceRoller.GlobalRoll("2d10",{}, {
         modificateurs: modificateurs,
         actor: actor.uuid,
-        seuilCritique: actor.system.seuilCritique.total,
+        seuilCritique: actor.system.values.seuilCritique.total,
     });
 
     myRoll.toMessage({

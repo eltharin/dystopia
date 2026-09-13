@@ -62,13 +62,20 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
                     val: new foundry.data.fields.NumberField({min: 0, initial: 2}),
                     temp: new foundry.data.fields.NumberField({ initial: 0}),
                 }),
+                
+                seuilCritique: new foundry.data.fields.SchemaField({
+                    val: new foundry.data.fields.NumberField({min: 0, initial: 20}),
+                    temp: new foundry.data.fields.NumberField({ initial: 0}),
+                }),
+                
+                bonusDegats: new foundry.data.fields.SchemaField({
+                    val: new foundry.data.fields.NumberField({ initial: 0}),
+                    temp: new foundry.data.fields.NumberField({ initial: 0}),
+                }),
 
             }),
             //degat: new foundry.data.fields.NumberField({initial: 0}),
-            seuilCritique: new foundry.data.fields.SchemaField({
-                val: new foundry.data.fields.NumberField({min: 0, initial: 20}),
-                temp: new foundry.data.fields.NumberField({ initial: 0}),
-            }),
+
             seuilDefense: new foundry.data.fields.NumberField({initial: 0}),
             
             coutDeplacement: new foundry.data.fields.SchemaField({
@@ -104,8 +111,6 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
     
     prepareDerivedData() {
         
-        this.seuilCritique.total = this.seuilCritique.val - this.seuilCritique.temp;
-
         Object.keys(this.values).forEach((k) => {
             this.values[k].total = this.values[k].val + this.values[k].temp;
             if("max" in this.values[k])

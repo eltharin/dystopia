@@ -7,7 +7,8 @@ export class AttaqueRoll extends system.DiceRoller.BaseRoll{
     constructor(formula="", data={}, options={}) {
         if(!("seuilCritique" in options.actor)) {
             const actor = fromUuidSync(options.actor.uuid);
-            options.actor.seuilCritique = actor.system.seuilCritique.val - actor.system.seuilCritique.temp;
+            options.actor.seuilCritique = actor.system.values.seuilCritique.total;
+            options.actor.bonusDegats = actor.system.values.bonusDegats.total;
         }
 
         super(formula, data, options);
@@ -18,7 +19,7 @@ export class AttaqueRoll extends system.DiceRoller.BaseRoll{
         let ret = await super._prepareChatRenderContext({flavor, isPrivate, ...options});
 
         ret.critique = this.isCritique();  
-        ret.seuilCritique = this.options.actor.seuilCritique;  
+        ret.actor = this.options.actor;  
         ret.item = this.options.item;  
         ret.cibles = this.options.cibles.map(c => {
             return {
@@ -56,9 +57,10 @@ export class AttaqueRoll extends system.DiceRoller.BaseRoll{
             malusMagique = armureMagique;
         }
 
+
         const degatsPhysiques = (this.options.item.system.degats.physique * (this.isCritique() ? 2 : 1)) - Math.max(0, armurePhysique - malusPhysique);
         const degatsMagiques = (this.options.item.system.degats.magique * (this.isCritique() ? 2 : 1)) - Math.max(0, armureMagique - malusMagique);
-        const degatsMixtes = Math.round(0.99* (this.total - cible.seuil)/2) - Math.max(0, armureMixte - malusMixte);
+        const degatsMixtes = (this.options.actor.bonusDegats * (this.isCritique() ? 2 : 1)) + Math.round(0.99* (this.total - cible.seuil)/2) - Math.max(0, armureMixte - malusMixte);
         
         return this.formuleDegats(degatsPhysiques, degatsMagiques, degatsMixtes)
     }
