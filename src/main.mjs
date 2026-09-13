@@ -36,6 +36,7 @@ import {registerFunctions as registerHandleBarFunctions} from "./SystemBase/Help
 import {CombatBars} from "./Settings/CombatBars.mjs"
 import { MessageActionResolver } from "./SystemBase/ChatMessage/MessageActionResolver.mjs";
 import { CombatManager } from "./Combat/CombatManager.mjs";
+import { DynamicChatMessageManager } from "./SystemBase/ChatMessage/DynamicChatMessageManager.mjs";
 
 
 CONFIG.ActiveEffect.expiryAction = "delete"
@@ -78,12 +79,14 @@ Hooks.once("init", () => {
   system.Combat.CombatManager.init();
 
   MessageActionResolver.register("reponseAttaque", CombatManager._onReponseAttaque)
-  MessageActionResolver.register("deAttaque", CombatManager._onDeAttaque)
   MessageActionResolver.register("enleverPV", CombatManager._onEnlevePV)
   MessageActionResolver.register("affectDegatEffets", CombatManager._onAffectDegatEffets)
   MessageActionResolver.register("ajoutEtatEffets", CombatManager._onAjoutEtatEffets)
 
   system.Settings.StatusEffect.init();
+
+  DynamicChatMessageManager.init();
+  DynamicChatMessageManager.register('attaque', system.Combat.AttaqueMessage);
 
 });
 

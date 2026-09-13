@@ -126,22 +126,24 @@ export class CombatManager {
 
         game.messages.forEach(m => {
             const reponse = m.flags?.[system.Consts.SYSTEMID]?.reponseAttaqueMessage;
-
+            console.log(m.flags?.[system.Consts.SYSTEMID]?.reponseAttaqueMessage)
             if(!reponse) return;
 
             if(reponse.id != message.id) return;
 
-            const cible = message.rolls[0].options.cibles[reponse.cible];
-            if(!cible) return;
+            console.log(message)
+            const cible = message.dynamicMessage._data.cibles.findIndex((c) => c.uuid == reponse.cible);
+            
+            if(cible == -1) return;
 
             if(cible.result != reponse.action) {
-                message.rolls[0].options.cibles[reponse.cible].result = reponse.action;
+                message.dynamicMessage._data.cibles[cible].result = reponse.action;
                 hasUpdate = true;
             }
         });
 
         if(hasUpdate) {
-            message.update({rolls: message.rolls});
+            message.dynamicMessage.update(message.dynamicMessage._data);
         }
     }
 
@@ -190,24 +192,25 @@ export class CombatManager {
     }
 
     static async _onDeAttaque(event, message, target) {
+        console.log(message.id);
         CombatManager.updateAttaqueMesage(message.id);
 
-        if(Object.values(message.rolls[0].options.cibles).filter(c => c.result == null).length > 0) {
+        if(message.dynamicMessage._data.cibles.filter(c => c.result == null).length > 0) {
             ui.notifications.error(game.i18n.format(system.Consts.SYSTEMID + ".combat.attaque.waitDeAttaque"));
             return;
         }
          
-        const cibles = Object.values(message.rolls[0].options.cibles).filter(c => c.result == "rien").map(c => {
+        const cibles = message.dynamicMessage._data.cibles.filter(c => c.result == "rien").map(c => {
             return c;
         });
 
 
 
         const myRoll = new system.DiceRoller.AttaqueRoll("2d10",{}, {
-            actor: message.rolls[0].options.actor,
+            actor: message.dynamicMessage._data.actor,
             cibles: cibles,
             
-            item: message.rolls[0].options.item
+            item: message.dynamicMessage._data.item
         });
     
         myRoll.toMessage({
@@ -234,7 +237,7 @@ export class CombatManager {
     static async testEsquive(token, chatMsg) {
         
         let reussite = false;
-
+console.log(token)
         const combatant = this._getCombatantFromToken(token);
 
         if(combatant.actor.system.values.pe.total < combatant.actor.system.values.coutPeEsquive.total) {
@@ -263,10 +266,14 @@ export class CombatManager {
                 reaction: combatant.actor.system.values.reaction.total + (combatant.getFlag(system.Consts.SYSTEMID, "reaction") * combatant.actor.system.values.coutUtilReaction.total)
             });
             
+            chatMsg.flags.dystopia.reponseAttaqueMessage.action = myRoll.getResult() ? "esquive" : "rien";
+
             const msg = await myRoll.toMessage({
                 speaker: ChatMessage.getSpeaker({ alias: token.name + " ( " + game.user.name + " )"}),
-                flags: {dystopia:{reponseAttaqueMessage:{action : myRoll.getResult() ? "esquive" : "rien"}}}
+                flags: chatMsg.flags
             });
+            chatMsg.flags = {};
+
 
           /*  const flags = chatMsg.flags;
             flags.dystopia.reponseAttaqueMessage.action = myRoll.getResult() ? "esquive" : "rien";

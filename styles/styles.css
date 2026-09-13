@@ -121,3 +121,33 @@
     border-radius: 3px;
     }
 }
+
+.chat-message .attaque_message{
+    ul.cibles {
+        border: 1px solid black;
+        border-radius:10px;
+        padding: 10px 5px;
+        > li {
+            
+        }
+    }
+
+    .attaque_btn {
+        margin-top:10px;
+    }
+
+    .button {
+        border: 1px solid black;
+        padding: 1px 3px;
+        border-radius: 5px;
+        background-color: gray;
+        color: white;
+        cursor:pointer;
+
+        &:hover{
+            background-color:lightgray;
+            color:black;
+            
+        }
+    }
+}

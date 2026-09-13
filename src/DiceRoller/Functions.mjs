@@ -9,9 +9,6 @@ export function registerDiceRolls() {
     CONFIG.Dice.rolls.push(system.DiceRoller.DegatEffetsRoll);
 
 
-    CONFIG.Dice.rolls.push(system.Combat.AttaqueMessage);
-
-
     
 }
 

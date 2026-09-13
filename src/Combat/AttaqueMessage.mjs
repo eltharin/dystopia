@@ -1,23 +1,21 @@
 import * as system  from "../_helpers.mjs";
+import { CombatManager } from "./CombatManager.mjs";
 
 
-export class AttaqueMessage extends system.DiceRoller.BaseRoll{
-    
-    static CHAT_TEMPLATE = system.Consts.TEMPLATES_PATH + "/combat/AttaqueMessage.hbs";
+export class AttaqueMessage extends system.Base.ChatMessage.DynamicChatMessage {
+    static TEMPLATE = system.Consts.TEMPLATES_PATH + "/combat/AttaqueMessage.hbs";
 
-    constructor(formula="", data={}, options={}) {
-        formula = "0";
-                
-        super(formula, data, options);
-        
+    static ACTIONS = {
+        'reponseAttaque': CombatManager._onReponseAttaque,
+        'deAttaque': CombatManager._onDeAttaque
     }
 
-    async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
-        let ret = await super._prepareChatRenderContext({flavor, isPrivate, ...options});
-        
-        ret.actor = this.options.actor.name;
-        ret.cibles = await Promise.all(Object.values(this.options.cibles).map(async (cible) => {
-            const cibleToken = await fromUuid(cible.uuid);
+    async getContext(html, message, data) {
+        let ret = await super.getContext(html, message, data);
+        ret.actor = this._data.actor.name;
+        ret.canLaunch = await fromUuidSync(this._data.actor.uuid).testUserPermission(game.user, "canUpdate");
+        ret.cibles = await Promise.all(Object.values(this._data.cibles).map(async (cible) => {
+            const cibleToken = fromUuidSync(cible.uuid);
             cible.canUpdate = await cibleToken.testUserPermission(game.user, "canUpdate");
             return cible;
         }));

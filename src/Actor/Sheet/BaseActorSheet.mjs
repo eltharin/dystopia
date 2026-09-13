@@ -1,4 +1,5 @@
 import * as system  from "../../_helpers.mjs";
+import { AttaqueMessage } from "../../Combat/AttaqueMessage.mjs";
 
 
 export class BaseActorSheet extends system.Base.BaseSheet (
@@ -97,6 +98,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       addEffect: system.EffetManager._onAddEffect,
       editEffect: system.EffetManager._onEditEffect,
       deleteEffect: system.EffetManager._onDeleteEffect,
+      testChatMessage: this._onTestChatMessage,
     },
     position: {
       width: 1030,
@@ -310,29 +312,19 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       useUpdate["system.values.pe.val"] = foundry.utils.getProperty(this.actor, "system.values.pe.val") - item.system.coutUtilisation;
     }
 
-
-    const myRoll = new system.Combat.AttaqueMessage("0",{}, {
+    const myMessage = AttaqueMessage.creerMessage( {
         actor: {
           uuid: actor.uuid,
           name: actor.name,
         },
         item: item,
-        cibles: [...game.user.targets].reduce(function(r, e) {
-          r[e.actor.uuid] = {
+        cibles: [...game.user.targets].map( (e) => ({
             uuid: e.actor.uuid, 
             name: e.actor.name,
             seuil: e.actor.system.values.seuilDefense.total,
             armure: system.Actor.fct.getArmure(e.actor),
             result: null
-          };
-          return r;
-        }, {}),
-        sounds:null
-        }
-    );
-
-    myRoll.toMessage({
-      speaker: ChatMessage.getSpeaker({ alias: this.document.name + " ( " + game.user.name + " )"}),
+          })),
     });
 
     this.actor.update(useUpdate);
@@ -472,5 +464,14 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     await item.delete();
   } 
 
+  static async _onTestChatMessage(event, target) {
+    ChatMessage.create({
+  content: "Le message que vous souhaitez afficher ici.",
+  speaker: {
+    alias: "Le Nom de l'Alias Custom"
+  }
+});
+
+  }
 
 }
