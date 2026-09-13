@@ -13,6 +13,10 @@ export class SortSheet extends BaseItemSheet {
       template: system.Consts.TEMPLATES_PATH + "/item/sort.hbs",
       container: { id: "form" , element: ".tabscontainer" },
     },
+    effets: {
+      template: system.Consts.TEMPLATES_PATH + "/item/common/effets.hbs",
+      container: { id: "form" , element: ".tabscontainer" },
+    },
     notes: {
       template: system.Consts.TEMPLATES_PATH + "/item/common/notes.hbs",
       container: { id: "form" , element: ".tabscontainer" },
@@ -23,6 +27,7 @@ export class SortSheet extends BaseItemSheet {
     sheet: {
       tabs: [
         { id: "main", label: system.Consts.SYSTEMID + ".sheet.items.sort.nav.main"},
+        { id: "effets", label: system.Consts.SYSTEMID + ".sheet.common.effets.titre"},
         { id: "notes", label: system.Consts.SYSTEMID + ".sheet.common.notes.titre"},
       ],
       initial: "main",
@@ -36,6 +41,21 @@ export class SortSheet extends BaseItemSheet {
       width: 790,
       height: 360,
     },
+    actions: {
+      ...super.DEFAULT_OPTIONS.actions,
+      addEffect: system.EffetManager._onAddEffect,
+      editEffect: system.EffetManager._onEditEffect,
+      deleteEffect: system.EffetManager._onDeleteEffect,
+    },
+  }
+
+  async _prepareContext(options) {
+    
+    const context = await super._prepareContext(options)
+
+    context.effets = this.document.effects;
+
+    return context
   }
 
   /*_prepareSubmitData(event, form, formData, updateData) { 

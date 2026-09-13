@@ -92,13 +92,12 @@ export class BaseActorSheet extends system.Base.BaseSheet (
       globalRoll: this._onGlobalRoll,
 
       attaque: this._onAttaque,
-      consommePtsAttaque: this._onConsommePtsAttaque,
+      useCompetence: this._onUseCompetence,
       consommeItem: this._onConsommeItem,
       
       addEffect: system.EffetManager._onAddEffect,
       editEffect: system.EffetManager._onEditEffect,
       deleteEffect: system.EffetManager._onDeleteEffect,
-      testChatMessage: this._onTestChatMessage,
     },
     position: {
       width: 1030,
@@ -331,6 +330,31 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     
   }
 
+  static async _onUseCompetence(event, target){
+    event.preventDefault();
+
+    const actor = this.document;
+    const item =  this.document.items.get(target.dataset.itemattaque);
+
+    /*if(item.type == "competence") {
+      if(foundry.utils.getProperty(this.actor, "system.values.pe.val") < item.system.coutUtilisationPE) {
+        ui.notifications.error("Vous n'avez pas assez de PE pour cela.");
+        return;
+      }
+      if(foundry.utils.getProperty(this.actor, "system.values.pm.val") < item.system.coutUtilisationPM) {
+        ui.notifications.error("Vous n'avez pas assez de PE pour cela.");
+        return;
+      }
+
+      useUpdate["system.values.pe.val"] = foundry.utils.getProperty(this.actor, "system.values.pe.val") - item.system.coutUtilisationPE;
+      useUpdate["system.values.pm.val"] = foundry.utils.getProperty(this.actor, "system.values.pm.val") - item.system.coutUtilisationPM;
+    }*/
+    ChatMessage.create({
+      user: game.user.id,
+      speaker: ChatMessage.getSpeaker({ alias: this.document.name + " ( " + game.user.name + " )"}),
+      content: "Utilisation de la competence " + item.name + " mais encore une fois le dev a rien foutu donc le joueur doit tout e taper a la main..."
+    });
+  }
   async _onDrop(event) {
     const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
 
@@ -463,15 +487,5 @@ export class BaseActorSheet extends system.Base.BaseSheet (
 
     await item.delete();
   } 
-
-  static async _onTestChatMessage(event, target) {
-    ChatMessage.create({
-  content: "Le message que vous souhaitez afficher ici.",
-  speaker: {
-    alias: "Le Nom de l'Alias Custom"
-  }
-});
-
-  }
 
 }
