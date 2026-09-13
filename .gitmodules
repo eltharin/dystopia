@@ -1,3 +1,6 @@
 [submodule "src/SystemBase"]
 	path = src/SystemBase
 	url = https://github.com/eltharin/FoundrySystemDefault.git
+[submodule "systemBase"]
+	path = systemBase
+	url = https://github.com/eltharin/FoundrySystemDefault.git

@@ -32,11 +32,11 @@ import { AppliqueDataModel } from "./Effet/DataModel/AppliqueDataModel.mjs"
 import { ConsommeDataModel } from "./Effet/DataModel/ConsommeDataModel.mjs"
 import { PorteDataModel } from "./Effet/DataModel/PorteDataModel.mjs"
 
-import {registerFunctions as registerHandleBarFunctions} from "./SystemBase/Helpers/Handlebars.mjs"
+import {registerFunctions as registerHandleBarFunctions} from "../systemBase/src/Helpers/Handlebars.mjs"
 import {CombatBars} from "./Settings/CombatBars.mjs"
-import { MessageActionResolver } from "./SystemBase/ChatMessage/MessageActionResolver.mjs";
+import { MessageActionResolver } from "../systemBase/src/ChatMessage/MessageActionResolver.mjs";
 import { CombatManager } from "./Combat/CombatManager.mjs";
-import { DynamicChatMessageManager } from "./SystemBase/ChatMessage/DynamicChatMessageManager.mjs";
+import { DynamicChatMessageManager } from "../systemBase/src/ChatMessage/DynamicChatMessageManager.mjs";
 
 
 CONFIG.ActiveEffect.expiryAction = "delete"

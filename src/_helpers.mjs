@@ -1,6 +1,6 @@
 export {SystemConsts as Consts} from "./SystemConsts.mjs";
 
-export * as Base from "./SystemBase/_helpers.mjs";
+export * as Base from "../systemBase/src/_helpers.mjs";
 
 //export * as Common from "./Common/_helpers.mjs";
 
