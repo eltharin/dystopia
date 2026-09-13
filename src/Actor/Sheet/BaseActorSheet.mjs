@@ -178,9 +178,9 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     
     context.items = Object.values(allItems).reduce((a, b ) => [...a, ...b], []);
 
-    context.system.coutDeplacement.bonus = context.armures.reduce((acc, armure) => acc + armure.system.coutDeplacement, 0);
+    context.coutDeplacementBonus = context.armures.reduce((acc, armure) => acc + armure.system.coutDeplacement, 0);
 
-    context.system.coutDeplacement.total = context.system.coutDeplacement.val + context.system.coutDeplacement.temp + context.system.coutDeplacement.bonus;
+    context.system.values.coutDeplacement.total = context.system.values.coutDeplacement.val + context.system.values.coutDeplacement.temp + context.coutDeplacementBonus;
 
     context.effets = {
       other: [],

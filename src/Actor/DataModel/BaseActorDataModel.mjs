@@ -77,12 +77,12 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
                     val: new foundry.data.fields.NumberField({ initial: 10}),
                     temp: new foundry.data.fields.NumberField({ initial: 0}),
                 }),
-
-            }),
             
-            coutDeplacement: new foundry.data.fields.SchemaField({
-                val:  new foundry.data.fields.NumberField({initial: 3}),
-                temp:  new foundry.data.fields.NumberField({initial: 0}),
+                coutDeplacement: new foundry.data.fields.SchemaField({
+                    val:  new foundry.data.fields.NumberField({initial: 3}),
+                    temp:  new foundry.data.fields.NumberField({initial: 0}),
+                }),
+
             }),
 
             nbActionParTour: new foundry.data.fields.NumberField({initial: 2}),
@@ -97,9 +97,6 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
                 armure:  new foundry.data.fields.SchemaField({
                     physique: new foundry.data.fields.NumberField({initial: 0}),
                     magique: new foundry.data.fields.NumberField({initial: 0}),
-                }),
-                pvmax:  new foundry.data.fields.SchemaField({
-                    val: new foundry.data.fields.NumberField({initial: 0}),
                 }),
             }),
         };
