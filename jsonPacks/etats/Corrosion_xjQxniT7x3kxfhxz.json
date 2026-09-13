@@ -30,7 +30,7 @@
       "system": {
         "changes": [
           {
-            "key": "system.malus.armure.val",
+            "key": "system.malus.armure.physique",
             "value": 2,
             "type": "add",
             "phase": "initial"

@@ -47,9 +47,9 @@ export class StatusEffect  {
         corrosion: { 
             img: "icons/svg/acid.svg", 
             degatsOnTurn: {type: "pv"},
-            changes:[{key: "system.malus.armure.val", value: 2, type: "add"}],
+            changes:[{key: "system.malus.armure.physique", value: 2, type: "add"}],
             onCreate: (e,n) => {return {changes: [
-                {key: "system.malus.armure.val", value: n+2, type: "add"}
+                {key: "system.malus.armure.physique", value: n+2, type: "add"}
             ]}}
         },
 
