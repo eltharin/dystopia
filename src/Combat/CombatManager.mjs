@@ -250,7 +250,7 @@ export class CombatManager {
             chatMsg.speaker = ChatMessage.getSpeaker({ alias: token.name + " ( " + game.user.name + " )"}),
             ChatMessage.create(chatMsg);
             
-            combatant.setFlag(system.Consts.SYSTEMID, "reaction", 10);
+            combatant.setFlag(system.Consts.SYSTEMID, "reaction", 1);
             combatant.actor.update({ "system.values.pe.val": foundry.utils.getProperty(combatant.actor, "system.values.pe.val") - combatant.actor.system.coutPeEsquive});
         }
         else {
@@ -260,27 +260,34 @@ export class CombatManager {
                     id: token.uuid,
                     name: token.name
                 },
-                reaction: combatant.getFlag(system.Consts.SYSTEMID, "reaction") + combatant.actor.system.malus.reaction.val
+                reaction: combatant.actor.system.values.reaction.total + (combatant.getFlag(system.Consts.SYSTEMID, "reaction") * combatant.actor.system.values.coutUtilReaction.total)
             });
             
             const msg = await myRoll.toMessage({
                 speaker: ChatMessage.getSpeaker({ alias: token.name + " ( " + game.user.name + " )"}),
-            }, {create:false});
+                flags: {dystopia:{reponseAttaqueMessage:{action : myRoll.getResult() ? "esquive" : "rien"}}}
+            });
 
-            const flags = chatMsg.flags;
+          /*  const flags = chatMsg.flags;
             flags.dystopia.reponseAttaqueMessage.action = myRoll.getResult() ? "esquive" : "rien";
             
             msg.flags = flags;
-            ChatMessage.create(msg);
+            ChatMessage.create(msg);*/
             
             if(myRoll.getResult()) {
+                await game.dice3d?.waitFor3DAnimationByMessageID(msg._id);
+
                 const oldReact = combatant.getFlag(system.Consts.SYSTEMID, "reaction");
 
-                chatMsg.content = token.name + " passe de réaction " + oldReact + " à " + (oldReact+2);
+                chatMsg.content = token.name + " passe de réaction " + 
+                (combatant.actor.system.values.reaction.total + (oldReact * combatant.actor.system.values.coutUtilReaction.total))
+                + " ( " + oldReact + " ) à " + 
+                (combatant.actor.system.values.reaction.total + ((oldReact+1) * combatant.actor.system.values.coutUtilReaction.total))
+                + " ( " + (oldReact+1) + " )";
             
                 ChatMessage.create(chatMsg);
             
-                combatant.setFlag(system.Consts.SYSTEMID, "reaction", oldReact+2);
+                combatant.setFlag(system.Consts.SYSTEMID, "reaction", oldReact+1);
                 combatant.actor.update({ "system.values.pe.val": foundry.utils.getProperty(combatant.actor, "system.values.pe.val") - combatant.actor.system.coutPeEsquive});
             }
         }

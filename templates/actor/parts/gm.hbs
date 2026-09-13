@@ -5,6 +5,12 @@
     </div>
 
     <div class="field">
+        <label>{{localizeSystem "sheet.actor.reaction.temp"}}</label>
+        <div>{{ system.values.reaction.val }} + {{ system.values.reaction.temp }} = {{ system.values.reaction.total }}</div>
+        <div>{{ system.values.coutUtilReaction.val }} + {{ system.values.coutUtilReaction.temp }} = {{ system.values.coutUtilReaction.total }}</div>
+    </div>
+
+    <div class="field">
         <label>{{localizeSystem "sheet.actor.coutPeEsquive"}}</label>
         <div>{{ fieldOrInput "system.coutPeEsquive" class="pj-sheet-input" }}</div>
     </div>

@@ -23,10 +23,10 @@ export class StatusEffect  {
         glace:     { 
             img: "icons/svg/frozen.svg", 
             degatsOnTurn: {type: "pv"}, 
-            changes:[{key: "system.coutDeplacement.temp", value: 2, type: "add"},{key: "system.malus.reaction.val", value: 2, type: "add"}],
+            changes:[{key: "system.coutDeplacement.temp", value: 2, type: "add"},{key: "system.values.reaction.temp", value: 2, type: "add"}],
             onCreate: (e,n) => {return {changes: [
                 {key: "system.coutDeplacement.temp", value: n+2, type: "add"},
-                {key: "system.malus.reaction.val", value: n+2, type: "add"}
+                {key: "system.values.reaction.temp", value: n+2, type: "add"}
             ]}}
         },
         

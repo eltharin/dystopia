@@ -36,7 +36,7 @@
             "phase": "initial"
           },
           {
-            "key": "system.malus.reaction.val",
+            "key": "system.values.reaction.temp",
             "value": 2,
             "type": "add",
             "phase": "initial"
