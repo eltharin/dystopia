@@ -237,7 +237,7 @@ export class CombatManager {
 
         const combatant = this._getCombatantFromToken(token);
 
-        if(combatant.actor.system.values.pe.total < combatant.actor.system.coutPeEsquive) {
+        if(combatant.actor.system.values.pe.total < combatant.actor.system.values.coutPeEsquive.total) {
             ui.notifications.error(game.i18n.format(system.Consts.SYSTEMID + ".roll.esquive.noPe"));
             return;
         }
@@ -251,7 +251,7 @@ export class CombatManager {
             ChatMessage.create(chatMsg);
             
             combatant.setFlag(system.Consts.SYSTEMID, "reaction", 1);
-            combatant.actor.update({ "system.values.pe.val": foundry.utils.getProperty(combatant.actor, "system.values.pe.val") - combatant.actor.system.coutPeEsquive});
+            combatant.actor.update({ "system.values.pe.val": foundry.utils.getProperty(combatant.actor, "system.values.pe.val") - combatant.actor.system.values.coutPeEsquive.total});
         }
         else {
 
@@ -288,7 +288,7 @@ export class CombatManager {
                 ChatMessage.create(chatMsg);
             
                 combatant.setFlag(system.Consts.SYSTEMID, "reaction", oldReact+1);
-                combatant.actor.update({ "system.values.pe.val": foundry.utils.getProperty(combatant.actor, "system.values.pe.val") - combatant.actor.system.coutPeEsquive});
+                combatant.actor.update({ "system.values.pe.val": foundry.utils.getProperty(combatant.actor, "system.values.pe.val") - combatant.actor.system.values.coutPeEsquive.total});
             }
         }
     }

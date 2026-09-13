@@ -58,6 +58,11 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
                     temp: new foundry.data.fields.NumberField({ initial: 0}),
                 }),
 
+                coutPeEsquive: new foundry.data.fields.SchemaField({
+                    val: new foundry.data.fields.NumberField({min: 0, initial: 2}),
+                    temp: new foundry.data.fields.NumberField({ initial: 0}),
+                }),
+
             }),
             //degat: new foundry.data.fields.NumberField({initial: 0}),
             seuilCritique: new foundry.data.fields.SchemaField({
@@ -70,7 +75,6 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
                 val:  new foundry.data.fields.NumberField({initial: 3}),
                 temp:  new foundry.data.fields.NumberField({initial: 0}),
             }),
-            coutPeEsquive:  new foundry.data.fields.NumberField({initial: 2}),
 
             nbActionParTour: new foundry.data.fields.NumberField({initial: 2}),
             initiative: new foundry.data.fields.NumberField({initial: 0}),
