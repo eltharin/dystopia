@@ -72,11 +72,13 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
                     val: new foundry.data.fields.NumberField({ initial: 0}),
                     temp: new foundry.data.fields.NumberField({ initial: 0}),
                 }),
+                
+                seuilDefense: new foundry.data.fields.SchemaField({
+                    val: new foundry.data.fields.NumberField({ initial: 10}),
+                    temp: new foundry.data.fields.NumberField({ initial: 0}),
+                }),
 
             }),
-            //degat: new foundry.data.fields.NumberField({initial: 0}),
-
-            seuilDefense: new foundry.data.fields.NumberField({initial: 0}),
             
             coutDeplacement: new foundry.data.fields.SchemaField({
                 val:  new foundry.data.fields.NumberField({initial: 3}),

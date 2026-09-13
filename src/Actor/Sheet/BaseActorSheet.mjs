@@ -321,7 +321,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
           r[e.actor.uuid] = {
             uuid: e.actor.uuid, 
             name: e.actor.name,
-            seuil: e.actor.system.seuilDefense,
+            seuil: e.actor.system.values.seuilDefense.total,
             armure: system.Actor.fct.getArmure(e.actor),
             result: null
           };
