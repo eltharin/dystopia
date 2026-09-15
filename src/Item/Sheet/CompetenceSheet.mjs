@@ -54,7 +54,8 @@ export class CompetenceSheet extends BaseItemSheet {
     const context = await super._prepareContext(options)
 
     context.effets = this.document.effects;
-
+    console.log(this.document.system.schema.fields, this.document.system.schema.fields.zoneAction, this.document.system.schema.fields.zoneAction.choices)
+    context.listZoneAction = Object.fromEntries(this.document.system.schema.fields.zoneAction.choices.map(item => [item, system.Consts.SYSTEMID + '.sheet.items.competence.zoneAction.' + item]));
     return context
   }
 /*

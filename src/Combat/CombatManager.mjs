@@ -147,8 +147,23 @@ export class CombatManager {
         }
     }
 
-    static createAttaqueMessage() {
-
+    static createAttaqueMessage(attaquant, cibles, item) {
+        
+        const myMessage = system.Combat.AttaqueMessage.creerMessage( {
+            actor: {
+            uuid: attaquant.uuid,
+            name: attaquant.name,
+            },
+            item: item,
+            cibles: cibles.map( (e) => ({
+                
+                uuid: e.uuid, 
+                name: e.name,
+                seuil: e.system.values.seuilDefense.total,
+                armure: system.Actor.fct.getArmure(e),
+                result: null
+            })),
+        });
     }
 
     static async _onReponseAttaque(event, message, target) {
@@ -237,7 +252,7 @@ export class CombatManager {
     static async testEsquive(token, chatMsg) {
         
         let reussite = false;
-console.log(token)
+
         const combatant = this._getCombatantFromToken(token);
 
         if(combatant.actor.system.values.pe.total < combatant.actor.system.values.coutPeEsquive.total) {
@@ -301,8 +316,13 @@ console.log(token)
     }
 
     static _onEnlevePV(event, message, target) {
+
+        console.log(message);
+
         const token = fromUuidSync(event.target.dataset.token);
         token.update({"system.values.pv.val" : token.system.values.pv.val - event.target.dataset.nbpv});
+
+        system.EffetManager.appliqueEffet(message.rolls[0].options.item.effects, [token]);
     }
 
     static _onAffectDegatEffets(event, message, target) {
@@ -314,6 +334,7 @@ console.log(token)
         rolls[0].options.isAffected = true;
         message.update({rolls: rolls});
     }
+
     static _onAjoutEtatEffets(event, message, target) {
         const token = fromUuidSync(event.target.dataset.token);
 
@@ -322,8 +343,6 @@ console.log(token)
         let rolls = message.rolls;
         rolls[0].options.etatAffected.push(event.target.dataset.etat);
         message.update({rolls: rolls});
-
-
         
     }
     

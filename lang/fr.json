@@ -117,6 +117,12 @@
                         "delete": "Supprimer le sort"
                     }
                 },
+                "coutUtilisation": {
+                    "pasassez": {
+                        "pe": "Vous n'avez pas assez de PE pour cela.",
+                        "pm": "Vous n'avez pas assez de PM pour cela."
+                    }
+                },
                 "degats": "Dégats de base",
                 "seuilDefense": "Seuil de défense",
                 "soin": "Soin",
@@ -158,7 +164,8 @@
                         "physique": "Dégats physiques",
                         "magique": "Dégats magiques"
                     },
-                    "coutUtilisation": "Coût d'utilisation"
+                    "coutUtilisationPE": "Coût d'utilisation (PE)",
+                    "coutUtilisationPM": "Coût d'utilisation (PM)"
                 },
                 "armure": {
                     "nav": {
@@ -176,7 +183,12 @@
                     "nav": {
                         "main": "Compétence"
                     },
-                    "macroId": "Id de la macro"
+                    "macroId": "Id de la macro",
+                    "zoneAction": {
+                        "titre" : "Zone d'action",
+                        "lanceur" : "Sur Lanceur",
+                        "cible" : "Sur Cible"
+                    }
                 },
                 "objet": {
                     "nav": {

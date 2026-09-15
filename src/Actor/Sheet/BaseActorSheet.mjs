@@ -1,5 +1,4 @@
 import * as system  from "../../_helpers.mjs";
-import { AttaqueMessage } from "../../Combat/AttaqueMessage.mjs";
 
 
 export class BaseActorSheet extends system.Base.BaseSheet (
@@ -293,38 +292,28 @@ export class BaseActorSheet extends system.Base.BaseSheet (
 
     let useUpdate = {};
     
-    if(item.type == "sort") {
-      if(foundry.utils.getProperty(this.actor, "system.values.pm.val") < item.system.coutUtilisation) {
-        ui.notifications.error("Vous n'avez pas assez de PM pour cela.");
+    if(item.system.coutUtilisation.pm > 0) {
+      if(foundry.utils.getProperty(this.actor, "system.values.pm.val") < item.system.coutUtilisation.pm) {
+        ui.notifications.error(game.i18n.localize(system.Consts.SYSTEMID + ".shhet.actor.coutUtilisation.pasassez.pm"));
         return;
       }
 
-      useUpdate["system.values.pm.val"] = foundry.utils.getProperty(this.actor, "system.values.pm.val") - item.system.coutUtilisation;
+      useUpdate["system.values.pm.val"] = foundry.utils.getProperty(this.actor, "system.values.pm.val") - item.system.coutUtilisation.pm;
     }
     
-    if(item.type == "arme") {
-      if(foundry.utils.getProperty(this.actor, "system.values.pe.val") < item.system.coutUtilisation) {
-        ui.notifications.error("Vous n'avez pas assez de PE pour cela.");
+    if(item.system.coutUtilisation.pe > 0) {
+      if(foundry.utils.getProperty(this.actor, "system.values.pe.val") < item.system.coutUtilisation.pe) {
+        ui.notifications.error(game.i18n.localize(system.Consts.SYSTEMID + ".shhet.actor.coutUtilisation.pasassez.pe"));
         return;
       }
 
-      useUpdate["system.values.pe.val"] = foundry.utils.getProperty(this.actor, "system.values.pe.val") - item.system.coutUtilisation;
+      useUpdate["system.values.pe.val"] = foundry.utils.getProperty(this.actor, "system.values.pe.val") - item.system.coutUtilisation.pe;
     }
 
-    const myMessage = AttaqueMessage.creerMessage( {
-        actor: {
-          uuid: actor.uuid,
-          name: actor.name,
-        },
-        item: item,
-        cibles: [...game.user.targets].map( (e) => ({
-            uuid: e.actor.uuid, 
-            name: e.actor.name,
-            seuil: e.actor.system.values.seuilDefense.total,
-            armure: system.Actor.fct.getArmure(e.actor),
-            result: null
-          })),
-    });
+    const cibles = [...game.user.targets].map(c => c.actor);
+    system.Combat.CombatManager.createAttaqueMessage(actor, cibles, item );
+
+
 
     this.actor.update(useUpdate);
     
@@ -336,25 +325,53 @@ export class BaseActorSheet extends system.Base.BaseSheet (
     const actor = this.document;
     const item =  this.document.items.get(target.dataset.itemattaque);
 
-    /*if(item.type == "competence") {
-      if(foundry.utils.getProperty(this.actor, "system.values.pe.val") < item.system.coutUtilisationPE) {
-        ui.notifications.error("Vous n'avez pas assez de PE pour cela.");
-        return;
-      }
-      if(foundry.utils.getProperty(this.actor, "system.values.pm.val") < item.system.coutUtilisationPM) {
-        ui.notifications.error("Vous n'avez pas assez de PE pour cela.");
+        let useUpdate = {};
+    
+    if(item.system.coutUtilisation.pm > 0) {
+      if(foundry.utils.getProperty(this.actor, "system.values.pm.val") < item.system.coutUtilisation.pm) {
+        ui.notifications.error(game.i18n.localize(system.Consts.SYSTEMID + ".shhet.actor.coutUtilisation.pasassez.pm"));
         return;
       }
 
-      useUpdate["system.values.pe.val"] = foundry.utils.getProperty(this.actor, "system.values.pe.val") - item.system.coutUtilisationPE;
-      useUpdate["system.values.pm.val"] = foundry.utils.getProperty(this.actor, "system.values.pm.val") - item.system.coutUtilisationPM;
-    }*/
-    ChatMessage.create({
-      user: game.user.id,
-      speaker: ChatMessage.getSpeaker({ alias: this.document.name + " ( " + game.user.name + " )"}),
-      content: "Utilisation de la competence " + item.name + " mais encore une fois le dev a rien foutu donc le joueur doit tout e taper a la main..."
-    });
+      useUpdate["system.values.pm.val"] = foundry.utils.getProperty(this.actor, "system.values.pm.val") - item.system.coutUtilisation.pm;
+    }
+    
+    if(item.system.coutUtilisation.pe > 0) {
+      if(foundry.utils.getProperty(this.actor, "system.values.pe.val") < item.system.coutUtilisation.pe) {
+        ui.notifications.error(game.i18n.localize(system.Consts.SYSTEMID + ".shhet.actor.coutUtilisation.pasassez.pe"));
+        return;
+      }
+
+      useUpdate["system.values.pe.val"] = foundry.utils.getProperty(this.actor, "system.values.pe.val") - item.system.coutUtilisation.pe;
+    }
+
+    this.actor.update(useUpdate);
+
+    let cibles = [];
+    
+    if(item.system.zoneAction == "cible")
+    {
+      if(!game.user.targets.size) {
+        ui.notifications.error("Veuillez sélectionner une cible pour l'attaque.");
+        return;
+      }  
+
+      cibles = [...game.user.targets].map(c => c.actor);
+
+      system.Combat.CombatManager.createAttaqueMessage(actor, cibles, item );
+      return;
+    }
+    else if(item.system.zoneAction == "lanceur")
+    {
+      cibles = [actor];
+
+    }
+
+    system.EffetManager.appliqueEffet(item.effects, cibles);
+    
+    
   }
+
   async _onDrop(event) {
     const data = foundry.applications.ux.TextEditor.implementation.getDragEventData(event);
 

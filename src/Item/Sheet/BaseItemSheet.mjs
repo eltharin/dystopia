@@ -19,8 +19,8 @@ export class BaseItemSheet extends system.Base.BaseSheet(
     switch(data.type)
     {
       case "Item": 
-        const item = fromUuidSync(data.uuid);
-        
+        const item =  await system.Base.fct.getDocFromUuidSync(data.uuid);
+        console.log(item, item.effects)
         if(item.type == "effetContainer") {
           let effets = [];
           item.effects.forEach(e => effets.push(e.clone()));

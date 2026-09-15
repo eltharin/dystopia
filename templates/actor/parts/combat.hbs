@@ -22,7 +22,7 @@
                         <div class="lignetab">
                             <label data-action="attaque" data-itemattaque="{{item._id}}">{{item.name}}</label>
                             
-                            <label data-width="100px" style="--localwidth:100px">{{item.system.coutUtilisation}} PE</label>
+                            <label data-width="100px" style="--localwidth:100px">{{item.system.coutUtilisation.pe}} PE</label>
                             <label data-width="100px" style="--localwidth:100px">⚔️{{item.system.degats.physique}} 🌠{{item.system.degats.magique}}</label>
 
                             {{#if item.system.trait}}<label data-width="200" style="--localwidth:200px">{{localizeSystem (concat "sheet.actor.combat.arme.trait." item.system.trait ".name") }}</label>{{/if}}
@@ -62,6 +62,7 @@
                     <div class="item sort">
                         <div class="lignetab">
                             <label data-action="attaque" data-itemattaque="{{item._id}}">{{item.name}}</label>
+                            <label data-width="100px" style="--localwidth:100px">{{item.system.coutUtilisation.pm}} PM</label>
                             {{#if item.system.trait}}<label data-width="200" style="--localwidth:200px">{{localizeSystem (concat "sheet.actor.combat.arme.trait." item.system.trait ".name") }}</label>{{/if}}
                             <span class="action" >
                                 {{#if item.system.notes}}<a data-action="toggle"  data-toggle="item_{{item._id}}"><i class="fas fa-eye"></i></a>{{/if}}

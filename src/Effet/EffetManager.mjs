@@ -80,4 +80,27 @@ export class EffetManager {
         }
 
     }
+
+    static appliqueEffet(effects, cibles)
+    {        
+        const newEffects = effects.map(e => {
+            if(e.toObject) {
+                e = e.toObject()
+            }
+            
+            delete e._id;
+            e.type = e.type == 'effetApplique' ? 'effetPorte' : e.type,
+            e.disabled = false;
+            return e;
+        });
+        
+        if(newEffects.length == 0) {
+            return;
+        }
+        console.log(newEffects)
+        cibles.forEach(c => {
+            const cibleNewEffects = c.createEmbeddedDocuments('ActiveEffect', newEffects);
+            cibleNewEffects.then(e => console.log(e))
+        });
+    }
 }
