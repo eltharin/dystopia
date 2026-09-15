@@ -1,43 +1,182 @@
+:root{
+    --dystopia-color-bg-pv: #ff0000;
+    --dystopia-color-text-pv: white;
+    --dystopia-color-bg-pm : #4a6df0;
+    --dystopia-color-text-pm : white;
+    --dystopia-color-bg-pe : #ffd700;
+    --dystopia-color-text-pe : black;
+}
+
+.dystopia-sheet {
+
+    .toggleable {
+        display:none;
+    }
+
+    .button {
+        border: 1px solid black;
+        padding: 1px 3px;
+        border-radius: 5px;
+        background-color: gray;
+        color: white;
+        cursor:pointer;
+        text-align:center;
+
+        &:hover{
+            background-color:lightgray;
+            color:black;
+            
+        }
+    }
+
+    &.dystopia-sheet-actor {
+
+        
+        .top{
+            > .perso {
+                display:flex;
+                flex-direction:row;
+                justify-content: space-between; 
+                
+
+                > .field {
+                    
+                    padding:5px;
+                    border-radius:10px;
+                    --dystopia-top-pero-field-color-bg : darkslategray;
+                    --dystopia-top-pero-field-color-text: white;
+                    background-color: var(--dystopia-top-pero-field-color-bg);
+                    color: var(--dystopia-top-pero-field-color-text);
+                    
+
+                    >label{
+                        text-align:center;
+                        font-size : 15px;
+                        font-weight: bold;
+                        display:block;
+                        border-bottom: 1px solid var(--dystopia-top-pero-field-color-text);
+                    }
+
+                    &.pv {
+                        --dystopia-top-pero-field-color-bg: var(--dystopia-color-bg-pv);
+                        --dystopia-top-pero-field-color-text: var(--dystopia-color-text-pv);
+                    }
+
+                    &.pm {
+                        --dystopia-top-pero-field-color-bg: var(--dystopia-color-bg-pm);
+                        --dystopia-top-pero-field-color-text: var(--dystopia-color-text-pm);
+                    }
+
+                    &.pe {
+                        --dystopia-top-pero-field-color-bg: var(--dystopia-color-bg-pe);
+                        --dystopia-top-pero-field-color-text: var(--dystopia-color-text-pe);
+                    }
+                }
+            }
+
+            .valeur {
+                display:flex;
+                flex-direction:column;
+                flex-wrap:nowrap;
+                
+                >div {
+                    width:100%;
+
+                    >.total{
+                        text-align:center;
+                        font-weight: 800;
+                        font-size: 20px;
+                        margin-right:10px;
+                        display: inline-block;
+                        width:35px;
+                    }
+
+                    >.calc{
+                        white-space: nowrap;
+
+                        >input {
+                            width:40px;
+                        }
+                    }
+                    
+
+                    &:first-child {
+                        border-bottom:2px solid white;
+                    }
+                }
 
 
+            }
+        }
 
-.dystopia-sheet .toggleable {
-    display:none;
+        .sidebar {
+            > .sidebar_content {
+                > .lancerDe {
+                    margin: 15px 0px;
+                    cursor:pointer;
+                }
+
+                > .field {
+                    margin-bottom: 10px;
+
+                    > .total-result {
+                        display:flex;
+                        flex-direction:row;
+                        flex-wrap:nowrap;
+
+                        > .total {
+                            font-size: 18px;
+                            font-weight: bold;
+                            flex : 0 0 70px;
+                        }
+
+                        > .input  {
+                            flex : 0 0 70px;
+                        }
+
+                        > .calc{
+                            flex : 1 1 100px;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 
-.dystopia-sheet .toggleable.visible {
+.dystopia-sheet-content .toggleable.visible {
     display:initial;
 }
 
-.dystopia-sheet .lignetab {
+.dystopia-sheet-content .lignetab {
     display:flex;
     flex-direction:row;
     justify-content: space-between;
     align-items: center;
 }
 
-.dystopia-sheet .lignetab > *{
+.dystopia-sheet-content .lignetab > *{
     flex : 1 1 auto;
 }
 
-.dystopia-sheet .lignetab > [data-width]{
+.dystopia-sheet-content .lignetab > [data-width]{
     --localwidth: attr(data-width px);
     flex : 0 1 var(--localwidth);
 }
 
-.dystopia-sheet .lignetab > .action{
+.dystopia-sheet-content .lignetab > .action{
     flex : 0 0 75px;
     text-align: right;
 }
 
 
 
-.dystopia-sheet textarea {
+.dystopia-sheet-content textarea {
     width:100%;
 }
 
-.dystopia-sheet {
+.dystopia-sheet-content {
     display:flex;
     flex-direction: row;
     
@@ -46,7 +185,7 @@
 }
 
 
-.dystopia-sheet .sidebar{
+.dystopia-sheet-content .sidebar{
     width: 220px;
     display:flex;
     flex-direction: column;
@@ -56,29 +195,29 @@
     }
 }
 
-.dystopia-sheet main{
+.dystopia-sheet-content main{
     flex: 1 0 200px;
     display:flex;
     flex-direction: column;
 }
 
-.dystopia-sheet > main > .main {
+.dystopia-sheet-content > main > .main {
     min-height:0;
     display:flex;
     flex-direction: column;
 }
 
-.dystopia-sheet > main > .main > .tabscontainer{
+.dystopia-sheet-content > main > .main > .tabscontainer{
     min-height:0;
     display:flex;
     flex-direction: column;
 }
 
-.dystopia-sheet > main > .main > .tabscontainer > section{
+.dystopia-sheet-content > main > .main > .tabscontainer > section{
     overflow-y: auto;
 }
 
-.dystopia-sheet .field > div {
+.dystopia-sheet-content .field > div {
     display:flex;
     flex-direction: row;
     align-items: center;
@@ -87,7 +226,7 @@
 
 
 
-.dystopia-sheet .listeElement ~ .listeElement {
+.dystopia-sheet-content .listeElement ~ .listeElement {
     border-top : 1px solid white;
     padding-top: 1em;
 }

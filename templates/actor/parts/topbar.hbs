@@ -1,12 +1,74 @@
 
 <div class="perso flexcols">
-    <div class="field nom">
-        <label>{{localize (concat (SYSTEMID) ".sheet.common.nom")}}</label>
-        <div>{{ fieldOrInput "name" class="pj-sheet-input" value=document.name}}</div>
+    <div class="field pv">
+        <label>{{localizeSystem "sheet.actor.carac.pv"}}</label>
+        <div class="valeur">
+            <div>
+                <span class="total">{{system.values.pv.total}}</span>
+                <span class="calc">({{ fieldOrInput "system.values.pv.val" class="pj-sheet-input" }} + {{ system.values.pv.temp }})</span>
+            </div>
+            <div>
+                <span class="total">{{system.values.pv.totalMax}}</span>
+                <span class="calc">({{ fieldOrInput "system.values.pv.max" class="pj-sheet-input" }} + {{ system.values.pv.tempMax }})</span>
+            </div>
+        </div>
     </div>
 
-    <div class="field">
-        <label>{{localizeSystem "sheet.actor.niveau"}}</label>
-        <div>{{ fieldOrInput "system.niveau" class="pj-sheet-input" }}</div>
+
+    <div class="field pe">
+        <label>{{localizeSystem "sheet.actor.carac.pe"}}</label>
+        
+        <div class="valeur">
+            <div>
+                <span class="total">{{system.values.pe.total}}</span>
+                <span class="calc">({{ fieldOrInput "system.values.pe.val" class="pj-sheet-input" }} + {{ system.values.pe.temp }})</span>
+            </div>
+            <div>
+                <span class="total">{{system.values.pe.totalMax}}</span>
+                <span class="calc">({{ fieldOrInput "system.values.pe.max" class="pj-sheet-input" }} + {{ system.values.pe.tempMax }})</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="field pm">
+        <label>{{localizeSystem "sheet.actor.carac.pm"}}</label>
+        <div class="valeur">
+            <div>
+                <span class="total">{{system.values.pm.total}}</span>
+                <span class="calc">({{ fieldOrInput "system.values.pm.val" class="pj-sheet-input" }} + {{ system.values.pm.temp }})</span>
+            </div>
+            <div>
+                <span class="total">{{system.values.pm.totalMax}}</span>
+                <span class="calc">({{ fieldOrInput "system.values.pm.max" class="pj-sheet-input" }} + {{ system.values.pm.tempMax }})</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="field sm">
+        <label>{{localizeSystem "sheet.actor.carac.sm"}}</label>
+        <div class="valeur">
+            <div>
+                <span class="total">{{system.values.sm.total}}</span>
+                <span class="calc">({{ fieldOrInput "system.values.sm.val" class="pj-sheet-input" }} + {{ system.values.sm.temp }})</span>
+            </div>
+            <div>
+                <span class="total">{{system.values.sm.totalMax}}</span>
+                <span class="calc">({{ fieldOrInput "system.values.sm.max" class="pj-sheet-input" }} + {{ system.values.sm.tempMax }})</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="field volonte">
+        <label>{{localizeSystem "sheet.actor.carac.volonte"}}</label>
+        <div class="valeur">
+            <div>
+                <span class="total">{{system.values.volonte.total}}</span>
+                <span class="calc">({{ fieldOrInput "system.values.volonte.val" class="pj-sheet-input" }} + {{ system.values.volonte.temp }})</span>
+            </div>
+            <div>
+                <span class="total">{{system.values.volonte.totalMax}}</span>
+                <span class="calc">({{ fieldOrInput "system.values.volonte.max" class="pj-sheet-input" }} + {{ system.values.volonte.tempMax }})</span>
+            </div>
+        </div>
     </div>
 </div>

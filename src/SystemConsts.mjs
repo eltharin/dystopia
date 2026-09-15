@@ -9,6 +9,6 @@ export class SystemConsts {
 
 
     static COLOR_ACTOR_VALUES_PV = "#ff0000";
-    static COLOR_ACTOR_VALUES_PM = "#00ff00";
-    static COLOR_ACTOR_VALUES_PE = "#4a6df0";
+    static COLOR_ACTOR_VALUES_PM = "#4a6df0";
+    static COLOR_ACTOR_VALUES_PE = "#ffd700";
 }

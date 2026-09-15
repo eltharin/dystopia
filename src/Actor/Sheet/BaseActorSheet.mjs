@@ -78,7 +78,7 @@ export class BaseActorSheet extends system.Base.BaseSheet (
   };
 
   static DEFAULT_OPTIONS = {
-    classes: [],
+    classes: [system.Consts.SYSTEMID + '-sheet-actor', system.Consts.SYSTEMID + '-sheet'],
     actions: {
       verouillage: this.verouillage,
       deverouillage: this.deverouillage,
