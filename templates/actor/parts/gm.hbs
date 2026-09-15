@@ -1,7 +1,14 @@
 <div>
-    <div class="field">
-        <label>{{localizeSystem "sheet.actor.seuilCritique"}}</label>
-        <div>{{ system.values.seuilCritique.temp }}</div>
+    <div class="flexcols">
+        <div class="field">
+            <label>{{localizeSystem "sheet.actor.seuilCritique.titre"}}</label>
+            <div>{{ system.values.seuilCritique.temp }}</div>
+        </div>
+
+        <div class="field">
+            <label>{{localizeSystem "sheet.actor.seuilCritique.malusAdverse"}}</label>
+            <div>{{ system.malus.seuilCritiqueAdv }}</div>
+        </div>
     </div>
 
     <div class="field">

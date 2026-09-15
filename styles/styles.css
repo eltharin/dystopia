@@ -122,20 +122,7 @@
     }
 }
 
-.chat-message .attaque_message{
-    ul.cibles {
-        border: 1px solid black;
-        border-radius:10px;
-        padding: 10px 5px;
-        > li {
-            
-        }
-    }
-
-    .attaque_btn {
-        margin-top:10px;
-    }
-
+.chat-message {
     .button {
         border: 1px solid black;
         padding: 1px 3px;
@@ -143,11 +130,75 @@
         background-color: gray;
         color: white;
         cursor:pointer;
+        text-align:center;
 
         &:hover{
             background-color:lightgray;
             color:black;
             
+        }
+    }
+
+    .attaque_message{
+        ul.cibles {
+            border: 1px solid black;
+            border-radius:10px;
+            padding: 10px 5px;
+            > li {
+                display:flex;
+                flex-direction: row;
+                margin-bottom: 5px;
+
+                >span {
+                    flex: 0 0 100px;
+
+                    &.nom {
+                        flex-grow : 1;
+                    }
+                }
+            }
+        }
+
+        .attaque_btn {
+            margin-top:10px;
+        }
+
+
+    }
+
+    .result_attaque_message {
+        .section {
+            background: rgba(0, 0, 0, 0.1);
+            border: 1px solid #999;
+            border-radius: 3px;
+            box-shadow: 0 0 2px #FFF inset;
+            margin-bottom:10px;
+            padding:5px;
+        }
+
+        .result_infos {
+            .title {
+                font-weight: bold;
+            }
+        }
+
+        .cible_result {
+            margin-top: 10px;
+            h4 {
+                text-align:center;
+            }
+            .title {
+                font-weight: bold;
+            }
+            .message {
+                background: rgba(0, 0, 0, 0.1);
+                border: 1px solid #999;
+                border-radius: 3px;
+                box-shadow: 0 0 2px #FFF inset;
+                margin-bottom:10px;
+                padding:5px;
+                text-align:center;
+            }
         }
     }
 }

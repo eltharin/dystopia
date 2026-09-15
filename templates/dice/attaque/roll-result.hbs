@@ -1,26 +1,33 @@
-<div class="dice-roll" data-action="expandRoll">
-    <div class="dice-result">
-        {{#if critique}}<div class="dice-formula">Coup Critique</div>{{/if}}
-        <div class="dice-formula">seuil Crit : {{actor.seuilCritique}}</div>
-        <div class="dice-formula">Bonus Dégats : {{actor.bonusDegats}}</div>
-        <div class="dice-formula">Degats physiques : {{item.system.degats.physique}}</div>
-        <div class="dice-formula">Degats magiques : {{item.system.degats.magique}}</div>
+<div class="result_attaque_message" >
+    
+    <div class="result_infos section">
+        <div><span class="title">seuil Crit : </span>{{actor.seuilCritique}}</div>
+        <div><span class="title">Bonus Dégats : </span>{{actor.bonusDegats}}</div>
+        <div><span class="title">Degats physiques : </span>{{item.system.degats.physique}}</div>
+        <div><span class="title">Degats magiques : </span>{{item.system.degats.magique}}</div>
+    </div>
+    <div class="dice-roll" data-action="expandRoll">
+        
+        <div  class="dice-result" >
         {{{tooltip}}}
+        </div>
         <div class="dice-formula">{{localize (concat (SYSTEMID) ".roll.common.total")}} : {{total}}</div>
-
+    </div>
         
         {{#each cibles as |cible|}}
+        <div class="cible_result section">
             <h4 class="dice-total">{{cible.name}}</h4>
-
-            <p>seuil Défense : {{cible.seuil}}</p>
-            <p>armure physique : {{cible.armure.physique}}</p>
-            <p>armure magique : {{cible.armure.magique}}</p>
-            <p>armure mixte : {{cible.armure.mixte}}</p>
-            <p>malus armure : {{cible.armure.malusPhysique}}/{{cible.armure.malusMagique}}</p>
+            {{#if cible.critique}}<div class="message">Coup Critique</div>{{/if}}
+            <div><span class="title">seuil Défense : </span>{{cible.seuil}}</div>
+            <div><span class="title">armure physique : </span>{{cible.armure.physique}}</div>
+            <div><span class="title">armure magique : </span>{{cible.armure.magique}}</div>
+            <div><span class="title">armure mixte : </span>{{cible.armure.mixte}}</div>
+            <div><span class="title">malus armure : </span>{{cible.armure.malusPhysique}}/{{cible.armure.malusMagique}}</div>
     
-            <p>total PV : {{cible.degats}}</p>
-            <div class="dice-formula" data-action="enleverPV" data-token="{{cible.uuid}}" data-nbPv="{{cible.degats}}">{{localize (concat (SYSTEMID) ".combat.attaque.supprPV")}}</div>
+            <div class="message">total PV : {{cible.degats}}</div>
+            <div class="button attaque_btn"  data-action="enleverPV" data-token="{{cible.uuid}}" data-nbPv="{{cible.degats}}">{{localize (concat (SYSTEMID) ".combat.attaque.supprPV")}}</div>
+        </div>
         {{/each}}
         
-    </div>
+    
 </div>

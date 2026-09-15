@@ -144,7 +144,8 @@
                 "xp" : "XP",
                 "seuilCritique": {
                     "titre": "Seuil de critique",
-                    "temp": "Seuil de critique Temporaire"
+                    "temp": "Seuil de critique Temporaire",
+                    "malusAdverse": "Malus Seuil Critique Adverse"
                 },
                 "effets": {
                     "etats": "Etats"

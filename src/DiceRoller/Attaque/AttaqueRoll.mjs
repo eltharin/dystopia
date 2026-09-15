@@ -18,7 +18,8 @@ export class AttaqueRoll extends system.DiceRoller.BaseRoll{
     async _prepareChatRenderContext({flavor, isPrivate=false, ...options}={}) {
         let ret = await super._prepareChatRenderContext({flavor, isPrivate, ...options});
 
-        ret.critique = this.isCritique();  
+        console.log(this.options.cibles)
+
         ret.actor = this.options.actor;  
         ret.item = this.options.item;  
         ret.cibles = this.options.cibles.map(c => {
@@ -27,15 +28,17 @@ export class AttaqueRoll extends system.DiceRoller.BaseRoll{
                 name: c.name,
                 seuil: c.seuil,
                 degats: this.calculDegats(c),
-                armure: c.armure
+                armure: c.armure,
+                critique: this.isCritique(c),
             };
         });
 
         return ret;
     }
 
-    isCritique() {
-        return this.total > (this.options.actor.seuilCritique || 50);
+    isCritique(cible) {
+        console.log(cible)
+        return this.total > Math.min(20,(this.options.actor.seuilCritique + cible.malus.seuilCritiqueAdv));
     }
 
     calculDegats(cible) {
@@ -58,9 +61,9 @@ export class AttaqueRoll extends system.DiceRoller.BaseRoll{
         }
 
 
-        const degatsPhysiques = (this.options.item.system.degats.physique * (this.isCritique() ? 2 : 1)) - Math.max(0, armurePhysique - malusPhysique);
-        const degatsMagiques = (this.options.item.system.degats.magique * (this.isCritique() ? 2 : 1)) - Math.max(0, armureMagique - malusMagique);
-        const degatsMixtes = (this.options.actor.bonusDegats * (this.isCritique() ? 2 : 1)) + Math.round(0.99* (this.total - cible.seuil)/2) - Math.max(0, armureMixte - malusMixte);
+        const degatsPhysiques = (this.options.item.system.degats.physique * (this.isCritique(cible) ? 2 : 1)) - Math.max(0, armurePhysique - malusPhysique);
+        const degatsMagiques = (this.options.item.system.degats.magique * (this.isCritique(cible) ? 2 : 1)) - Math.max(0, armureMagique - malusMagique);
+        const degatsMixtes = (this.options.actor.bonusDegats * (this.isCritique(cible) ? 2 : 1)) + Math.round(0.99* (this.total - cible.seuil)/2) - Math.max(0, armureMixte - malusMixte);
         
         return this.formuleDegats(degatsPhysiques, degatsMagiques, degatsMixtes)
     }

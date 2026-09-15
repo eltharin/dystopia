@@ -156,12 +156,14 @@ export class CombatManager {
             },
             item: item,
             cibles: cibles.map( (e) => ({
-                
                 uuid: e.uuid, 
                 name: e.name,
                 seuil: e.system.values.seuilDefense.total,
                 armure: system.Actor.fct.getArmure(e),
-                result: null
+                result: null,
+                malus: {
+                    seuilCritiqueAdv: e.system.malus.seuilCritiqueAdv
+                }
             })),
         });
     }

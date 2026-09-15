@@ -3,12 +3,12 @@
     <div class="dice-formula">
         <ul class="cibles">
             {{#each cibles as |cible|}}
-                <li>{{cible.name}}
+                <li><span class="nom">{{cible.name}}</span>
                     {{#if cible.result}}
-                        {{cible.result}}
+                        <span class="action">{{cible.result}}</span>
                     {{else}}
                         {{#if cible.canUpdate}}
-                            <span class="button" data-action="reponseAttaque" data-foractoruuid="{{cible.uuid}}">{{localizeSystem "combat.attaque.repondreBtn" }}</span>
+                            <span class="action button" data-action="reponseAttaque" data-foractoruuid="{{cible.uuid}}">{{localizeSystem "combat.attaque.repondreBtn" }}</span>
                         {{/if}}
                     {{/if}}
                 </li>
