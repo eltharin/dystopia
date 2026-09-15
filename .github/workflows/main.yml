@@ -57,6 +57,7 @@ jobs:
                       images/                              \
                       lang/                                \
                       src/                                 \
+                      systemBase/                          \
                       modules/                             \
                       styles/                              \
                       packs/                               \
