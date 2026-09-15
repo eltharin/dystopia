@@ -98,6 +98,7 @@ export class BaseActorDataModel extends system.Base.SystemDataModel {
                     physique: new foundry.data.fields.NumberField({initial: 0}),
                     magique: new foundry.data.fields.NumberField({initial: 0}),
                 }),
+                seuilCritiqueAdv: new foundry.data.fields.NumberField({initial: 0}),
             }),
         };
     }

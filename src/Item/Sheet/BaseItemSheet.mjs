@@ -29,6 +29,10 @@ export class BaseItemSheet extends system.Base.BaseSheet(
         else {
           ui.notifications.error("impossible de glisser ca ici")
         }
+        break;
+      case "ActiveEffect": 
+          super._onDrop(event);
+        break;
     }
   }
 
