@@ -10,7 +10,7 @@ export class ArmureDataModel extends system.Base.SystemDataModel {
 
   static defineSchema() {
     return {
-      //prixmoyen: new foundry.data.fields.NumberField({initial: 0, min:0}),
+      prix: new foundry.data.fields.NumberField({initial: 0, min:0}),
       notes: new foundry.data.fields.StringField({}),
       armure: new foundry.data.fields.SchemaField({
           physique: new foundry.data.fields.NumberField({min: 0, initial: 1}),

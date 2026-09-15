@@ -156,6 +156,9 @@
                         "main": "Trait"
                     }
                 },
+                "common": {
+                    "prix": "Prix"
+                },
                 "arme": {
                     "nav": {
                         "main": "Arme"

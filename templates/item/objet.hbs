@@ -1,5 +1,10 @@
 <section>
 
+    <div class="field">
+        <label>{{localizeSystem "sheet.items.common.prix"}}</label>
+        <div>{{ fieldOrInput "system.prix" class="pj-sheet-input" }}</div>
+    </div>
+    
     <div >
         <label>{{localizeSystem "sheet.items.objet.isConsommable"}}</label>
         <input type="checkbox" name="system.isConsommable" {{#if system.isConsommable }}checked="checked"{{/if}}/>
