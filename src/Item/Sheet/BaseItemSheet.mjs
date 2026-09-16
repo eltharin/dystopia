@@ -6,7 +6,7 @@ export class BaseItemSheet extends system.Base.BaseSheet(
 ) {
 
   static DEFAULT_OPTIONS = {
-    classes: [""],
+    classes: [system.Consts.SYSTEMID + '-sheet-item', system.Consts.SYSTEMID + '-sheet'],
     position: {
       width: 770,
       height: 550,
