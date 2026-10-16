@@ -37,7 +37,7 @@ export class AttaqueRoll extends system.DiceRoller.BaseRoll{
     }
 
     isCritique(cible) {
-        return this.total > Math.min(20,(this.options.actor.seuilCritique - cible.malus.seuilCritiqueAdv));
+        return this.total >= Math.min(20,(this.options.actor.seuilCritique - cible.malus.seuilCritiqueAdv));
     }
 
     calculDegats(cible) {
